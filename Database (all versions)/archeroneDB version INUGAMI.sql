@@ -202,18 +202,44 @@ CREATE TABLE `deloading` (
   `deloading_id` int(11) NOT NULL AUTO_INCREMENT,
   `college_id` int(11) DEFAULT NULL,
   `dept_id` int(11) DEFAULT NULL,
-  `faculty_id` int(11) NOT NULL,
   `deloading_code` varchar(100) DEFAULT NULL,
   `deloading_name` varchar(150) DEFAULT NULL,
   `deloading_type` varchar(20) DEFAULT NULL,
+  `description` varchar(100) DEFAULT NULL,
+  `time_stamp` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`deloading_id`)
+);
+
+LOCK TABLES `deloading` WRITE;
+/*!40000 ALTER TABLE `department` DISABLE KEYS */;
+INSERT INTO `deloading` VALUES (1, 2, 12, 'CHAIR', 'Department Chair', 'AL', 'Being the Chair of a department', NULL);
+/*!40000 ALTER TABLE `department` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `deloading`
+--
+
+DROP TABLE IF EXISTS `deloadoffer`;
+
+CREATE TABLE `deloading` (
+  `deloadoffer_id` int(11) NOT NULL AUTO_INCREMENT,
+  `deloading_id` int(11) NOT NULL,
+  `faculty_id` int(11) NOT NULL,
   `term` int(11) DEFAULT NULL,
   `start_year` int(11) DEFAULT NULL,
   `end_year` int(11) DEFAULT NULL,
   `units` float DEFAULT NULL,
   `description` varchar(100) DEFAULT NULL,
   `time_stamp` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`deloading_id`)
+  PRIMARY KEY (`deloadoffer_id`)
 );
+
+LOCK TABLES `deloadoffer` WRITE;
+/*!40000 ALTER TABLE `department` DISABLE KEYS */;
+INSERT INTO `deloadoffer` VALUES (1, 1, 73, 2, 2016, 2017, 6.0, 'N/A', NULL);
+/*!40000 ALTER TABLE `department` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `department`
