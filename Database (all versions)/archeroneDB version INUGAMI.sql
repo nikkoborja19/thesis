@@ -211,9 +211,9 @@ CREATE TABLE `deloading` (
 );
 
 LOCK TABLES `deloading` WRITE;
-/*!40000 ALTER TABLE `department` DISABLE KEYS */;
+/*!40000 ALTER TABLE `deloading` DISABLE KEYS */;
 INSERT INTO `deloading` VALUES (1, 2, 12, 'CHAIR', 'Department Chair', 'AL', 'Being the Chair of a department', NULL);
-/*!40000 ALTER TABLE `department` ENABLE KEYS */;
+/*!40000 ALTER TABLE `deloading` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -236,9 +236,9 @@ CREATE TABLE `deloading` (
 );
 
 LOCK TABLES `deloadoffer` WRITE;
-/*!40000 ALTER TABLE `department` DISABLE KEYS */;
+/*!40000 ALTER TABLE `deloadoffer` DISABLE KEYS */;
 INSERT INTO `deloadoffer` VALUES (1, 1, 73, 2, 2016, 2017, 6.0, 'N/A', NULL);
-/*!40000 ALTER TABLE `department` ENABLE KEYS */;
+/*!40000 ALTER TABLE `deloadoffer` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
