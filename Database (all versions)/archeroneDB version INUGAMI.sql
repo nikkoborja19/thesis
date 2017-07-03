@@ -222,7 +222,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `deloadoffer`;
 
-CREATE TABLE `deloading` (
+CREATE TABLE `deloadoffer` (
   `deloadoffer_id` int(11) NOT NULL AUTO_INCREMENT,
   `deloading_id` int(11) NOT NULL,
   `faculty_id` int(11) NOT NULL,
