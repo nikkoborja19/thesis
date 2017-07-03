@@ -249,7 +249,7 @@ INSERT INTO `faculty` VALUES (71,22098909,1,'FT',NULL),(70,22567683,1,'FT',NULL)
 UNLOCK TABLES;
 
 --
---Table structure for table `flowcharts`
+-- Table structure for table `flowcharts`
 --
 
 DROP TABLE IF EXISTS `flowcharts`;
@@ -264,7 +264,7 @@ CREATE TABLE `flowcharts` (
   `end_year` int(11) DEFAULT NULL,
   `term` int(11) DEFAULT NULL,
   PRIMARY KEY (`flowchart_id`)
-) 
+); 
 
 --
 -- Table structure for table `flowcourses`
@@ -276,7 +276,7 @@ CREATE TABLE `flowcourses` (
   `flowchart_id` int(11) NOT NULL,
   `course_id` int(11) NOT NULL,
   PRIMARY KEY (`flowchart_id`, `course_id`)
-) 
+); 
 
 --
 -- Table structure for table `loads`
