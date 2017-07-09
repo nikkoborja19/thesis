@@ -1,0 +1,2 @@
+1.) CSS not updating = try Ctrl +F5
+2.) Servlets throwing ClassNotFoundException = try Cleaning the project
