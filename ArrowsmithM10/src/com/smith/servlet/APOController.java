@@ -81,8 +81,8 @@ public class APOController {
 		}
 		
 		ModelAndView mav = new ModelAndView("manageCourseOfferings");
-		timeframeButtonName = searchVar;
-		mav.addObject("timeframeButton", timeframeButtonName);
+		mav.addObject("timeframeButton", searchVar);
+//		timeframeButtonName = searchVar;
 		mav.addObject("offeringList", offerings);
 		
 		System.out.println("searchVar: " + searchVar);

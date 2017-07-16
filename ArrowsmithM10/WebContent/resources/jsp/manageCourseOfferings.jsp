@@ -91,7 +91,7 @@ pageEncoding="ISO-8859-1"%>
                 		<input id="searchVar" name="searchVar" type="hidden">
                 	</form>
                 	<div class="dropdown">
-						<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">${timeframeButton }<span class="caret"></span></button>
+						<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">${timeframeButton } <span class="caret"></span></button>
 						<ul class="dropdown-menu">
 							<c:forEach items="${timeframeList }" var="timeframe">
 								<li><a onclick="$('#searchVar').val('${timeframe}'); $('#searchForm').submit();"><c:out value="${timeframe }"></c:out></a></li>
