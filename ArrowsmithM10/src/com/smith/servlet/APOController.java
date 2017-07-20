@@ -56,8 +56,22 @@ public class APOController {
 	
 	@RequestMapping(value="/roomAssign", method=RequestMethod.GET)
 	public ModelAndView assignRoomPage() {
-		ModelAndView mav = new ModelAndView("roomAssignment");
+		ArrayList<Offering> offerings = new ArrayList();
 		
+		try {
+			offerings = OfferingDAO.getListOfferingsByTerm("2016", "2017", "2");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ModelAndView mav = new ModelAndView("roomAssignment");
+		mav.addObject("startYear", "2016");
+		mav.addObject("endYear", "2017");
+		mav.addObject("term", "2");
+		mav.addObject("offeringList", offerings);
+		
+		//System.out.println("searchVar: " + searchVar);
 		return mav;
 	}
 	
@@ -86,6 +100,37 @@ public class APOController {
 		mav.addObject("offeringList", offerings);
 		
 		System.out.println("searchVar: " + searchVar);
+		return mav;
+	}
+	
+	@RequestMapping(value="/displayCourseRoomAssign", method=RequestMethod.POST)
+	public ModelAndView roomAssignmentClick(
+			@RequestParam("inputDumpID") String ID,
+			@RequestParam("inputDumpStartYear") String startYear,
+			@RequestParam("inputDumpEndYear") String endYear,
+			@RequestParam("inputDumpTerm") String term) {
+		ArrayList<Offering> offerings = new ArrayList();
+		Offering clickedOffering = new Offering();
+		
+		try {
+			clickedOffering = OfferingDAO.getOfferingByID(ID);
+			offerings = OfferingDAO.getListOfferingsByTerm(startYear, endYear, term);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ModelAndView mav = new ModelAndView("roomAssignment");
+		mav.addObject("startYear", startYear);
+		mav.addObject("endYear", endYear);
+		mav.addObject("term", term);
+		mav.addObject("clickedID", clickedOffering.getOfferingId());
+		//mav.addObject("timeframeButton", searchVar);
+//		timeframeButtonName = searchVar;
+		mav.addObject("clickedOffering", clickedOffering);
+		mav.addObject("offeringList", offerings);
+		
+		//System.out.println("searchVar: " + searchVar);
 		return mav;
 	}
 	

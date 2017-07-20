@@ -11,6 +11,19 @@ pageEncoding="ISO-8859-1"%>
             #dividerOnRight{
                 border-right: 1px solid #bbb;
             }		
+            #roomSearchBox{
+            	position:fixed;
+            	min-height: 500px;
+            	background-color: #2a9c2f;
+            	color: white;
+            	padding:10px;
+            	border-radius: 10px;
+            	margin-left: 682px;
+            }
+         	.courseName{
+         	 	cursor: pointer;
+         	 	text-decoration:none;;
+         	}
         </style>
         <title>Room Assignment</title>
     </head>
@@ -23,6 +36,12 @@ pageEncoding="ISO-8859-1"%>
                         <div class="col-sm-3"></div>
                         <div class="col-sm-6"></div>
                         <div class="col-sm-3"><input type="text" class="form-control" id="search" placeholder="Search" klmname = "searchForm"></div>
+                        <form id="clickForm" action="displayCourseRoomAssign" method="POST">
+	                        <input type="hidden" class="inputDumpID" name="inputDumpID" value="${clickedID}">
+	                        <input type="hidden" class="inputDumpStartYear" name="inputDumpStartYear" value="${startYear}">
+	                        <input type="hidden" class="inputDumpEndYear" name="inputDumpEndYear" value="${endYear}">
+	                        <input type="hidden" class="inputDumpTerm" name="inputDumpTerm" value="${term}">
+                        </form>
                     </div>
                     <hr>
                     <div class="table-responsive">          
@@ -38,49 +57,37 @@ pageEncoding="ISO-8859-1"%>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="success">
-                                    <td><a href="#">COMPRO2</a></td>
-                                    <td>S17A</td>
-                                    <td>MW</td>
-                                    <td>1100</td>
-                                    <td>1230</td>
-                                    <td>G301</td>
-                                </tr>
-                                <tr class="success">
-                                    <td><a href="#">COMPRO2</a></td>
-                                    <td>S17B</td>
-                                    <td>MW</td>
-                                    <td>1100</td>
-                                    <td>1230</td>
-                                    <td>G302</td>
-                                </tr>
-                                <tr class="success">
-                                    <td><a href="#">DISCTRU</a></td>
-                                    <td>S17</td>
-                                    <td>TH</td>
-                                    <td>1245</td>
-                                    <td>1415</td>
-                                    <td>G205</td>
-                                </tr>
-                                <tr class="success">
-                                    <td><a href="#">CCSTRIG</a></td>
-                                    <td>S11</td>
-                                    <td>TH</td>
-                                    <td>0915</td>
-                                    <td>1045</td>
-                                    <td>G203</td>
-                                </tr>
+                                <c:forEach items="${offeringList }" var="offering">
+		                    		<c:forEach items="${offering.days }" var="day" varStatus="innerLoop">
+		                    		<!--<c:choose>
+		                    			<c:when test="${offering.offeringId == clickedOffering.offeringId}">
+		                    				<tr class="danger">
+		                    			</c:when>
+		                    			<c:otherwise>
+		                    				<tr class="success">
+		                    			</c:otherwise>
+		                    		</c:choose>-->
+				                        <tr id="${offering.offeringId }${innerLoop.count}" class="success" onclick="clickOffering(this.id)">
+				                            <td id="${offering.offeringId }${innerLoop.count}-courseName"><a class="courseName"><c:out value="${offering.course.courseCode }"/></a></td>
+				                            <td id="${offering.offeringId }${innerLoop.count}-section"><c:out value="${offering.section }"/></td>
+				                            <td id="${offering.offeringId }${innerLoop.count}-classDay"><c:out value="${day.classDay }"/></td>
+				                            <td id="${offering.offeringId }${innerLoop.count}-beginTime"><c:out value="${day.beginTime }"/></td>
+				                            <td id="${offering.offeringId }${innerLoop.count}-endTime"><c:out value="${day.endTime }"/></td>
+				                            <td></td>
+				                        </tr>
+			                        </c:forEach>
+		                        </c:forEach>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <div class="col-sm-5">
-                    <div style="min-height: 500px;background-color: #2a9c2f;color: white;padding:10px;border-radius: 10px;">
+                <div id="roomSearchBox" class="col-sm-5">
+                    <div style="">
                         <div class="row">
-                            <div class="col-sm-3"> Time Start:<input type="text" class="form-control" id="search" placeholder="Search" klmname = "searchForm"></div>
-                            <div class="col-sm-3"> Time End:<input type="text" class="form-control" id="search" placeholder="Search" klmname = "searchForm"></div>
-                            <div class="col-sm-3"> Day:<input type="text" class="form-control" id="search" placeholder="Search" klmname = "searchForm"></div>
+                            <div class="col-sm-3"> Time Start:<input id="beginTimeInput" type="text" class="form-control" id="search" placeholder="Search" klmname = "searchForm"></div>
+                            <div class="col-sm-3"> Time End:<input id="endTimeInput" type="text" class="form-control" id="search" placeholder="Search" klmname = "searchForm"></div>
+                            <div class="col-sm-3"> Day:<input id="dayInput"type="text" class="form-control" id="search" placeholder="Search" klmname = "searchForm"></div>
                         </div>
                         <br>
                         <div style="height: 500px;background-color:#67ed6d;padding: 10px;border: 3px solid #195c1c">
@@ -90,5 +97,24 @@ pageEncoding="ISO-8859-1"%>
                 </div>
             </div>
         </div>
+        
+        <script type="text/javascript">
+        	var prevId = 0;
+        	
+	        function clickOffering(id){	
+	        	$("#"+id).attr("class", "danger");
+	        	/****UPDATE GREEN BOX****/
+	        	$("#beginTimeInput").val($("#"+id+"-beginTime").text());
+	        	$("#endTimeInput").val($("#"+id+"-endTime").text());
+	        	$("#dayInput").val($("#"+id+"-classDay").text());
+	        	/****UPDATE GREEN BOX****/
+	        	if(prevId != 0){
+	        		$("#"+prevId).attr("class", "success");
+	        	}
+	        	
+	        	prevId = id;
+	        	//console.log("hello");
+	        }
+        </script>
     </body>
 </html>

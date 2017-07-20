@@ -24,10 +24,10 @@ pageEncoding="ISO-8859-1"%>
                                     <div class="form-group">
 
                                         <select class="form-control" id="sel1">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
+                                        	<option>none</option>
+                                            <option>ST</option>
+                                            <option>CT</option>
+                                            <option>IT</option>
                                         </select>
                                     </div>
                                 </div>
@@ -41,10 +41,15 @@ pageEncoding="ISO-8859-1"%>
                                     <div class="form-group">
 
                                         <select class="form-control" id="sel1">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
+                                        	<option>none</option>
+                                            <option>112</option>
+                                            <option>113</option>
+                                            <option>114</option>
+                                            <option>115</option>
+                                            <option>116</option>
+                                            <option>117</option>
+                                            <option>118</option>
+                                            <option>119</option>
                                         </select>
                                     </div>
                                 </div>
@@ -59,10 +64,14 @@ pageEncoding="ISO-8859-1"%>
                                     <div class="form-group">
 
                                         <select class="form-control" id="sel1">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
+                                        	<option>none</option>
+                                        	<option>2011-2012</option>
+                                            <option>2012-2013</option>
+                                            <option>2013-2014</option>
+                                            <option>2014-2015</option>
+                                            <option>2015-2016</option>
+                                            <option>2016-2017</option>
+                                            <option>2017-2018</option>
                                         </select>
                                     </div>
                                 </div>
@@ -77,14 +86,15 @@ pageEncoding="ISO-8859-1"%>
                                     <div class="form-group">
 
                                         <select class="form-control" id="sel1">
+                                        	<option>none</option>
                                             <option>1</option>
                                             <option>2</option>
                                             <option>3</option>
-                                            <option>4</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
+                            <input type="button" name="filterButton" value="Filter">
                         </form>
                     </div>
                     <div class="col-sm-8">
