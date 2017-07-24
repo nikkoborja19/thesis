@@ -8,6 +8,53 @@
 
 
 	<title></title>
+
+	<script type="text/javascript">
+	    var PREV_COURSE_CONTAINER_CONSTANT = "prevContainer";
+	    var courseId;
+	    var prevVarCode = "Alucard";
+	    var ctr = 0;
+	    var currId = "";
+
+	    function getCourseId(id){
+	            $.ajax({
+	        type: 'POST',
+	        dataType: 'json',
+	        cache: false,
+	        data: {
+	            "courseId": id
+	        },
+	        url: 'getCourseById',
+	        success: function (data) {
+                currId = PREV_COURSE_CONTAINER_CONSTANT + '-' + ctr;
+	        	$("#courseAddPreviewBox").html('<div id="' + currId + '" style="overflow: hidden;">');//overwrites the previous data
+
+	            $.each(data, function(index, currCourse){
+	                //console.log("prevVarCode: " + prevVarCode + " | currCourseCode: " + currCourse.courseCode);
+	                if (prevVarCode === "Alucard") {
+	                	prevVarCode = currCourse.courseCode;
+	                }
+	                
+	                if(prevVarCode !== currCourse.courseCode){
+                		ctr++;
+                		currId = PREV_COURSE_CONTAINER_CONSTANT + '-' + ctr;
+                        $("#courseAddPreviewBox").append('<hr style="border-color: black;"><div style="overflow: hidden;">');
+                		$("#courseAddPreviewBox").append('<div id="' + currId + '" style="overflow: hidden;">');
+	                }
+
+	                $("#" + currId).append('<div class="previewCourse"><b>' + currCourse.courseCode + '</b><button type="button" class="btn btn-default">S11A</button></div>');
+
+	                prevVarCode = currCourse.courseCode;
+	            });
+	            $("#courseAddPreviewBox").append('</div>');
+	            prevVarCode = "Alucard";
+	        },
+	        error: function(data){
+	            console.log(data);
+	        }
+	    });
+	    }
+	</script>
 </head>
 <body>
 	<div style="padding:10px;background-color: #7aca7e;width:1020px; margin:auto;border:1px solid black;	">
