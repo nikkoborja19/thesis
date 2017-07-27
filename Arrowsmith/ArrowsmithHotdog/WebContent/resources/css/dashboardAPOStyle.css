@@ -1,0 +1,230 @@
+body{
+  background:#f4f4f4;
+}
+/*******************CUSTOMS***********************/
+/* Custom Color*/
+.sideBar-cell-color{
+  background-color: #2f822d !important;
+  border-color: #2f822d !important;
+  color:#ffffff !important;
+}
+
+.inactivePanel{
+	display:none;
+}
+/********************FONTS************************/
+@font-face {
+	font-family: RalewayLight;
+	src: url(../../resources/fonts/RalewayLight.ttf);
+}
+@font-face {
+	font-family: FjallaOne;
+	src: url(../../resources/fonts/FjallaOne.ttf);
+}
+/********************NAVBAR***********************/
+.navbar{
+  min-height: 50px !important;
+  margin-bottom:0;
+  border-radius:0;
+  opacity:0.8;
+  width: 100%;
+  position: fixed;
+  z-index: 2;
+  font-family: RalewayLight;
+  font-size: 13px; 
+}
+
+.navbar-nav > li > a, .navbar-brand{
+  padding-top:15px !important;
+  padding-bottom:0 !important;
+  height: 50px;
+}
+
+.navbar-default {
+  transition: all ease .5s;
+  background-color: #225c20;
+  border-color: #225c20;
+}
+.navbar-default .navbar-brand {
+  color: #ffffff;
+  font-size: 15px;
+  font-family: FjallaOne;
+  z-index: 3;
+  position: relative;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #ffffff;
+}
+.navbar-default .navbar-text {
+  color: #ffffff;
+}
+.navbar-default .navbar-nav > li > a{
+  color: #f8fafa;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #f8fafa;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #f8fafa;
+  background-color: #2f822d;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #f8fafa;
+  background-color: #2f822d;
+}
+.navbar-default .navbar-toggle {
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #2f822d;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ecf0f1;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+}
+.navbar-default .navbar-link {
+  color: #f8fafa;
+}
+.navbar-default .navbar-link:hover {
+  color: #f8fafa;
+}
+.dropdown-menu .dropdown-item{
+  color: #373737;
+  font-family: RalewayLight;
+  font-size: 13px;
+}
+
+/******************WHEN SCROLLED DOWN******************/
+#nav.shrink {
+  min-height: 40px;
+  transition: all ease .5s;
+  background-color: black;
+  border-color: black;
+  opacity:0.8;
+}
+
+#nav.shrink .navbar-nav > li > a, .navbar-brand{
+  padding-top:15px !important;
+  padding-bottom:0 !important;
+  min-height: 40px;
+}
+
+#navbar.shrink {
+  min-height: 40px;
+  transition: all ease .5s;
+  background-color: black;
+  border-color: black;
+  opacity:0.8;
+}
+
+#navbar.shrink .navbar-nav > .active > a,
+#navbar.shrink .navbar-nav > .active > a:hover,
+#navbar.shrink .navbar-nav > .active > a:focus {
+  color: #f8fafa;
+  background-color: #373737;
+}
+
+#navbar.shrink .navbar-nav > .open > a,
+#navbar.shrink .navbar-nav > .open > a:hover,
+#navbar.shrink .navbar-nav > .open > a:focus {
+  color: #f8fafa;
+  background-color: #373737;
+}
+
+#navbar.shrink .navbar-toggle:hover,
+#navbar.shrink .navbar-toggle:focus {
+  background-color: #373737;
+}
+
+#nav.shrink .navbar-toggle:hover,
+#nav.shrink .navbar-toggle:focus {
+  background-color: #373737;
+}
+
+/********************NAVBAR************************/
+/********************PARALLAX***********************/
+
+#parallaxText{
+	font-family: FjallaOne;
+  	font-size: 30px; 
+  	position: absolute;
+  	margin-top: 150px;
+  	color: #ffffff;
+  	width: 100%;
+  	text-align: center;
+  	z-index: 1;
+}
+.parallax-window {
+    min-height: 300px;
+    background: #225c20;
+    opacity: 0.5;
+}
+/********************PARALLAX***********************/
+/********************SIDEBAR***********************/
+/* Progress Bars */
+.progress-bar{
+  background:#333333;
+  color:#ffffff;
+}
+
+#dashboardSideBar{
+	margin-top: 20px;
+	z-index: 1;
+}
+
+/********************SIDEBAR***********************/
+/*************PANELBUILDINGSANDROOMS***********/
+
+#panelBuildingsAndRooms{
+	margin-top: 20px;
+	height: 300px;
+}
+
+.header-fixed {
+    width: 100%;
+}
+
+.header-fixed {
+    width: 100%;
+}
+
+.header-fixed > thead,
+.header-fixed > tbody,
+.header-fixed > thead > tr,
+.header-fixed > tbody > tr,
+.header-fixed > thead > tr > th,
+.header-fixed > tbody > tr > td {
+    display: block;
+}
+
+.header-fixed > tbody > tr:after,
+.header-fixed > thead > tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+.header-fixed > tbody {
+    overflow-y: auto;
+    height: 300px;
+}
+
+.header-fixed > tbody > tr > td,
+.header-fixed > thead > tr > th {
+    width: 25%; /*kasi 4 columns lang. if 5, 20%. If etc, adjust*/
+    float: left;
+}
+
+.header-fixed > thead > tr > th{
+	white-space: nowrap; /*If headers start wrapping white spaces, it messes things up*/
+}
+/*************PANELBUILDINGSANDROOMS***********/
