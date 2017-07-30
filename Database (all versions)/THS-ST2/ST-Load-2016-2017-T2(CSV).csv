@@ -1,0 +1,114 @@
+2016,2017,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+113,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Program,Course Code,Course Name,Units,Course Type,Course College,Course Department,isNonAcad,isSHS,isServiceCourse,Servicing Department,isMasters,isElective,elective_type,Section,Lastname,Firstname,ID NUMBER,Faculty Type,Faculty College,Faculty Department,Day1,Begin1,End1,Room1,Day2,Begin2,End2,Room2,Count,Location,Comments,isOnLeave,leavetype,status
+ST-2,ST-STAT,Introduction to Statistics,3,TL,CCS,ST,,,,,,,,S19,Aguilar,Emerico,22567683,FT,CCS,ST,MW,1430,1600,G206,,,,,22,Main,,,,Regular
+IS-2,MODESTA,Introduction to Statistics,3,TL,CCS,ST,,,,,,,,S21,Aguilar,Emerico,22567683,FT,CCS,ST,MW,1430,1600,G206,,,,,22,Main,,,,Regular
+IT-3,WIR-TEC,Wireless Technology,3,TL,CCS,ST,,,,,,,,S14,Aguilar,Emerico,22567683,FT,CCS,ST,MW,1245,1415,G302A,,,,,15,Main,,,,Regular
+CSS-IRR,COMPRO2,Introduction to Computer Programming 2,3,TL,CCS,ST,,,,,,,,X22,Aguilar,Emerico,22567683,FT,CCS,ST,TH,1100,1230,MRELAB,,,,,7,STC,,,,Regular
+ADMIN,STC Pioneer Faculty,,9,AL,CCS,ST,,,,,,,,,Azcarraga,Arnulfo,22590997,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+GRAD,CSC755M,,3,TL,CCS,ST,,,,,,,,G1,Azcarraga,Arnulfo,22590997,FT,CCS,ST,T,1800,2100,G206,,,,,11,Main,,,,Regular
+ADMIN,SAB LEAVE,Sabbatical Leave,12,AL,NC,ND,,,,,,,,,Borra,Allan,22317443,FT,CCS,ST,,,,,,,,,,Main,,TRUE,Sabbatical,Regular
+NE-3,INTROOS,Introduction to Operating Systems,3,TL,CCS,ST,,,,,,,,S12,Bulos,Remedios,22718119,FT,CCS,ST,TH,1615,1745,G208,,,,,19,Main,,,,Regular
+GRAD,CSC742M,,3,TL,CCS,ST,,,,,,,,G1,Bulos,Remedios,22718119,FT,CCS,ST,T,1800,2100,G209,,,,,14,Main,,,,Regular
+ST-2,ST-STAT,Introduction to Statistics,3,TL,CCS,ST,,,,,,,,S17,Bulos,Remedios,22718119,FT,CCS,ST,MW,915,1045,G205,,,,,17,Main,,,,Regular
+ST-2,ST-STAT,Introduction to Statistics,3,TL,CCS,ST,,,,,,,,S18,Bulos,Remedios,22718119,FT,CCS,ST,MW,1100,1230,G206,,,,,34,Main,,,,Regular
+ADMIN,CHAIR,,6,AL,CCS,ST,,,,,,,,,Cabredo,Rafael,22742131,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+ST-3,CSETHIC,,3,TL,CCS,ST,,,,,,,,S15,Cabredo,Rafael,22742131,FT,CCS,ST,M,915,1230,G212,,,,,30,Main,,,,Regular
+ST-4,CSETHIC,,3,TL,CCS,ST,,,,,,,,S17,Cabredo,Rafael,22742131,FT,CCS,ST,M,1430,1745,G207,,,,,44,Main,,,,Regular
+ADMIN,EA DIRECTOR,,3,AL,NC,ND,,,,,,,,,Cheng,Charibeth,22176192,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+GRAD,CSC617M,,3,TL,CCS,ST,,,,,,,,G1,Cheng,Charibeth,22176192,FT,CCS,ST,M,1800,2100,G205,,,,,15,Main,,,,Regular
+,ROSEN,,3,RL,NC,ND,,,,,,,,,Cheng,Charibeth,22176192,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+SHS,PRAC. RESEARCH,,3,TL,CCS,ST,,TRUE,,,,,,11-F,Cheng,Charibeth,22176192,FT,CCS,ST,MW,1530,1700,L310,,,,,,Main,,,,Regular
+IRR,DISCTRU,Introduction to Discrete Structures,3,TL,CCS,ST,,,,,,,,S19,Chu,Shirley,22414157,FT,CCS,ST,MW,730,900,G205,,,,,45,Main,4.5 hours straight; request ok,,,Regular
+1-CS,DISCTRU,Introduction to Discrete Structures,3,TL,CCS,ST,,,,,,,,S18,Chu,Shirley,22414157,FT,CCS,ST,MW,915,1045,G208,,,,,40,Main,,,,Regular
+1-CS,DISCTRU,Introduction to Discrete Structures,3,TL,CCS,ST,,,,,,,,S17,Chu,Shirley,22414157,FT,CCS,ST,MW,1100,1230,G207,,,,,45,Main,,,,Regular
+SHS,JUBILEE,,3,RL,CCS,ST,,TRUE,,,,,,,Chu,Shirley,22414157,FT,CCS,ST,T,735,1015,,T,735,915,,,Main,,,,Regular
+CSE-2,COMALGO,Complexity and Algorithm,3,TL,CCS,ST,,,,,,,,S11,Azcarraga,Judith,22314156,FT,CCS,CT,MW,1430,1600,G212,,,,,26,Main,,,,Regular
+CSE-4,CTTREND,,3,TL,CCS,ST,,,,,,TRUE,SPELEC2,S11,Azcarraga,Judith,22314156,FT,CCS,CT,MW,915,1045,G203,,,,,24,Main,,,,Regular
+SHS,EMTECH1,,3,RL,CCS,ST,,TRUE,,,,,,11-P,Azcarraga,Judith,22314156,FT,CCS,CT,TH,1100,1230,L335,,,,L331,,Main,,,,Regular
+NE-2,COMALGO,Complexity and Algorithm,3,TL,CCS,ST,,,,,,,,S13,Azcarraga,Judith,22314156,FT,CCS,CT,TH,1245,1415,G209,,,,,30,Main,,,,Regular
+ADMIN,TSG,,3,AL,NC,ND,,,,,,,,,Cu,Gregory,22648495,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+GRAD,CSC611M,,3,TL,CCS,ST,,,,,,,,G1,Cu,Gregory,22648495,FT,CCS,ST,H,1800,2100,G210,,,,,15,Main,,,,Regular
+NE-2,HCK-LCT,Lecture on Ethical Hacking,3,TL,CCS,ST,,,,,,,,S12B,Cu,Gregory,22648495,FT,CCS,ST,TH,915,1045,G405,,,,,22,Main,,,,Regular
+NE-2,LBY-HCK,Laboratory for Ethical Hacking,2,TL,CCS,ST,,,,,,,,S12B,Cu,Gregory,22648495,FT,CCS,ST,TH,1100,1230,G405,,,,,22,Main,,,,Regular
+URCO,What project?,,1,RL,NC,ND,,,,,,,,,Cu,Gregory,22648495,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+,INFOSCU,,3,RL,NC,ND,,,,,,,,,Cu,Gregory,22648495,FT,CCS,ST,MW,1300,1430,,,,,,2,Main,,,,Special
+CSS4,INOVATE,,3,TL,CCS,ST,,,,,,,,X22,Deja,Jordan,22734526,FT,CCS,ST,TH,915,1045,MRW414,,,,,12,STC,,,,Regular
+ST-2,SWDESPA,Introduction to Software Design Patterns,3,TL,CCS,ST,,,,,,,,S17,Deja,Jordan,22734526,FT,CCS,ST,MW,1430,1600,G205,,,,,15,Main,,,,Regular
+ST-2,SWDESPA,Introduction to Software Design Patterns,3,TL,CCS,ST,,,,,,,,S19,Deja,Jordan,22734526,FT,CCS,ST,MW,1100,1230,G205,,,,,44,Main,,,,Regular
+GRAD,CSC505C,,3,TL,CCS,ST,,,,,,,,G1,Deja,Jordan,22734526,FT,CCS,ST,T,1800,2100,G207,,,,,6,Main,underload 1 unit,,,Regular
+,DATSTRU,,3,TL,CCS,ST,,,,,,,,,Deja,Jordan,22734526,FT,CCS,ST,,,,,,,,,,Main,,,,Special
+ADMIN,VICE CHAIR,,3,AL,CCS,ST,,,,,,,,,Dimaunahan,Ryan,22523467,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+IRR,SW-ENGG,,3,TL,CCS,ST,,,,,,,,S15,Dimaunahan,Ryan,22523467,FT,CCS,ST,MW,1245,1415,G209,,,,,29,Main,,,,Regular
+SHS,EMPTEC2,,3,TL,NC,ND,,TRUE,,,,,,11-R,Dimaunahan,Ryan,22523467,FT,CCS,ST,TH,730,900,L333,,,,L229,,Main,,,,Regular
+1-IRR,COMPRO1,Introduction to Computer Programming 1,3,TL,CCS,ST,,,,,,,,S19,Dimaunahan,Ryan,22523467,FT,CCS,ST,TH,915,1045,G306A,,,,,14,Main,,,,Regular
+,LOGPROG,,3,TL,CCS,ST,,,,,,,,,Dimaunahan,Ryan,22523467,FT,CCS,ST,,,,,,,,,6,Main,,,,Special
+,FORMDEV,,3,TL,CCS,ST,,,,,,,,,Dimaunahan,Ryan,22523467,FT,CCS,ST,,,,,,,,,1,Main,,,,Special
+ADMIN,AVP-ES,,12,AL,NC,ND,,,,,,,,,Fernandez,Kai Shan,22675888,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+CSS2-IR,DISCTRU,Introduction to Discrete Structures,3,TL,CCS,ST,,,,,,,,X22,Gendrano,Christine,22576895,FT,CCS,ST,TH,1615,1745,MRE412,,,,,14,STC,,,,Regular
+NE-2,INTRODB,Introduction to Database,3,TL,CCS,ST,,,,,,,,S12,Gendrano,Christine,22576895,FT,CCS,ST,MW,1430,1600,G401,,,,,16,Main,,,,Regular
+NE-2,INTRODB,Introduction to Database,3,TL,CCS,ST,,,,,,,,S13,Gendrano,Christine,22576895,FT,CCS,ST,MW,1100,1230,G213,,,,,26,Main,,,,Regular
+CSE-2,INTRODB,Introduction to Database,3,TL,CCS,ST,,,,,,,,S11,Gendrano,Christine,22576895,FT,CCS,ST,MW,1615,1745,G206,,,,,44,Main,,,,Regular
+,PROGLAN,,3,TL,CCS,ST,,,,,,,,,Gendrano,Christine,22576895,FT,CCS,ST,,,,,,,,,,Main,,,,Special
+GRAD,CSC617M,,3,TL,CCS,ST,,,,,,,,,Gendrano,Christine,22576895,FT,CCS,ST,,1800,2100,,,,,,3,STC,,,,Special
+1-CS,COMPRO2,Introduction to Computer Programming 2,3,TL,CCS,ST,,,,,,,,S17A,Lim-Cheng,Nathalie Rose,22879890,FT,CCS,ST,MW,915,1045,G302B,,,,,19,Main,,,,Regular
+1-CS,COMPRO2,Introduction to Computer Programming 2,3,TL,CCS,ST,,,,,,,,S18B,Lim-Cheng,Nathalie Rose,22879890,FT,CCS,ST,MW,1100,1230,G302B,,,,,18,Main,,,,Regular
+URCO,URCO,,3,RL,NC,ND,,,,,,,,,Lim-Cheng,Nathalie Rose,22879890,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+ADMIN,SERVICE LEAVE,,12,LL,NC,ND,,,,,,,,,Limoanco,Teresita,22647488,FT,CCS,ST,,,,,,,,,,Main,,TRUE,Service,Regular
+ADMIN,GRAD SCHOOL-PHD,,2,AL,CCS,ST,,,,,,,,,Marcos,Nelson,22241516,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+ADMIN,VICE DEAN,,10,AL,CCS,ST,,,,,,,,,Marcos,Nelson,22241516,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+ST-3,MOBAPDE,Mobile Applications Development,3,TL,CCS,ST,,,,,,,,S17,Ngo,Courtney,22543787,FT,CCS,ST,M,1430,1745,G301,,,,,28,Main,,,,Regular
+IT-3,WIR-TEC,Wireless Technology,3,TL,CCS,ST,,,,,,,,S15,Ngo,Courtney,22543787,FT,CCS,ST,TH,1100,1230,G301,,,,,24,Main,,,,Regular
+ST-3,MOBAPDE,Mobile Applications Development,3,TL,CCS,ST,,,,,,,,S18,Ngo,Courtney,22543787,FT,CCS,ST,W,1430,1745,G301,,,,,20,Main,,,,Regular
+ST-4,THS-ST2,Thesis in Software Technology 2,2,TL,CCS,ST,,,,,,,,S17,Ngo,Courtney,22543787,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+ST-4,THS-ST3,Thesis in Software Technology 3,2,TL,CCS,ST,,,,,,,,S18,Ngo,Courtney,22543787,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+ST-4,THS-ST4,Thesis in Software Technology 4,2,TL,CCS,ST,,,,,,,,S19,Ngo,Courtney,22543787,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+CSS4,THESST2,,2,TL,CCS,ST,,,,,,,,X22,Ngo,Courtney,22543787,FT,CCS,ST,,,,,,,,,,STC,,,,Regular
+URCO,URCO,,3,RL,CCS,ST,,,,,,,,,Ngo,Courtney,22543787,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+ST-4,CSETHIC,,3,TL,CCS,ST,,,,,,,,S18,Ong,Ethel,22764530,FT,CCS,ST,TH,915,1045,G211,,,,,37,Main,,,,Regular
+ST-4,CSETHIC,,3,TL,CCS,ST,,,,,,,,S19,Ong,Ethel,22764530,FT,CCS,ST,TH,1100,1230,G212,,,,,35,Main,,,,Regular
+SHS,PRAC. RESEARCH,,3,TL,CCS,ST,,,,,,,,11-C,Ong,Ethel,22764530,FT,CCS,ST,MW,730,900,L332,,,,,43,Main,,,,Regular
+ADMIN,ADRIC DIRECTOR,,6,AL,CCS,ST,,,,,,,,,Ong,Ethel,22764530,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+ST-4,INOVATE,Technology and Innovation Management,3,TL,CCS,ST,,,,,,,,S19,Regalado,Ralph,22784944,FT,CCS,ST,TH,915,1045,G212,,,,,7,Main,,,,Regular
+ST-4,INOVATE,Technology and Innovation Management,3,TL,CCS,ST,,,,,,,,S18,Regalado,Ralph,22784944,FT,CCS,ST,TH,1100,1230,G211,,,,,44,Main,,,,Regular
+ST-4,INOVATE,Technology and Innovation Management,3,TL,CCS,ST,,,,,,,,S17,Regalado,Ralph,22784944,FT,CCS,ST,W,1430,1745,G212,,,,,42,Main,,,,Regular
+ST-3,MOBAPDE,Mobile Applications Development,3,TL,CCS,ST,,,,,,,,S19,Regalado,Ralph,22784944,FT,CCS,ST,M,915,1230,G301,,,,,17,Main,,,,Regular
+ST-4,CMPHOTO,,3,TL,CCS,ST,,,,,,TRUE,SPELEC2,S19,Ruiz,Conrado,22425252,FT,CCS,ST,MW,1430,1600,G304B,,,,,16,Main,,,,Regular
+ADMIN,GRAD SCHOOL-MS,,1,AL,CCS,ST,,,,,,,,,Ruiz,Conrado,22425252,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+URCO,URCO,,5,RL,CCS,ST,,,,,,,,,Ruiz,Conrado,22425252,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+GRAD,CSC731M,,3,TL,CCS,ST,,,,,,,,G1,Ruiz,Conrado,22425252,FT,CCS,ST,W,1800,2100,G204,,,,,15,Main,,,,Regular
+1-CS,COMPRO2,Introduction to Computer Programming 2,3,TL,CCS,ST,,,,,,,,S17B,Salvador,Florante,22374777,FT,CCS,ST,MW,915,1045,G302A,,,,,22,Main,,,,Regular
+1-CS,COMPRO2,Introduction to Computer Programming 2,3,TL,CCS,ST,,,,,,,,S18A,Salvador,Florante,22374777,FT,CCS,ST,MW,1100,1230,G302A,,,,,22,Main,,,,Regular
+2-IRR,COMPRO2,Introduction to Computer Programming 2,3,TL,CCS,ST,,,,,,,,S19,Salvador,Florante,22374777,FT,CCS,ST,TH,1430,1600,G302A,,,,,20,Main,,,,Regular
+GRAD,CSC701M,,3,TL,CCS,ST,,,,,,,,G1,Salvador,Florante,22374777,FT,CCS,ST,H,1800,2100,G206,,,,,9,Main,,,,Regular
+ST-2,SWDESPA,Introduction to Software Design Patterns,3,TL,CCS,ST,,,,,,,,S18,Samson,Briane,22456783,FT,CCS,ST,MW,915,1045,G204,,,,,33,Main,,,,Regular
+ST-3,PRC-ST1,Practicum Course in ST,3,TL,CCS,ST,,,,,,,,S17,Samson,Briane,22456783,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+ST-3,PRC-ST1,Practicum Course in ST,3,TL,CCS,ST,,,,,,,,S18,Samson,Briane,22456783,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+,URCO,,3,RL,CCS,ST,,,,,,,,,Samson,Briane,22456783,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+EA,ROSEN,,6,RL,CCS,ST,,,,,,,,,Samson,Briane,22456783,FT,CCS,ST,,,,,,,,,,Main,ROSEN 6 units deloading,,,Regular
+CSS3 CS,CSETHIC,,3,TL,CCS,ST,,,,,,,,X22,Sison,Raymund,22683488,FT,CCS,ST,M,915,1230,MRW414,,,,,23,STC,,,,Regular
+ADMIN,STC Pioneer Faculty,,9,AL,CCS,ST,,,,,,,,,Sison,Raymund,22683488,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+ADMIN,Dean,,12,AL,CCS,ST,,,,,,,,,Suarez,Merlin,22637450,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+ADMIN,STC Pioneer Faculty,,9,AL,CCS,ST,,,,,,,,,Suarez,Merlin,22637450,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+DIT,DIT704D,,3,TL,CCS,ST,,,,,,,,G1,Suarez,Merlin,22637450,FT,CCS,ST,S,900,1200,G206,,,,,12,Main,overload with pay,,,Regular
+IS-2,DEV-WEB,Web Applications Development,3,TL,CCS,ST,,,,,,,,S15,Tiam-Lee,Thomas,22546752,FT,CCS,ST,MW,1245,1415,G304B,,,,,26,Main,,,,Regular
+IS-2,DEV-WEB,Web Applications Development,3,TL,CCS,ST,,,,,,,,S14,Tiam-Lee,Thomas,22546752,FT,CCS,ST,MW,1100,1230,G306A,,,,,11,Main,,,,Regular
+SHS,EMTEC2,,3,TL,CCS,ST,,TRUE,,,,,,11-S,Tiam-Lee,Thomas,22546752,FT,CCS,ST,MW,900,1030,L229,,,,L334,,Main,Thomas will leave last 2 weeks,,,Regular
+SHS,EMTEC2,,3,TL,CCS,ST,,TRUE,,,,,,11-Q,Tiam-Lee,Thomas,22546752,FT,CCS,ST,TH,730,900,L229,,,,L332,,Main,Thomas will leave last 2 weeks,,,Regular
+CSE-3,WEB-PRG,,3,TL,CCS,ST,,,,,,,,S11,Balbin,Jolo,22842352,PT,CCS,ST,TH,915,1045,G304B,,,,,31,Main,,,,Regular
+CSS3,MOBAPDE,Mobile Applications Development,3,TL,CCS,ST,,,,,,,,X22,Caronoñgan,Arturo,22597519,PT,CCS,ST,M,1430,1745,MRW414,,,,,16,STC,,,,Regular
+CSS2,SWDESPA,Design Patterns,3,TL,CCS,ST,,,,,,,,X22,Caronoñgan,Arturo,22597519,PT,CCS,ST,TH,915,1045,MRW404,,,,,31,STC,,,,Regular
+CSS2,DESIPAT,Design Patterns,3,TL,CCS,ST,,,,,,,,X22,Caronoñgan,Arturo,22597519,PT,CCS,ST,TH,915,1045,MRW404,,,,,31,STC,,,,Regular
+ST-4,GAM-DEV,Game Development,3,TL,CCS,ST,,,,,,TRUE,SPELEC2,S20,Lu,Pat,22563468,PT,CCS,ST,MW,730,900,SJ212,,,,,20,Main,,,,Regular
+IRR,DASTAPP,,3,TL,CCS,IT,,,,,,,,S14,Lu,Pat,22563468,PT,CCS,ST,F,915,1230,G306A,,,,,22,Main,,,,Regular
+GRAD,CSC504C,,3,TL,CCS,ST,,,,,,,,G1,Santillana,John,22854322,PT,CCS,ST,H,1800,2100,G207,,,,,5,Main,merge with CIS105M,,,Regular
+MSIT,CSC105M,,3,TL,CCS,ST,,,,,,,,G1,Santillana,John,22854322,PT,CCS,ST,H,1800,2100,G211,,,,,16,Main,ask the students to move to G207,,,Regular
+1-IRR,COMPRO1,Introduction to Computer Programming 1,3,TL,CCS,ST,,,,,,,,S18,Santillana,John,22854322,PT,CCS,ST,TH,1100,1230,G306A,,,,,21,Main,,,,Regular
+IRR,ADVPROG,,3,TL,CCS,ST,,,,,,,,S14,Santillana,John,22854322,PT,CCS,ST,MW,1100,1230,G304A,,,,,17,Main,,,,Regular
+IRR,OBJECTP,Introduction to Object Oriented Programming,3,TL,CCS,ST,,,,,,,,S11,Santillana,John,22854322,PT,CCS,ST,MW,915,1045,G306B,,,,,20,Main,,,,Regular
+ST-4,JAPALA1,,3,TL,CCS,ST,,,TRUE,,,TRUE,SPELEC2,S17,No,Professor,99999999,FT,NC,ND,,,,,,,,,,Main,,,,Regular
+CSS4,PRJTMAN,,3,TL,CCS,ST,,,TRUE,IT,,TRUE,SPELEC2,X22,Timonera,Geneva,22725425,FT,CCS,IT,TH,915,1045,MRW411,,,,,10,STC,,,,Regular
+ST-3,CSETHIC,,3,TL,CCS,ST,,,TRUE,IT,,,,S16,Lim,Christine Diane,22425263,FT,CCS,IT,W,915,1230,G304B,,,,,19,Main,,,,Regular
+ST-4,GAM-DEV,Game Development,3,TL,CCS,ST,,,TRUE,MKTG,,TRUE,SPELEC2,S18,Sales,Joie,22672356,FT,RVRCOB,MKTG,MW,915,1045,SJ212,,,,,20,Main,,,,Regular
+GRAD,CSC104M,,3,TL,CCS,ST,,,TRUE,CT,,,,,Flores,Fritz Kevin,22457287,FT,CCS,CT,F,1800,2100,G204,,,,,5,Main,,,,Regular

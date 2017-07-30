@@ -1,0 +1,28 @@
+DB version ASWANG (May 2017) - initial.
+DB version BIGFOOT (June 20, 2017) - removed history and yearhandled tables
+DB version CHIMERA (June 20, 2017) - added college table, renamed user table to users table
+DB version DRAGON 1.0 (June 21, 2017) - changed dept_acronym to dept_code, changed isSeniorHigh to isSHS, added COMPLETE data for College Table and Department Table
+DB version DRAGON 1.1 (June 22, 2017) - removed isSHS, isServiceCourse, isElective, isNonAcad, isMasters from Course Table.
+DB version DRAGON 1.2 (June 22, 2017) - increased string length for course code and course name.
+DB version ENGKANTO (June 24, 2017) - changed faculty_status to faculty_type, increased string length for user lastname, firstname, middle name, type, and password. Added college_id, dept_id to loads. Offering Table is now populated with data!
+DB version FIRE BIRD (June 25, 2017) - changed start_time to begin_time of days table, changed day to class_day, added start year, end year, term to Days table and Loads table. PRIMARY tables now have data(3 terms worth of data)
+DB version GIANT (June 25, 2017) - PRIMARY tables now have 3 terms worth of data. Equivalent to 1 year.
+DB version HYDRA/ HELLHOUND
+DB version IBONG ADARNA/ INCUBUS /INUGAMI
+DB version JINN
+DB version KRAKEN
+DB version LOCH NESS
+DB version MEDUSA
+DB version NEPHILIM
+DB version OUROBOROS
+DB version PHOENIX
+DB version QILIN
+DB version REVENANT/ RAIJU
+DB version SANDMAN/ SCYLLA
+DB version THUNDERBIRD
+DB version UNICORN
+DB version VAMPIRE
+DB version WEREWOLF
+DB version XIAO
+DB version YETI
+DB version ZOMBIE

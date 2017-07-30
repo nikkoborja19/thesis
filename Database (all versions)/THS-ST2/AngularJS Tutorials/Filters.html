@@ -1,0 +1,12 @@
+<html lang = "en">
+<head>
+	<meta charset="UTF-8">
+	<title>Filters</title>
+	<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+<body ng-app = "">
+Currency: <input type="text" ng-model="price">
+Price {{price | currency:"Rs.":2}} <!--:Rs means rupees, :2 means 2 decimal places-->
+</script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+2016,2017,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+113,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Program,Course Code,Course Name,Units,Course Type,Course College,Course Department,isNonAcad,isSHS,isServiceCourse,Servicing Department,isMasters,isElective,elective_type,Section,Lastname,Firstname,ID NUMBER,Faculty Type,Faculty College,Faculty Department,Day1,Begin1,End1,Room1,Day2,Begin2,End2,Room2,Count,Location,Comments,isOnLeave,leaveType,status
+CSS-3,ADVDISC,Advance Discrete Structures,3.0,TL,CCS,ST,,,,,,,,X22,Aguilar,Emerico,22567683,FT,CCS,ST,MW,915,1045,MRW403,,,,,14,STC,,,,Regular
+CSS-4,ADVSTAT,Advance Statistics and Probability for ST,3.0,TL,CCS,ST,,,,,,,,X22,Aguilar,Emerico,22567683,FT,CCS,ST,MW,1100,1230,MRE014,,,,,7,STC,,,,Regular
+SHS,EMTEC2,,,TL,CCS,ST,,TRUE,,,,,,11-A,Aguilar,Emerico,22567683,FT,CCS,ST,TH,1000,1300,L302,,,,L229,,Main,,,,Regular
+SHS,EMTEC2,,,TL,CCS,ST,,TRUE,,,,,,11-D,Aguilar,Emerico,22567683,FT,CCS,ST,TH,1300,1430,L308,,,,L229,,Main,,,,Regular
+ADMIN,STC Pioneer Faculty,,9.0,AL,CCS,ST,,,,,,,,,Azcarraga,Arnulfo,22590997,FT,CCS,ST,,,,,,,,,,,,,,Regular
+GRAD,CSC615M-AUTOMATA,Automata Theory Formal Languages and Computational Complexity,3.0,TL,CCS,ST,,,,,,,,G2,Azcarraga,Arnulfo,22590997,FT,CCS,ST,T,1615,1900,G212,,,,,13,Main,,,,Regular
+STC-MS,CSC615M-AUTOMATA,Automata Theory Formal Languages and Computational Complexity,,TL,CCS,ST,,,,,,,,,Azcarraga,Arnulfo,22590997,FT,CCS,ST,,,,,,,,,,STC,,,,Special
+ADMIN,SAB LEAVE,Sabbatical Leave,12.0,AL,NC,ND,,,,,,,,,Borra,Allan,22317443,FT,CCS,ST,,,,,,,,,,,,TRUE,Sabbatical,Regular
+ST-3,ADVANDB,Advanced Databases,3.0,TL,CCS,ST,,,,,,,,S17,Bulos,Remedios,22718119,FT,CCS,ST,MW,915,1045,G206,,,,,17,Main,,,,Regular
+ST-3,ADVANDB,Advanced Databases,3.0,TL,CCS,ST,,,,,,,,S18,Bulos,Remedios,22718119,FT,CCS,ST,MW,1100,1230,G205,,,,,42,Main,,,,Regular
+GRAD,CSC514C-DB&SE,,,TL,CCS,ST,,,,,,,,,Bulos,Remedios,22718119,FT,CCS,ST,H,1800,2100,G302A,,,,,5,Main,,,,Special
+GRAD,CIS201M-ADVANDB,,3.0,TL,CCS,ST,,,,,,,,G1,Bulos,Remedios,22718119,FT,CCS,ST,T,1800,2100,G206,,,,,11,Main,,,,Regular
+,DIT702D,,3.0,TL,CCS,ST,,,,,,,,,Bulos,Remedios,22718119,FT,CCS,ST,W,1800,2100,G302A,,,,,12,Main,,,,Regular
+IRR,OBJECTP,Object-oriented Programming using Java,3.0,TL,CCS,ST,,,,,,,,S18,Cabredo,Rafael,22742131,FT,CCS,ST,TH,1430,1600,G304A,,,,,7,Main,,,,Regular
+IRR,OBJECTP,Object-oriented Programming using Java,3.0,TL,CCS,ST,,,,,,,,S19,Cabredo,Rafael,22742131,FT,CCS,ST,TH,1615,1745,G304A,,,,,22,Main,,,,Regular
+ADMIN,CHAIR,,6.0,AL,CCS,ST,,,,,,,,,Cabredo,Rafael,22742131,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+ADMIN,EA DIRECTOR,,3.0,AL,CCS,ST,,,,,,,,,Cheng,Charibeth,22176192,FT,CCS,ST,,,,,,,,,,,,,,Regular
+ST-2,INTRODB,Introduction to Databases,3.0,TL,CCS,ST,,,,,,,,S19,Cheng,Charibeth,22176192,FT,CCS,ST,TH,1615,1745,G202,,,,,26,Main,,,,Regular
+SHS,EMTEC2,,3.0,TL,CCS,ST,,,,,,,,11-D,Cheng,Charibeth,22176192,FT,CCS,ST,TH,1300,1430,L229,,,,L313,,Main,,,,Regular
+IT-2,DASTAPP,,3.0,TL,CCS,ST,,,,,,,,S15A,Chu,Shirley,22414157,FT,CCS,ST,TH,915,1045,G302A,,,,,10,Main,,,,Regular
+IT-2,DASTAPP,,3.0,TL,CCS,ST,,,,,,,,S16A,Chu,Shirley,22414157,FT,CCS,ST,TH,1100,1230,G302A,,,,,22,Main,,,,Regular
+SOE,LBYECON,,3.0,TL,CCS,ST,,,,,,,,V24,Chu,Shirley,22414157,FT,CCS,ST,MW,915,1045,L320,,,,,33,Main,,,,Regular
+SOE,LBYECON,,3.0,TL,CCS,ST,,,,,,,,V25,Chu,Shirley,22414157,FT,CCS,ST,MW,730,900,L320,,,,,30,Main,,,,Regular
+ADMIN,TSG,,3.0,AL,CCS,ST,,,,,,,,,Cu,Gregory,22648495,FT,CCS,ST,,,,,,,,,,,,,,Regular
+CT,NECOR04,,3.0,TL,CCS,ST,,,,,,,,S12A,Cu,Gregory,22648495,FT,CCS,ST,MW,915,1045,G403,,,,,21,Main,,,,Regular
+CT,LBYNE04,,2.0,TL,CCS,ST,,,,,,,,S12A,Cu,Gregory,22648495,FT,CCS,ST,MW,1100,1230,G403,,,,,21,Main,,,,Regular
+,MICPRC2,,3.0,TL,NC,ND,,,,,,,,,Cu,Gregory,22648495,FT,CCS,ST,,,,,,,,,,,,,,Special
+IRR,STADTEC,Development of Mobile Applications,3.0,TL,CCS,ST,,,,,,,,,Cu,Gregory,22648495,FT,CCS,ST,,,,,,,,,,,,,,Special
+CSE-3,INTROSE,Introduction to Software Engineering,3.0,TL,CCS,ST,,,,,,,,S11,Dimaunahan,Ryan,22523467,FT,CCS,ST,TH,915,1045,G210,,,,,14,Main,,,,Regular
+NE-3,INTROSE,Introduction to Software Engineering,3.0,TL,CCS,ST,,,,,,,,S12,Dimaunahan,Ryan,22523467,FT,CCS,ST,TH,1100,1230,G211,,,,,19,Main,,,,Regular
+SHS,EMTEC2,,3.0,TL,CCS,ST,,TRUE,,,,,,11-G,Dimaunahan,Ryan,22523467,FT,CCS,ST,MW,1300,1430,L229,,,,L311,,Main,,,,Regular
+SHS,EMTEC2,,3.0,TL,CCS,ST,,TRUE,,,,,,11-H,Dimaunahan,Ryan,22523467,FT,CCS,ST,MW,1000,1130,L320,,,,L312,,Main,,,,Regular
+IRR,DASTRAP,,3.0,TL,CCS,ST,,,,,,,,S15,Dimaunahan,Ryan,22523467,FT,CCS,ST,MW,1430,1600,G302B,,,,,21,Main,overload ,,,Regular
+ADMIN,AVP-ES,,12.0,AL,CCS,ST,,,,,,,,,Fernandez,Kai Shan,22675888,FT,CCS,ST,,,,,,,,,,,,,,Regular
+CSS-2,INTRODB,Introduction to Databases,3.0,TL,CCS,ST,,,,,,,,X22,Gendrano,Christine,22576895,FT,CCS,ST,MW,1430,1600,MRW403,,,,,32,STC,4th prep,,,Regular
+CSS-3,ADVANDB,Advanced Databases,3.0,TL,CCS,ST,,,,,,,,X22,Gendrano,Christine,22576895,FT,CCS,ST,TH,915,1045,MRW414,,,,,11,STC,,,,Regular
+CSS-3,SOFENGG,Professional Software Development,3.0,TL,CCS,ST,,,,,,,,X22,Gendrano,Christine,22576895,FT,CCS,ST,MW,1100,1230,MRW411,,,,,12,STC,,,,Regular
+CSS-IRR,OBJECTP,Object-oriented Programming using Java,3.0,TL,CCS,ST,,,,,,,,X22,Gendrano,Christine,22576895,FT,CCS,ST,TH,730,900,MRE313,,,,,9,STC,,,,Regular
+IRR,COMPRO1,Introduction to Computer Programming 1,3.0,TL,CCS,ST,,,,,,,,S19,Lim-Cheng,Nathalie Rose,22879890,FT,CCS,ST,TH,1100,1230,G306A,,,,,22,Main,,,,Regular
+IRR,COMPRO1,Introduction to Computer Programming 1,3.0,TL,CCS,ST,,,,,,,,S20,Lim-Cheng,Nathalie Rose,22879890,FT,CCS,ST,TH,1245,1415,G306A,,,,,22,Main,,,,Regular
+SHS,EMTEC2,,3.0,TL,CCS,ST,,TRUE,,,,,,11-B,Lim-Cheng,Nathalie Rose,22879890,FT,CCS,ST,MW,1300,1430,L303,,,,L229,,Main,,,,Regular
+SHS,EMTEC2,,3.0,TL,CCS,ST,,TRUE,,,,,,11-C,Lim-Cheng,Nathalie Rose,22879890,FT,CCS,ST,MW,1000,1130,L304,,,,L229,,Main,,,,Regular
+CS-1,COMPRO1,Introduction to Computer Programming 1,3.0,TL,CCS,ST,,,,,,,,S17A,Limoanco,Teresita,22647488,FT,CCS,ST,MW,1100,1230,G302A,,,,,21,Main,,,,Regular
+CS-1,COMPRO1,Introduction to Computer Programming 1,3.0,TL,CCS,ST,,,,,,,,S18A,Limoanco,Teresita,22647488,FT,CCS,ST,MW,915,1045,G302A,,,,,20,Main,,,,Regular
+IRR,COMPRO2,Advanced C Programming,3.0,TL,CCS,ST,,,,,,,,S,Limoanco,Teresita,22647488,FT,CCS,ST,TH,915,1045,G304A,,,,,18,Main,,,,Regular
+COS,COMMAT2,,3.0,TL,CCS,ST,,,,,,,,N1,Limoanco,Teresita,22647488,FT,CCS,ST,TH,730,900,ST314,,,,,11,Main,,,,Regular
+GRAD,CSC755M-XDASALGO,,3.0,TL,CCS,ST,,,,,,,,G1,Marcos,Nelson,22241516,FT,CCS,ST,W,1800,2100,G202,,,,,7,Main,,,,Regular
+ADMIN,VICE DEAN,,10.0,AL,CCS,ST,,,,,,,,,Marcos,Nelson,22241516,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+GRAD,CSC701M,,3.0,TL,CCS,ST,,,,,,,,,Marcos,Nelson,22241516,FT,CCS,ST,,,,,,,,,,Main,,,,Special
+IRR,ALGOCOM,Algorithm Complexity,3.0,TL,CCS,ST,,,,,,,,,Marcos,Nelson,22241516,FT,CCS,ST,,,,,,,,,,Main,,,,Special
+IS-3,MOBIDEV,Development of Mobile Applications,3.0,TL,CCS,ST,,,,,,,,S14A,Ngo,Courtney,22543787,FT,CCS,ST,MW,1245,1415,G301,,,,,27,Main,,,,Regular
+IS-3,MOBIDEV,Development of Mobile Applications,3.0,TL,CCS,ST,,,,,,,,S14B,Ngo,Courtney,22543787,FT,CCS,ST,MW,1430,1600,G301,,,,,23,Main,,,,Regular
+IRR,MOBAPDE,Development of Mobile Applications,3.0,TL,CCS,ST,,,,,,,,,Ngo,Courtney,22543787,FT,CCS,ST,,,,,,,,,,Main,,,,Special
+URCO,URCO,,6.0,RL,CCS,ST,,,,,,,,,Ngo,Courtney,22543787,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+ST-4,THS-ST1,Thesis in Software Technology 1,2.0,TL,CCS,ST,,,,,,,,S17,Ngo,Courtney,22543787,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+ST-4,THS-ST1,Thesis in Software Technology 1,2.0,TL,CCS,ST,,,,,,,,S18,Ngo,Courtney,22543787,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+ST-4,THS-ST1,Thesis in Software Technology 1,2.0,TL,CCS,ST,,,,,,,,S19,Ngo,Courtney,22543787,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+ST-2,INTRODB,Introduction to Databases,3.0,TL,CCS,ST,,,,,,,,S17,Ong,Ethel,22764530,FT,CCS,ST,MW,1245,1415,G202,,,,,,Main,,,,Regular
+URCO,URCO-10 IR U 3TAY12,,3.0,RL,CCS,ST,,,,,,,,,Ong,Ethel,22764530,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+ADMIN,ADRIC DIRECTOR,,6.0,AL,CCS,ST,,,,,,,,,Ong,Ethel,22764530,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+GRAD,CSC714M-MULTIRE,,3.0,TL,CCS,ST,,,,,,,,G1,Ruiz,Conrado,22425252,FT,CCS,ST,W,1800,2100,G208,,,,,9,Main,,,,Regular
+ADMIN,GRADSCHOOL,,3.0,AL,CCS,ST,,,,,,,,,Ruiz,Conrado,22425252,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+ADMIN,VICE CHAIR,,3.0,AL,CCS,ST,,,,,,,,,Ruiz,Conrado,22425252,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+ST-4,STELEC4-MULTIRE,,3.0,TL,CCS,ST,,,,,,TRUE,STELEC,S17,Ruiz,Conrado,22425252,FT,CCS,ST,TH,1430,1600,G302,,,,,,Main,,,,Regular
+GRAD,CSC741D,,3.0,TL,CCS,ST,,,,,,,,,Ruiz,Conrado,22425252,FT,CCS,ST,,,,,,,,,,Main,,,,Special
+COS,COMMAT1,,3.0,TL,CCS,ST,,,,,,,,,Salvador,Florante,22374777,FT,CCS,ST,MW,1430,1600,A1706,,,,,5,Main,,,,Special
+ST-3,STELEC1-GRAPHIX,,3.0,TL,CCS,ST,,,,,,TRUE,STELEC,S18,Salvador,Florante,22374777,FT,CCS,ST,TH,1615,1745,G304B,,,,,40,Main,,,,Regular
+IRR,STMETRE,Software Technology Research Methods,3.0,TL,CCS,ST,,,,,,,,S17,Salvador,Florante,22374777,FT,CCS,ST,TH,1430,1530,A1205,,,,,24,Main,,,,Regular
+CS-1,COMPRO1,Introduction to Computer Programming 1,3.0,TL,CCS,ST,,,,,,,,S17B,Salvador,Florante,22374777,FT,CCS,ST,MW,1100,1230,G302B,,,,,20,Main,,,,Regular
+CS-1,COMPRO1,Introduction to Computer Programming 1,3.0,TL,CCS,ST,,,,,,,,S18B,Salvador,Florante,22374777,FT,CCS,ST,MW,915,1045,G302B,,,,,20,Main,,,,Regular
+ST-3,SOFENGG,Professional Software Development,3.0,TL,CCS,ST,,,,,,,,S17,Samson,Briane,22456783,FT,CCS,ST,TH,1100,1230,G210,,,,,20,Main,,,,Regular
+ST-3,SOFENGG,Professional Software Development,3.0,TL,CCS,ST,,,,,,,,S18A,Samson,Briane,22456783,FT,CCS,ST,TH,915,1045,G211,,,,,18,Main,,,,Regular
+ST-3,SOFENGG,Professional Software Development,3.0,TL,CCS,ST,,,,,,,,S18B,Samson,Briane,22456783,FT,CCS,ST,TH,1430,1600,G211,,,,,20,Main,,,,Regular
+URCO,URCO,,3.0,RL,CCS,ST,,,,,,,,,Samson,Briane,22456783,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+COS,DESPATT,Design Patterns,3.0,TL,CCS,ST,,,,,,,,,Samson,Briane,22456783,FT,CCS,ST,,,,,,,,,,Main,,,,Special
+ST-4,PRC-ST1,Practicum Course in ST,1.0,TL,CCS,ST,,,,,,,,S17,Samson,Briane,22456783,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+ST-4,PRC-ST1,Practicum Course in ST,1.0,TL,CCS,ST,,,,,,,,S18,Samson,Briane,22456783,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+ST-4,PRC-ST1,Practicum Course in ST,1.0,TL,CCS,ST,,,,,,,,S19,Samson,Briane,22456783,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+ST-2,INTESYS,Intelligent Systems,3.0,TL,CCS,ST,,,,,,,,S17,See,Solomon,22711414,FT,CCS,ST,MW,1100,1230,G206,,,,,32,Main,,,,Regular
+ST-2,INTESYS,Intelligent Systems,3.0,TL,CCS,ST,,,,,,,,S18,See,Solomon,22711414,FT,CCS,ST,MW,915,1045,G205,,,,,22,Main,,,,Regular
+ST-2,INTESYS,Intelligent Systems,3.0,TL,CCS,ST,,,,,,,,S19,See,Solomon,22711414,FT,CCS,ST,TH,1430,1600,G202,,,,,41,Main,,,,Regular
+IRR,OPERSYS,Introduction to Operating Systems,3.0,TL,CCS,ST,,,,,,,,,See,Solomon,22711414,FT,CCS,ST,,,,,,,,,,Main,,,,Special
+GRAD,CSC613M,,3.0,TL,CCS,ST,,,,,,,,,See,Solomon,22711414,FT,CCS,ST,,,,,,,,,,Main,,,,Special
+GRAD,GRAD,,3.0,TL,CCS,ST,,,,,,,,G1,See,Solomon,22711414,FT,CCS,ST,T,1800,2100,G201,,,,,12,Main,,,,Regular
+ADMIN,STC Pioneer Faculty,,9.0,AL,CCS,ST,,,,,,,,,Sison,Raymund,22683488,FT,CCS,ST,,,,,,,,,,STC,,,,Regular
+CSS-2,INTESYS,Intelligent Systems,3.0,TL,CCS,ST,,,,,,,,X22,Sison,Raymund,22683488,FT,CCS,ST,TH,1430,1600,MRW411,,,,,20,STC,overload w/ pay,,,Regular
+DIT,DIT571D,,3.0,TL,CCS,ST,,,,,,,,G1,Sison,Raymund,22683488,FT,CCS,ST,,,,,,,,,12,STC,,,,Regular
+ADMIN,DEAN,,12.0,AL,CCS,ST,,,,,,,,,Suarez,Merlin,22637450,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+ADMIN,STC Pioneer Faculty,,9.0,AL,CCS,ST,,,,,,,,,Suarez,Merlin,22637450,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+GRAD,CSC745M,,3.0,TL,CCS,ST,,,,,,,,,Suarez,Merlin,22637450,FT,CCS,ST,,,,,,,,,,Main,,,,Special
+GRAD,CSC745D,,3.0,TL,CCS,ST,,,,,,,,,Suarez,Merlin,22637450,FT,CCS,ST,,,,,,,,,,Main,,,,Special
+URCO,URCO,,6.0,RL,CCS,ST,,,,,,,,,Tan,Stanley,22723489,FT,CCS,ST,,,,,,,,,,Main,,,,Regular
+ST-4,ADVSTAT,Advance Statistics and Probability for ST,3.0,TL,CCS,ST,,,,,,,,S17,Tan,Stanley,22723489,FT,CCS,ST,TH,915,1045,G205,,,,,32,Main,,,,Regular
+ST-4,ADVSTAT,Advance Statistics and Probability for ST,3.0,TL,CCS,ST,,,,,,,,S18,Tan,Stanley,22723489,FT,CCS,ST,TH,1100,1230,G201,,,,,45,Main,,,,Regular
+,MODESTA,Modeling Simulation and Statistics,3.0,TL,CCS,CT,,,,,,,,,Tan,Stanley,22723489,FT,CCS,ST,,,,,,,,,2,Main,,,,Regular
+,ST-STAT,Introduction to Statistics,3.0,TL,CCS,ST,,,,,,,,,Tan,Stanley,22723489,FT,CCS,ST,,,,,,,,,2,Main,,,,Regular
+IT-2,DASTAPP,,3.0,TL,CCS,ST,,,,,,,,S15B,Tiam-Lee,Thomas,22546752,FT,CCS,ST,TH,915,1045,G302B,,,,,16,Main,,,,Regular
+IT-2,DASTAPP,,3.0,TL,CCS,ST,,,,,,,,S16B,Tiam-Lee,Thomas,22546752,FT,CCS,ST,TH,1100,1230,G302B,,,,,22,Main,,,,Regular
+SHS,EMTEC2,,3.0,TL,CCS,ST,,TRUE,,,,,,11-F,Tiam-Lee,Thomas,22546752,FT,CCS,ST,MW,1100,1230,L310,,,,L229,,Main,,,,Regular
+SHS,EMTEC2,,3.0,TL,CCS,ST,,TRUE,,,,,,11-J,Tiam-Lee,Thomas,22546752,FT,CCS,ST,MW,900,1030,L316,,,,L320,,Main,,,,Regular
+GRAD,CSC732M-BUS.INT.,,3.0,TL,CCS,IT,,,,,,,,G1,,,99999999,FT,NC,ND,F,1800,2100,G2016,,,,,1,Main,merge with CIS832M,,,Regular
+SHS,EMTEC2,,3.0,TL,CCS,CT,,TRUE,,,,,,11-E,Franco,Geanne,22124479,FT,CCS,CT,MW,900,1030,L229,,,,L309,,Main,,,,Regular
+GRAD,CSC612M-COMARC,,3.0,TL,CCS,CT,,,,,,,,G1,Uy,Roger,22373844,FT,CCS,CT,H,1800,2100,,,,,,21,Main,,,,Regular
+GRAD,CSC512C-COMPORG,,3.0,TL,CCS,CT,,,,,,,,G1,Uy,Roger,22373844,FT,CCS,CT,T,1800,2100,,,,,,6,Main,,,,Regular
+CSS-4,STELEC4-IMAGPRO,,3.0,TL,CCS,CT,,,,,,TRUE,STELEC,X22,Laguna,Francesca,22453891,FT,CCS,CT,MW,1245,1415,MRW403,,,,,6,STC,,,,Regular
+NE-4,NEELEC2-MAC-LRN,,3.0,TL,CCS,CT,,,,,,TRUE,NEELEC,S12,Azcarraga,Judith,22314156,FT,CCS,CT,MW,1245,1415,G205,,,,,20,Main,,,,Regular
+ST-3,STELEC1-MACLERN,,3.0,TL,CCS,CT,,,,,,TRUE,STELEC,S17,Azcarraga,Judith,22314156,FT,CCS,CT,MW,1430,1600,G209,,,,,33,Main,,,,Regular
+ST-4,STELEC4-MACLERN,,3.0,TL,CCS,CT,,,,,,TRUE,STELEC,S19,Azcarraga,Judith,22314156,FT,CCS,CT,MW,9115,1045,G212,,,,,23,Main,,,,Regular
+CSS-3,STELEC1-MACLERN,,3.0,TL,CCS,CT,,,,,,TRUE,STELEC,X22,Azcarraga,Judith,22314156,FT,CCS,CT,TH,1430,1600,MRW204,,,,,14,STC,,,,Regular
+GRAD,CSC713D,,3.0,TL,CCS,CT,,,,,,,,,Azcarraga,Judith,22314156,FT,CCS,CT,,,,,,,,,,Main,,,,Special
+GRAD,CSC723D,,3.0,TL,CCS,CT,,,,,,,,,Azcarraga,Judith,22314156,FT,CCS,CT,,,,,,,,,,Main,,,,Special
+IS-3,MOBIDEV,Development of Mobile Applications,3.0,TL,CCS,ST,,,,,,,,X22,Caronoñgan,Arturo,22597519,PT,CCS,ST,MW,1100,1230,MRE313,,,,,6,STC,,,,Regular
+GRAD,CSC502C-JAVA,,3.0,TL,CCS,ST,,,,,,,,G1,Deja,Jordan,22734526,PT,CCS,ST,M,1800,2100,G202,,,,,4,Main,TODO: merge w/ CIS104M,,,Regular
+GRAD,CSC511C-OS,,3.0,TL,CCS,ST,,,,,,,,G1,Deja,Jordan,22734526,PT,CCS,ST,W,1800,2100,G201,,,,,9,Main,,,,Regular
+IT,SW-ENGG,Introduction to Software Engineering,3.0,TL,CCS,ST,,,,,,,,S15A,Deja,Jordan,22734526,PT,CCS,ST,TH,915,1045,G209,,,,,,Main,,,,Regular
+IT,SW-ENGG,Introduction to Software Engineering,3.0,TL,CCS,ST,,,,,,,,S15B,Deja,Jordan,22734526,PT,CCS,ST,TH,1100,1230,G209,,,,,,Main,,,,Regular
+,ADVPROG,,3.0,TL,CCS,ST,,,,,,,,XS2,Deja,Jordan,22734526,PT,CCS,ST,,,,,,,,,,Main,,,,Regular
+IT,WEBDIST,,3.0,TL,CCS,ST,,,,,,,,S21,Lu,Patrice,22563468,PT,CCS,ST,MW,730,900,G301,,,,,24,Main,,,,Regular
+IRR,INTPRG2,,3.0,TL,CCS,ST,,,,,,,,S15,Lu,Patrice,22563468,PT,CCS,ST,MW,915,1045,G304A,,,,,23,Main,,,,Regular
+GRAD,CSC792M-CLOUDCO,,3.0,TL,CCS,ST,,,,,,,,,Moghareh,Emilio,22738947,PT,CCS,ST,T,1800,2100,G301,,,,,6,Main,,,,Special
+ST-2,INTRODB,Introduction to Databases,3.0,TL,CCS,ST,,,,,,,,S18,Moghareh,Emilio,22738947,PT,CCS,ST,MW,1430,1600,G206,,,,,39,Main,,,,Regular
+ST-3,ADVDISC,Advance Discrete Structures,3.0,TL,CCS,ST,,,,,,,,S17,Que,Jemie,22784497,PT,CCS,ST,MW,1245,1415,G209,,,,,35,Main,,,,Regular
+ST-3,ADVDISC,Advance Discrete Structures,3.0,TL,CCS,ST,,,,,,,,S18,Que,Jemie,22784497,PT,CCS,ST,MW,1430,1600,G202,,,,,43,Main,,,,Regular
+RCOB,LBYAPC1,,3.0,TL,RVRCOB,ND,,,,,,,,C31,Santillana,John,22854322,PT,CCS,ST,TH,1100,1230,L228,,,,Y602,20,Main,,,,Regular
+RCOB,LBYADV1,,3.0,TL,CLA,ND,,,,,,,,A51,Santillana,John,22854322,PT,CCS,ST,TH,915,1045,M312,,,,ST31,24,Main,,,,Regular
+IRR,OBJECTP,Object-oriented Programming using Java,3.0,TL,CCS,ST,,,,,,,,S17,Santillana,John,22854322,PT,CCS,ST,MW,1100,1230,G304A,,,,,22,Main,,,,Regular
+IRR,OBJECTP,Object-oriented Programming using Java,3.0,TL,CCS,ST,,,,,,,,S20,Santillana,John,22854322,PT,CCS,ST,MW,1615,1745,G02A,,,,,22,Main,,,,Regular
+,ADVPROG,,3.0,TL,CCS,ST,,,,,,,,,Santillana,John,22854322,PT,CCS,ST,,,,,,,,,,Main,,,,Special
