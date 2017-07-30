@@ -5,7 +5,7 @@
     <a href="#" class="list-group-item" onclick="clickSideBar(this.id)" id="messagesNav"><span><i class="fa fa-envelope"></i></span> Messages <!--<span class="badge">12</span>--></a>
     <a href="#" class="list-group-item" onclick="clickSideBar(this.id)" id="flowchartsNav"><span><i class="fa fa-table"></i></span> Flowcharts <!--<span class="badge">203</span>--></a>
     <a href="#" class="list-group-item" onclick="clickViewOfferings(this.id)" id="viewOfferingsNav"><span><i class="fa fa-calendar-o"></i></span> View Offerings <!--<span class="badge">33</span>--></a>
-    <a href="#addNewOfferingsModal" class="list-group-item" onclick="initializeAddNewOfferingsModal()" id="addOfferingsNav"><span><i class="fa fa-calendar-plus-o"></i></span> Add New Offerings <!--<span class="badge">33</span>--></a>
+    <a href="#" class="list-group-item" data-toggle="modal" data-target="#addNewOfferingsModal" data-backdrop="static" data-keyboard="false" onclick="initializeAddNewOfferingsModal()" id="addOfferingsNav"><span><i class="fa fa-calendar-plus-o"></i></span> Add New Offerings <!--<span class="badge">33</span>--></a>
     <!--<a href="#" class="list-group-item" onclick="clickSideBar(this.id)" id="publishNav"><span><i class="fa fa-bookmark"></i></span> Publish <span class="badge">33</span></a>  -->
     <a href="#" class="list-group-item" onclick="clickViewRoomAssignment(this.id)" id="roomAssignNav"><span><i class="fa fa-cogs"></i></span> Room Assignment <!--<span class="badge">33</span>--></a>
     <a href="#" class="list-group-item" onclick="clickBuildingsAndRooms(this.id)" id="buildingsAndRoomsNav"><span><i class="fa fa-university"></i></span> DLSU Buildings & Rooms <!--<span class="badge">203</span>--></a>
