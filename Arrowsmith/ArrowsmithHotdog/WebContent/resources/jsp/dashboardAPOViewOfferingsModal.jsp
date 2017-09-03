@@ -73,7 +73,7 @@
 		           <th> <br>Room</th>
 		           <th> <br>Status</th>
 		           <th colspan ="2"> <br>Remarks</th>
-		           <th>Edit/<br>Delete</th>
+		           <th> <br>Delete</th>
 		         </tr>
 	         </thead>
 	         <tbody>
@@ -89,3 +89,35 @@
     </div>
   </div>
 </div>
+
+<!-- **********************************DELETE OFFERING IN ADD OFFERRING MODAL********************************* -->
+<div class="modal fade" id="deleteClickedOfferingModal" role="dialog" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="deleteClickedOfferingModalTitle">Delete</h4>
+            </div>
+
+            <!--  THERE SHOULD ONLY BE ONE MODAL BODY OTHERWISE DI GAGANA LAHAT(YOU CANT TYPE); -->
+            <div class="modal-body" id="deleteClickedOfferingModalBody1">
+                <div class="row">
+                	<div class="col-md-12">
+                   		<label id="deleteClickedOfferingMessage">Are you sure you want to delete this offering?</label>
+                   	</div>
+                </div>
+            </div>
+
+            <div class="row">
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-default trash-button" id="deleteClickedButton" data-dismiss="modal" onclick="deleteClickedOffering()"><span><i class="fa fa-trash"></i></span> Delete</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- **********************************DELETE OFFERING IN ADD OFFERRING MODAL********************************* -->

@@ -579,6 +579,39 @@ public class OfferingDAO {
         }
     }
     
+    public static void deleteAnOffering(String offeringId) throws SQLException{
+    	ArrayList<Days> days = new ArrayList<Days>();
+    	days = DaysDAO.getListDays(offeringId);
+    	
+    	try{
+            Connection con = new Connector().getConnector();
+            PreparedStatement ps;
+            String query = "DELETE FROM " + Constants.OFFERING_TABLE + " WHERE " + Constants.OFFERING_ID + " = " + offeringId + ";";
+            ps = con.prepareStatement(query);
+            ps.executeUpdate();
+
+            ps.close();
+            con.close();
+    	}catch(Exception e){
+            e.printStackTrace();
+        }
+    	
+    	//delete all associated days with the deleted offering
+    	for(int i = 0; i < days.size(); i++){
+    		DaysDAO.deleteADay(days.get(i).getDaysId());
+    	}
+    }
+    
+    public static void deleteAnOfferingList(String startYear, String endYear, String term) throws SQLException{
+    	ArrayList<Offering> offerings = new ArrayList<Offering>();
+    	offerings = OfferingDAO.getListOfferingsByTerm(startYear, endYear, term);
+    	
+    	//delete all offerings of the list
+    	for(int i = 0; i < offerings.size(); i++){
+    		OfferingDAO.deleteAnOffering(offerings.get(i).getOfferingId());
+    	}
+    }
+    
     public static int getLastRecordIndex() throws SQLException{
         Connection con = new Connector().getConnector();
         Statement st = null;

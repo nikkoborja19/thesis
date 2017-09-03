@@ -129,4 +129,21 @@ public class DaysDAO {
             e.printStackTrace();
         }
     }
+	
+	public static void deleteADay(String daysId) throws SQLException{
+    	
+    	try{
+            Connection con = new Connector().getConnector();
+            PreparedStatement ps;
+            String query = "DELETE FROM " + Constants.DAYS_TABLE + " WHERE " + Constants.DAYS_ID + " = " + daysId + ";";
+            ps = con.prepareStatement(query);
+            ps.executeUpdate();
+
+            ps.close();
+            con.close();
+    	}catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
 }

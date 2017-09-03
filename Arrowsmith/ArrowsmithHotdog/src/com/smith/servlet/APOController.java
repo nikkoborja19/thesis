@@ -525,6 +525,38 @@ public class APOController {
 		return sr;
 	}
 	
+	@RequestMapping(value="/deleteAnOffering", method=RequestMethod.POST, produces="application/json")
+	public @ResponseBody StringResponse deleteAnOffering(
+			@RequestParam("offeringId") String offeringId){
+		
+		StringResponse sr = new StringResponse("success");
+		try {
+			OfferingDAO.deleteAnOffering(offeringId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return sr;
+	}
+	
+	@RequestMapping(value="/deleteAnOfferingList", method=RequestMethod.POST, produces="application/json")
+	public @ResponseBody StringResponse deleteAnOfferingList(
+			@RequestParam("startYear") String startYear,
+			@RequestParam("endYear") String endYear,
+			@RequestParam("term") String term){
+		
+		StringResponse sr = new StringResponse("success");
+		try {
+			OfferingDAO.deleteAnOfferingList(startYear, endYear, term);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return sr;
+	}
+	
 	@RequestMapping(value="/populateBatchDropdown", method=RequestMethod.GET, produces="application/json")
 	public @ResponseBody ArrayList<String> populateBatchDropdown(
 			@RequestParam("startYear") String startYear,

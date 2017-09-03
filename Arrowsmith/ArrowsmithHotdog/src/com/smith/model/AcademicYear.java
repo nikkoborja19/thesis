@@ -9,6 +9,12 @@ public class AcademicYear {
 		
 	}
 	
+	public AcademicYear(String startYear, String endYear, String term){
+		this.startYear = startYear;
+		this.endYear = endYear;
+		this.term = term;
+	}
+	
 	public AcademicYear(String id, String AY, String startYear, String endYear, String term, String batch, String isPublished){
 		this.id = id;
 		this.AY = AY;

@@ -1,5 +1,6 @@
 <form id="" action="wiewOfferingsForm" method="GET">
     <input type="hidden" class="inputDumpID" name="inputDumpID" value="">
+    <input type="hidden" class="viewOfferingsPanelAYDump" name="viewOfferingsPanelAYDump" value="" id="viewOfferingsPanelAYDump">
 </form>
 
 <div class="col-md-9 inactivePanel" id="panelViewOfferings">
@@ -31,3 +32,35 @@
     </div>
 </div>
 </div>
+
+<!-- **********************************DELETE OFFERING LIST********************************* -->
+<div class="modal fade" id="deleteClickedOfferingList" role="dialog" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="deleteClickedOfferingListTitle">Delete</h4>
+            </div>
+
+            <!--  THERE SHOULD ONLY BE ONE MODAL BODY OTHERWISE DI GAGANA LAHAT(YOU CANT TYPE); -->
+            <div class="modal-body" id="deleteClickedOfferingModalBody1">
+                <div class="row">
+                	<div class="col-md-12">
+                   		<label id="deleteClickedOfferingListMessage">Are you sure you want to delete this offering?</label>
+                   	</div>
+                </div>
+            </div>
+
+            <div class="row">
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-default trash-button" id="deleteClickedListButton" data-dismiss="modal" onclick="deleteOfferingList()"><span><i class="fa fa-trash"></i></span> Delete</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- **********************************DELETE OFFERING LIST********************************* -->

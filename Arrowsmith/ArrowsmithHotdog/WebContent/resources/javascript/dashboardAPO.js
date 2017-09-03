@@ -240,6 +240,14 @@ function exitViewRoomsModal(){
 	closeModal("viewRoomsModal");
 }
 
+function exitSetNewOfferingsModal(){
+	$('#textStartYearANO').val('');
+	$('#textEndYearANO').val('');
+	$('#textTermANO').val('');
+	$('#textStudentCountANO').val('');
+	$('#textSectionNumberANO').val('');
+}
+
 function exitAddNewOfferingsModal(){
 	//this function empties the dropdown list again and sets "All" as the default selected option
 	closeModal("addNewOfferingsModal");
@@ -605,11 +613,11 @@ function updateViewOfferingsPanel(){
         				if(isPublished === "0"){
         					rows += "<td><a class=\"btn btn-default publish-active\" type=\"button\" onclick=\"publishAYTermOffering(this.id, 1)\"  id=\"" + concatId + "-publish\"><span><i class=\"fa fa-check\"></i></span></a> <a class=\"btn btn-default publish-inactive pushed-option\" type=\"button\" onclick=\"publishAYTermOffering(this.id, 0)\"  id=\"" + concatId + "-unpublish\" disabled><span><i class=\"fa fa-close\"></i></span></a></td>";
         					rows += "<td><a class=\"btn btn-default\" type=\"button\" onclick=\"viewOfferingsInModal(this.id)\" data-toggle=\"modal\" data-target=\"#viewOfferingsModal\" data-backdrop=\"static\" data-keyboard=\"false\" id=\"" + concatId + "-view\"><span><i class=\"fa fa-search\"></i></span></a> ";
-    						rows+="<a class=\"btn btn-default trash-button\" type=\"button\" onclick=\"confirmDeleteOffering(this.id)\" data-toggle=\"modal\" data-target=\"#dashboardAPOConfirmDeleteOfferingsModal\" data-backdrop=\"static\" data-keyboard=\"false\" id=\"" + concatId + "-view\"><span><i class=\"fa fa-trash\"></i></span></a></td>";	
+    						rows+="<a class=\"btn btn-default trash-button\" type=\"button\" onclick=\"confirmDeleteOfferingList(this.id)\" data-toggle=\"modal\" data-target=\"#deleteClickedOfferingList\" data-backdrop=\"static\" data-keyboard=\"false\" id=\"" + concatId + "-view\"><span><i class=\"fa fa-trash\"></i></span></a></td>";	
         				}else{
         					rows += "<td><a class=\"btn btn-default publish-active pushed-option\" type=\"button\" onclick=\"publishAYTermOffering(this.id, 1)\"  id=\"" + concatId + "-publish\" disabled><span><i class=\"fa fa-check\"></i></span></a> <a class=\"btn btn-default publish-inactive\" type=\"button\" onclick=\"publishAYTermOffering(this.id, 0)\"  id=\"" + concatId + "-unpublish\"><span><i class=\"fa fa-close\"></i></span></a></td>";
         					rows += "<td><a class=\"btn btn-default\" type=\"button\" onclick=\"viewOfferingsInModal(this.id)\" data-toggle=\"modal\" data-target=\"#viewOfferingsModal\" data-backdrop=\"static\" data-keyboard=\"false\" id=\"" + concatId + "-view\"><span><i class=\"fa fa-search\"></i></span></a> ";
-    						rows+="<a class=\"btn btn-default trash-button\" type=\"button\" onclick=\"confirmDeleteOffering(this.id)\" data-toggle=\"modal\" data-target=\"#dashboardAPOConfirmDeleteOfferingsModal\" data-backdrop=\"static\" data-keyboard=\"false\" id=\"" + concatId + "-delete\" disabled><span><i class=\"fa fa-trash\"></i></span></a></td>";	
+    						rows+="<a class=\"btn btn-default trash-button\" type=\"button\" id=\"" + concatId + "-delete\" disabled><span><i class=\"fa fa-trash\"></i></span></a></td>";	
         				}
         				//data backdrop static prevents exit from background while data-keyboard false prevents exit using keyboard keys
         				
@@ -635,7 +643,7 @@ function viewOfferingsInModal(id){
 	var selectedBatch = $('#batchVODropdown :selected').text();
 	var selectedRoomType = $('#roomTypeVODropdown :selected').text();
 	var concatId = arr[0] +"-"+ arr[1] + "-" + arr[2];
-	
+	//console.log(id);
 	$('#viewOfferingsCurrentAYDump').val(concatId); //for search Listeners cause di nila alam ung ID
 	$('#viewOfferingsModalTitle').text("View A.Y " +arr[0]+ "-" + arr[1] + " Term " + arr[2] + " Offerings"); //change modal title
 	
@@ -707,13 +715,13 @@ function viewOfferingsInModal(id){
 						
 						if(currObject.isPublished === "1"){
 							rows+= "<td>" +
-							"<a class=\"btn btn-default edit-button\" type=\"button\" onclick=\"modifyClickedOffering(this.id)\" id=\"" + offeringId + "-modify\" disabled><span><i class=\"fa fa-pencil\"></i></span></a>" +
-							"<a class=\"btn btn-default trash-button\" type=\"button\" onclick=\"confirmDeleteClickedOffering(this.id)\" id=\"" + offeringId + "-delete\" disabled><span><i class=\"fa fa-trash\"></i></span></a>" +
+							/*"<a class=\"btn btn-default edit-button\" type=\"button\" onclick=\"modifyClickedOffering(this.id)\" id=\"" + offeringId + "-modify\" disabled><span><i class=\"fa fa-pencil\"></i></span></a>" +*/
+							"<a class=\"btn btn-default trash-button\" type=\"button\" id=\"" + offeringId + "-"+ course + "-" + section +"-delete\" disabled><span><i class=\"fa fa-trash\"></i></span></a>" +
 							"</td>";
 						}else{
 							rows+= "<td>" +
-							"<a class=\"btn btn-default edit-button\" type=\"button\" onclick=\"modifyClickedOffering(this.id)\" id=\"" + offeringId + "-modify\"><span><i class=\"fa fa-pencil\"></i></span></a>" +
-							"<a class=\"btn btn-default trash-button\" type=\"button\" onclick=\"confirmDeleteClickedOffering(this.id)\" id=\"" + offeringId + "-delete\"><span><i class=\"fa fa-trash\"></i></span></a>" +
+							/*"<a class=\"btn btn-default edit-button\" type=\"button\" onclick=\"modifyClickedOffering(this.id)\" id=\"" + offeringId + "-modify\"><span><i class=\"fa fa-pencil\"></i></span></a>" +*/
+							"<a class=\"btn btn-default trash-button\" type=\"button\" onclick=\"confirmDeleteClickedOffering(this.id)\" data-toggle=\"modal\" data-target=\"#deleteClickedOfferingModal\" data-backdrop=\"static\" id=\"" + offeringId + "-"+ course + "-" + section + "-delete\"><span><i class=\"fa fa-trash\"></i></span></a>" +
 							"</td>";
 						}
 						
@@ -1213,7 +1221,7 @@ function addCourseToTemporaryOfferingTable(courseID){
 
 function updateTemporaryOfferingList(){
 	$("#tableModalANOOfferingList tbody tr").remove(); //removes all tr but not thead
-	
+	//console.log(tempCourseOfferings.length);
 	$.each(tempCourseOfferings, function(i, currObject){
 		var rows = "";
 		var id = currObject.courseId;
@@ -1234,7 +1242,7 @@ function updateTemporaryOfferingList(){
 				"<td class=\"editable-cell\" id=\""+id+"-status\" contenteditable>"+status+"</td>"+
 				"<td class=\"editable-cell\" id=\""+id+"-remarks\" contenteditable>"+remarks+"</td>";
 				
-				rows += "<td><a class=\"btn btn-default edit-button\" type=\"button\" onclick=\"editTemporaryOffering(this.id)\" data-toggle=\"modal\" data-target=\"#editTemporaryOfferingModal\" data-backdrop=\"static\" id=\""+id+"-edit\"><span><i class=\"fa fa-pencil\"></i></span></a><a class=\"btn btn-default trash-button\" type=\"button\" onclick=\"deleteTemporaryOffering(this.id)\" data-toggle=\"modal\" data-target=\"#deleteTemporaryOfferingModal\" data-backdrop=\"static\" id=\""+id+"-delete\"><span><i class=\"fa fa-trash\"></i></span></a></td></tr>"
+				rows += "<td><a class=\"btn btn-default edit-button\" type=\"button\" onclick=\"editTemporaryOffering(this.id)\" data-toggle=\"modal\" data-target=\"#editTemporaryOfferingModal\" data-backdrop=\"static\" id=\""+id+"-edit\"><span><i class=\"fa fa-pencil\"></i></span></a><a class=\"btn btn-default trash-button\" type=\"button\" onclick=\"confirmDeleteTemporaryOffering(this.id)\" data-toggle=\"modal\" data-target=\"#deleteTemporaryOfferingModal\" data-backdrop=\"static\" id=\""+id+"-delete\"><span><i class=\"fa fa-trash\"></i></span></a></td></tr>"
 
 				$(rows).appendTo("#tableModalANOOfferingList tbody");
 				
@@ -1272,26 +1280,119 @@ function initEditableOfferingListeners(){
 	});
 }
 
-function deleteTemporaryOffering(id){
+function confirmDeleteTemporaryOffering(id){
 	var arr = [];
-	arr = id.split('-');
-	
-	$('#inputTempOfferingIDDump').val(id); //for saving
+	arr = id.split('-'); //may extra word kaya dapat isplit
+	var concatId = arr[0]+"-"+arr[1]; //course code is arr[0], appenderID is arr[1], extra word is arr[2]
 
-	var concatId = arr[0]+"-"+arr[1]; //course code is arr[0], appenderID is arr[1]
-	
+	$('#inputTempOfferingIDDump').val(id); //for saving
 	$.each(tempCourseOfferings, function(i, currObject){
-		console.log();
 		if(currObject.courseId === concatId){
-			//var tempOffering = new TempOffering($('#flowchartDegreeProgramANODropdown').find(":selected").text(), arr[0], currObject.courseCode, currObject.section, $('#flowchartBatchANODropdown').find(":selected").text(), $('input[name=termRadio]:checked').val(), currObject.status, currObject.remarks);
-			var tempOffering = new TempOffering(currObject.degreeProgram, arr[0], currObject.courseCode, currObject.section, currObject.batch, globalTerm, currObject.status, currObject.remarks); //degreeProgram, batch, term are global
-			tempOffering.daysList1 = currObject.daysList1;
-			tempOffering.daysList2 = currObject.daysList2;
-			tempOffering.timeSlot1 = currObject.timeSlot1;
-			tempOffering.timeSlot2 = currObject.timeSlot2;
-			initEditTemporaryOfferingModal(tempOffering, concatId, "1"); //meaning local na global variable lang. NOT in DB
+			$('#deleteTemporaryOfferingModalTitle').text('Delete ' + currObject.courseCode + ' ' + currObject.section);
+			$('#deleteTemporaryOfferingMessage').text('Are you sure you want to delete ' + currObject.courseCode + ' ' + currObject.section + '?');
 		}
 	});
+}
+
+function deleteTemporaryOffering(){
+	var arr = [];
+	var id = $('#inputTempOfferingIDDump').val();
+	arr = id.split('-');
+	
+	var concatId = arr[0]+"-"+arr[1]; //course code is arr[0], appenderID is arr[1]
+	var hasFound = 0, deleteIndex = 0; //check if element to be deleted is found. If so, all succeedding elements will have their appenderID decreease by 1 to signify change in index
+	$.each(tempCourseOfferings, function(i, currObject){
+		if(hasFound === 1){
+			arr = currObject.courseId.split('-'); //arr is local variable array. arr[0] is courseId, arr[1] is appenderID. Decrease appenderID by 1
+			arr[1] = arr[1] - 1; //decrease by 1
+			var newID = arr[0] + "-" + arr[1];
+			console.log(newID);
+			currObject.courseId = newID;
+		}
+		if(currObject.courseId === concatId){
+			hasFound = 1;
+			console.log(concatId);
+			arr = currObject.courseId.split('-');
+			deleteIndex = arr[1];
+		}
+	});
+	
+	if(hasFound === 1){
+		tempCourseOfferings.splice(deleteIndex, 1); //delete 1 element starting from index <deleteIndex>
+		appenderID = appenderID - 1; //cause mababawasan so ung last appenderID is minus 1
+		//console.log(tempCourseOfferings.length + " == "+ appenderID + " == " + deleteIndex);
+		updateTemporaryOfferingList();
+		hasFound = 0;
+	}
+}
+function confirmDeleteOfferingList(id){ //delete for whole list
+	var arr = [];
+	arr = id.split('-'); //may extra word kaya dapat isplit
+	var concatId = arr[0]+"-"+arr[1]+"-"+arr[2]; //startYear is arr[0], endYear is arr[1], term is arr[2], extra word is arr[3]
+	$('#viewOfferingsPanelAYDump').val(concatId); //for saving
+
+	$('#deleteClickedOfferingListTitle').text('Delete Offering List for AY ' + arr[0] + '-' + arr[1] + ' Term '+ arr[2]);
+	$('#deleteClickedOfferingListMessage').text('Are you sure you want to delete Offering List for AY ' + arr[0] + '-' + arr[1] + ' Term '+ arr[2] + '?');
+}
+
+function deleteOfferingList(){
+	var arr = [];
+	var id = $('#viewOfferingsPanelAYDump').val();
+	arr = id.split('-');
+	
+	$.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: 'deleteAnOfferingList',
+        data: {
+        	"startYear" : arr[0],
+        	"endYear" : arr[1],
+        	"term" : arr[2]
+        },
+        success: function (data) {
+        	console.log(data);
+        	updateViewOfferingsPanel();
+        },
+    	error: function (data){
+    		console.log(data);
+    	}
+    });
+}
+
+function confirmDeleteClickedOffering(id){ //delete for view
+	var arr = [];
+	arr = id.split('-'); //may extra word kaya dapat isplit
+	var concatId = arr[0]+"-"+arr[1]+"-"+arr[2]; //offeringID is arr[0], courseCode is arr[1], section is arr[2], extra word is arr[3]
+    console.log(id);
+	$('#viewOfferingsOfferingIDDump').val(id); //for saving
+
+	$('#deleteClickedOfferingModalTitle').text('Delete ' + arr[1] + ' ' + arr[2]);
+	$('#deleteClickedOfferingMessage').text('Are you sure you want to delete ' + arr[1] + ' ' + arr[2] + '?');
+}
+
+function deleteClickedOffering(){
+	var arr = [];
+	var id = $('#viewOfferingsOfferingIDDump').val();
+	arr = id.split('-');
+	
+	$.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: 'deleteAnOffering',
+        data: {
+        	"offeringId" : arr[0]
+        },
+        success: function (data) {
+        	console.log(data);
+        	var AY = $('#viewOfferingsCurrentAYDump').val();
+        	//arr = AY.split('-'); // arr[0] = StartYear, arr[1] = EndYear, arr[2] = Term
+        	var concatId = AY+"-view";
+        	viewOfferingsInModal(concatId); //update view
+        },
+    	error: function (data){
+    		console.log(data);
+    	}
+    });
 }
 
 function editTemporaryOffering(id){
