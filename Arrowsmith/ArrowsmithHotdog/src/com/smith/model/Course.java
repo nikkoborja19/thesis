@@ -10,6 +10,8 @@ public class Course {
 	private String courseType;
 	private String units;
 	private String description;
+	private College college;
+	private Department department;
 
 	public String getCourseId() {
 		return courseId;
@@ -82,5 +84,23 @@ public class Course {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public College getCollege() {
+		return college;
+	}
+
+	public void setCollege(College college) {
+		this.college = college;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	
 
 }

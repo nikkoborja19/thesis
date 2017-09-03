@@ -24,14 +24,16 @@ public class CourseDAO {
         
         while(rs.next()){            
             c.setCourseId(rs.getString(Constants.COURSE_ID));
-            c.setCollegeId(rs.getString(Constants.COURSE_COLLEGEID));
-            c.setDeptId(rs.getString(Constants.COURSE_DEPTID));
+            //c.setCollegeId(rs.getString(Constants.COURSE_COLLEGEID));
+            //c.setDeptId(rs.getString(Constants.COURSE_DEPTID));
             c.setAreaId(rs.getString(Constants.COURSE_AREAID));
             c.setCourseCode(rs.getString(Constants.COURSE_CODE));
             c.setCourseName(rs.getString(Constants.COURSE_NAME));
             c.setCourseType(rs.getString(Constants.COURSE_TYPE));
             c.setUnits(rs.getString(Constants.COURSE_UNITS));
             c.setDescription(rs.getString(Constants.COURSE_DESCRIPTION));
+            c.setCollege(CollegeDAO.getCollegeByID(rs.getString(Constants.COURSE_COLLEGEID)));
+            c.setDepartment(DepartmentDAO.getDepartmentByID(rs.getString(Constants.COURSE_DEPTID)));
         }
         
         con.close();
@@ -55,14 +57,16 @@ public class CourseDAO {
         while(rs.next()){
         	Course c = new Course();
         	c.setCourseId(rs.getString(Constants.COURSE_ID));
-            c.setCollegeId(rs.getString(Constants.COURSE_COLLEGEID));
-            c.setDeptId(rs.getString(Constants.COURSE_DEPTID));
+            //c.setCollegeId(rs.getString(Constants.COURSE_COLLEGEID));
+            //c.setDeptId(rs.getString(Constants.COURSE_DEPTID));
             c.setAreaId(rs.getString(Constants.COURSE_AREAID));
             c.setCourseCode(rs.getString(Constants.COURSE_CODE));
             c.setCourseName(rs.getString(Constants.COURSE_NAME));
             c.setCourseType(rs.getString(Constants.COURSE_TYPE));
             c.setUnits(rs.getString(Constants.COURSE_UNITS));
             c.setDescription(rs.getString(Constants.COURSE_DESCRIPTION));
+            c.setCollege(CollegeDAO.getCollegeByID(rs.getString(Constants.COURSE_COLLEGEID)));
+            c.setDepartment(DepartmentDAO.getDepartmentByID(rs.getString(Constants.COURSE_DEPTID)));
             
             courses.add(c);
         }
@@ -101,15 +105,16 @@ public class CourseDAO {
         while(rs.next()){
         	Course c = new Course();
         	c.setCourseId(rs.getString(Constants.COURSE_ID));
-            c.setCollegeId(rs.getString(Constants.COURSE_COLLEGEID));
-            c.setDeptId(rs.getString(Constants.COURSE_DEPTID));
+            //c.setCollegeId(rs.getString(Constants.COURSE_COLLEGEID));
+            //c.setDeptId(rs.getString(Constants.COURSE_DEPTID));
             c.setAreaId(rs.getString(Constants.COURSE_AREAID));
             c.setCourseCode(rs.getString(Constants.COURSE_CODE));
             c.setCourseName(rs.getString(Constants.COURSE_NAME));
             c.setCourseType(rs.getString(Constants.COURSE_TYPE));
             c.setUnits(rs.getString(Constants.COURSE_UNITS));
             c.setDescription(rs.getString(Constants.COURSE_DESCRIPTION));
-            
+            c.setCollege(CollegeDAO.getCollegeByID(rs.getString(Constants.COURSE_COLLEGEID)));
+            c.setDepartment(DepartmentDAO.getDepartmentByID(rs.getString(Constants.COURSE_DEPTID)));
             courses.add(c);
         }
         

@@ -25,6 +25,8 @@ function clickSideBar(current) {
 	
 	$('.activePanel').addClass('inactivePanel');
 	$('.activePanel').removeClass('activePanel');
+	
+	$("#tableViewFlowchart tbody tr").remove();// dunno where to put this. dito muna for the mean time. what this does is tanggalin laman ng view flowcharts table kapag maykinlick sa side bar kasi d sya nagbabago kapaglumipat ka tapos bumalik
 	fixForParallax();
 }
 
@@ -37,7 +39,166 @@ function makeActivePanel(panel){
 	$(panel).removeClass('inactivePanel');
 	$(panel).addClass('activePanel');
 }
+/***************************FLOWCHARTS**************************************/
+function clickFlowcharts(id){
+	clickSideBar(id);
+	makeActivePanel("#panelFlowcharts");
+	updateFlowchartsDropdowns();
+	fixForParallax();
+}
 
+function updateFlowchartsDropdowns(){
+
+	var collegeId = $('#collegeIDDump').val();
+	var deptId = $('#deptIDDump').val();
+	
+	$.ajax({
+        type: 'GET',
+        dataType: 'json',
+        cache: false,
+        url: 'populateFlowchartDegreeProgramDropdown',
+        data:{
+        	"collegeId": collegeId,
+        	"deptId": deptId
+        },
+        success: function (data) {
+        	$("#flowchartPanelDegreeProgramDropdown").empty(); //removes all options
+        	
+        	var newoption = "<option selected onclick=\"\" id=\"\">none</option>";
+        	$.each(data, function(i, currOption){
+        		var rows = "";
+        		
+        		if(i === 0){
+        			var newoption = "<option selected onclick=\"\" id=\"\">" + currOption + "</option>";
+            	}else{
+            		var newoption = "<option onclick=\"\" id=\"\">" + currOption + "</option>";
+            	}
+        		
+        		$("#flowchartPanelDegreeProgramDropdown").append(newoption);
+        	});
+        },
+    	error: function (data){
+    		console.log(data);
+    	}
+    });
+	//populate batch
+	$.ajax({
+        type: 'GET',
+        dataType: 'json',
+        cache: false,
+        url: 'populateFlowchartBatchDropdown',
+        data:{
+        	"collegeId": collegeId,
+        	"deptId": deptId
+        },
+        success: function (data) {
+        	$("#flowchartPanelBatchDropdown").empty(); //removes all options
+        	
+        	$.each(data, function(i, currOption){
+        		var rows = "";
+        		
+        		if(i === 0){
+        			var newoption = "<option selected onclick=\"\" id=\"\">" + currOption + "</option>";
+            	}else{
+            		var newoption = "<option onclick=\"\" id=\"\">" + currOption + "</option>";
+            	}
+        		
+        		$("#flowchartPanelBatchDropdown").append(newoption);
+        	});
+        },
+    	error: function (data){
+    		console.log(data);
+    	}
+    });
+	//populate AY
+	$.ajax({
+        type: 'GET',
+        dataType: 'json',
+        cache: false,
+        url: 'populateFlowchartAYDropdown',
+        data:{
+        	"collegeId": collegeId,
+        	"deptId": deptId
+        },
+        success: function (data) {
+        	$("#flowchartPanelAYDropdown").empty(); //removes all options
+        	
+        	$.each(data, function(i, currOption){
+        		var rows = "";
+        		
+        		if(i === 0){
+        			var newoption = "<option selected onclick=\"\" id=\"\">" + currOption + "</option>";
+            	}else{
+            		var newoption = "<option onclick=\"\" id=\"\">" + currOption + "</option>";
+            	}
+        		
+        		$("#flowchartPanelAYDropdown").append(newoption);
+        	});
+        },
+    	error: function (data){
+    		console.log(data);
+    	}
+    });
+}
+
+function updateViewFlowchartTable(){
+	
+	var selectedDegreeProgram = $('#flowchartPanelDegreeProgramDropdown :selected').text();
+	var selectedBatch = $('#flowchartPanelBatchDropdown :selected').text();
+	var selectedAY = $('#flowchartPanelAYDropdown :selected').text();
+	var year = [];
+	year = selectedAY.split('-');
+	var selectedTerm;
+	
+	if($('#flowchartPanelRadio1').is(':checked')) selectedTerm = "1";
+	else if($('#flowchartPanelRadio2').is(':checked')) selectedTerm = "2";
+	else selectedTerm = "3";
+	
+	$.ajax({
+        type: 'GET',
+        dataType: 'json',
+        cache: false,
+        url: 'getAllFlowchartCourses',
+        data:{
+        	"selectedDegreeProgram": selectedDegreeProgram,
+        	"selectedBatch": selectedBatch,
+        	"selectedTerm": selectedTerm,
+        	"startYear": year[0],
+        	"endYear": year[1]
+        },
+        success: function (data) {
+        	var headers = "";
+        	//console.log(data);
+        	$("#tableViewFlowchart tbody tr").remove(); //removes all tr but not thead
+        	
+        	$.each(data, function(i, currObject){
+        		var rows = "";
+        		var id = currObject.courseId;
+        		var courseCode = currObject.courseCode;
+        		var courseName = currObject.courseName;
+        		var units = currObject.units;
+        		var collegeCode = currObject.college.collegeCode;
+        		var deptCode = currObject.department.deptCode;
+        	
+        		var concatId = currObject.startYear +"-"+ currObject.endYear + "-" + currObject.term;
+        		
+        		rows += "<tr id=\"" + id + "-id\" class=\"AYRow\">"+
+        		        "<td>"+courseCode+"</td>"+
+        				"<td>"+courseName+"</td>"+
+        				"<td>"+units+"</td>"+
+        				"<td>"+collegeCode+"</td>"+
+        				"<td>"+deptCode+"</td></tr>";
+        				
+        		$(rows).appendTo("#tableViewFlowchart tbody");
+        	});
+        },
+    	error: function (data){
+    		console.log(data);
+    	}
+    });
+	fixForParallax();
+}
+/***************************FLOWCHARTS**************************************/
 /***************************BUILDINGS AND ROOMS******************************/
 function clickBuildingsAndRooms(id){
 	clickSideBar(id);
@@ -995,7 +1156,7 @@ function updateAddNewOfferingsDropdowns(){
 	//empty pa to sa simula
 	/*var selectedDegreeProgram = $('#selectedDegreeProgramDropdown :selected').text();
 	var selectedBatch = $('#batchANODropdown :selected').text();
-	var selectedAY = $('#ayANODropdown :selected').text();*/
+	var selectedAY = $('#flowchartAYANODropdown :selected').text();*/
 	//populate degree program
 	
 	var collegeId = $('#collegeIDDump').val();
@@ -1070,7 +1231,7 @@ function updateAddNewOfferingsDropdowns(){
         	"deptId": deptId
         },
         success: function (data) {
-        	$("#ayANODropdown").empty(); //removes all options
+        	$("#flowchartAYANODropdown").empty(); //removes all options
         	
         	$.each(data, function(i, currOption){
         		var rows = "";
@@ -1081,7 +1242,7 @@ function updateAddNewOfferingsDropdowns(){
             		var newoption = "<option onclick=\"\" id=\"\">" + currOption + "</option>";
             	}
         		
-        		$("#ayANODropdown").append(newoption);
+        		$("#flowchartAYANODropdown").append(newoption);
         	});
         },
     	error: function (data){
@@ -1094,7 +1255,7 @@ function updateAddNewOfferingsFlowchartCourseList(){
 	
 	var selectedDegreeProgram = $('#flowchartDegreeProgramANODropdown :selected').text();
 	var selectedBatch = $('#flowchartBatchANODropdown :selected').text();
-	var selectedAY = $('#ayANODropdown :selected').text();
+	var selectedAY = $('#flowchartAYANODropdown :selected').text();
 	var year = [];
 	year = selectedAY.split('-');
 	var selectedTerm;

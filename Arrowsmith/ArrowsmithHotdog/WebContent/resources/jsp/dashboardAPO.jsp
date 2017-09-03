@@ -30,6 +30,7 @@ pageEncoding="ISO-8859-1"%>
 			<jsp:include page="dashboardAPOBuildingsAndRoomsPanel.jsp"/>
 			<jsp:include page="dashboardAPORoomAssignmentPanel.jsp"/>
 			<jsp:include page="dashboardAPOViewOfferingsPanel.jsp"/>
+			<jsp:include page="dashboardAPOFlowchartsPanel.jsp"/>
 		</div>
 	</div>
 	<jsp:include page="footer.jsp"/>

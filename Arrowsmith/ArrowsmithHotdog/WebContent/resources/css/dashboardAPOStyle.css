@@ -303,6 +303,12 @@ body{
 	margin-bottom: 200px;
 }
 
+#panelFlowcharts{ /*may extra stuff kaya hiwalay*/
+	margin-top: 20px;
+	height: 250px;
+	margin-bottom: 290px;
+}
+
 .header-fixed-viewbuildingsandrooms > tbody > tr > td,
 .header-fixed-viewbuildingsandrooms > thead > tr > th {
     width: 25%; /*kasi 4 columns lang. if 5, 20%. If etc, adjust*/
@@ -318,6 +324,12 @@ body{
 .header-fixed-viewofferings > tbody > tr > td,
 .header-fixed-viewofferings > thead > tr > th {
     width: 25%; /*kasi 4 columns lang. if 5, 20%. If etc, adjust*/
+    float: left;
+}
+
+.header-fixed-viewflowchart > tbody > tr > td,
+.header-fixed-viewflowchart > thead > tr > th {
+    width: 20%; /*kasi 4 columns lang. if 5, 20%. If etc, adjust*/
     float: left;
 }
 
@@ -365,6 +377,11 @@ body{
     height: 300px;
 }
 
+.header-fixed-viewflowchart > body{
+	overflow-y: auto;
+    height: 240px;
+}
+
 .header-fixed-viewbuildingsandroomsmodal > tbody, .header-fixed-viewroomassignmentmodal > tbody {
     overflow-y: auto;
     height: 250px;
@@ -396,7 +413,7 @@ body{
 
 #tableModalRAOfferingListHeaders, #tableModalBuildingRoomsHeaders, #tableModalRARoomListHeaders,
 #tableModalViewOfferingsHeaders, #tableModalANOOfferingListHeaders, #tableModalANOCoursesListHeaders,
-#tableModalANOFlowchartCoursesListHeaders{
+#tableModalANOFlowchartCoursesListHeaders, #tableViewFlowchartHeaders{
 	 margin-left:10px;
 }
 

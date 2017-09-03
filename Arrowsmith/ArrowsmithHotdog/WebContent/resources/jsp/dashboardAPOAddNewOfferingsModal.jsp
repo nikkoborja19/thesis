@@ -99,8 +99,8 @@
 							</select>
 			       		</div>
 			       		<div class="col-md-3 form-group">
-				          <label for="ayANODropdown">Academic Year</label>
-				            <select class="form-control" id="ayANODropdown" onChange="">
+				          <label for="flowchartAYANODropdown">Academic Year</label>
+				            <select class="form-control" id="flowchartAYANODropdown" onChange="">
 							    <option selected>All</option>
 							</select>
 			       		</div>
