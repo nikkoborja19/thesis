@@ -1434,7 +1434,7 @@ function updateTemporaryOfferingList(){
 				"<td id=\""+id+"-timeslot\">"+timeslot+"</td>";
 				
 				if(room === ""){
-					rows += "<td><a class=\"btn btn-default assign-button\" type=\"button\" onclick=\"updateANORoomList(this.id)\" id=\""+id+"-room\"><span><i class=\"fa fa-chain\"></i></span></a></td>"
+					rows += "<td><a class=\"btn btn-default assign-button\" type=\"button\" onclick=\"checkIfRoomAssignmentPossible(this.id)\" id=\""+id+"-room\"><span><i class=\"fa fa-chain\"></i></span></a></td>"
 				}else{
 					rows+="<td id=\""+id+"-room\">"+room+" <a class=\"btn btn-default unassign-button\" type=\"button\" onclick=\"unassignRoomToAnOfferingANO(this.id)\" id=\""+id+"-room\"><span><i class=\"fa fa-chain-broken\"></i></span></a></td>";
 				}
@@ -2067,8 +2067,6 @@ function unassignRoomToAnOfferingANO(id){
 
 function updateANORoomList(tempOfferingId){
 	
-	changeANOPanel('divANORoomAssignmentPanel', 'divANOSearchCoursesPanel');
-	
 	var arr = [];
 	arr = tempOfferingId.split('-'); //arr[0] would be courseID, [1], appender, [2] extraneous text
 	var id = arr[0] +"-"+ arr[1];
@@ -2139,6 +2137,27 @@ function updateANORoomList(tempOfferingId){
     		console.log(data);
     	}
     });
+}
+
+function checkIfRoomAssignmentPossible(tempOfferingId){
+	//offering must have a schedule otherwise can't room assign
+	var arr = [];
+	arr = tempOfferingId.split('-'); //arr[0] would be courseID, [1], appender, [2] extraneous text
+	
+	var tempOffering = tempCourseOfferings[arr[1]];
+	
+	if((tempOffering.timeSlot1 != "" && tempOffering.timeSlot1 != "none" && tempOffering.daysList1.length != 0) || (tempOffering.timeSlot2 != "" && tempOffering.timeSlot2 != "none" && tempOffering.daysList2.length != 0)){
+		changeANOPanel('divANORoomAssignmentPanel', 'divANOSearchCoursesPanel');
+		updateANORoomList(tempOfferingId);
+	}else{
+		$('#errorNoScheduleModal').modal('show');
+		$('#errorNoScheduleModal').removeData('modal').modal({
+			keyboard: false,
+			backdrop: 'static',
+			toggle: 'modal',
+			target: '#errorNoScheduleModal'
+		});
+	}
 }
 
 function populateANORoomAssignmentDropdown(id, selectedRoomType, selectedBuilding){

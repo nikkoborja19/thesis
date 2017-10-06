@@ -56,7 +56,7 @@ body{
   color:#ffffff !important;
 }
 
-.add-button, .save-button, .assign-button{
+.add-button, .save-button, .assign-button, .okay-button{
   background-color: #099b10 !important;
   cursor: pointer;
   color:#ffffff !important;

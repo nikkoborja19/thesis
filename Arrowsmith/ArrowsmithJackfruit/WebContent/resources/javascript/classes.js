@@ -22,6 +22,7 @@ function TempOffering(degreeProgram, courseId, courseCode, section, batch, term,
 	this.begin2 = "";
 	this.end2 = "";
 	this.room2 = "";
+	
 }
 
 function TempRoom(roomId, roomCode, courseId){

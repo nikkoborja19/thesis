@@ -236,3 +236,34 @@
     </div>
   </div>
 </div>
+
+<!-- **********************************ERROR NO SCHEDULE MODAL********************************* -->
+<div class="modal fade" id="errorNoScheduleModal" role="dialog" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="errorNoScheduleModalTitle">No Schedule Error</h4>
+            </div>
+
+            <!--  THERE SHOULD ONLY BE ONE MODAL BODY OTHERWISE DI GAGANA LAHAT(YOU CANT TYPE); -->
+            <div class="modal-body" id="errorNoScheduleModalBody">
+                <div class="row">
+                	<div class="col-md-12">
+                   		<label id="deleteClickedOfferingMessage">ERROR! Please set a schedule(complete with date and time) first before assigning a room.</label>
+                   	</div>
+                </div>
+            </div>
+
+            <div class="row">
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default okay-button" data-dismiss="modal">Okay</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- **********************************ERROR NO SCHEDULE MODAL********************************* -->
