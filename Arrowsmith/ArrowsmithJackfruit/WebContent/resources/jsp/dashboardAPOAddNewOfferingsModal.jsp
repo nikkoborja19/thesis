@@ -251,7 +251,7 @@
             <div class="modal-body" id="errorNoScheduleModalBody">
                 <div class="row">
                 	<div class="col-md-12">
-                   		<label id="deleteClickedOfferingMessage">ERROR! Please set a schedule(complete with date and time) first before assigning a room.</label>
+                   		<label id="deleteClickedOfferingMessage">ERROR! Please set a schedule(complete with day and time) first before assigning a room.</label>
                    	</div>
                 </div>
             </div>

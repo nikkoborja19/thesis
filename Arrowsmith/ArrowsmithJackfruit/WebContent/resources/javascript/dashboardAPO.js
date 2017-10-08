@@ -1807,6 +1807,23 @@ function saveTemporaryOfferingTimeSlots(currObject, days, list){
 		}
 	}
 	
+	var hasNoSchedule = 0;
+	//IF WALANG DAY AND TIME AND NAGROOM ASSIGN NA BEFORE, REMOVE ROOM CAUSE DAPAT MAY SCHEDULE BEFORE ROOM ASSIGN
+	if((currObject.daysList1.length === 0 && currObject.daysList2.length === 0) || 
+			(currObject.daysList1.length === 0 && (currObject.daysList2.length != 0 && (currObject.timeSlot2 === "" || currObject.timeSlot2 === "none"))) || 
+			(currObject.daysList1.length !=0 && (currObject.timeSlot1 === "" || currObject.timeSlot1 === "none")) ||
+			(currObject.daysList2.length === 0 && (currObject.daysList1.length != 0 && (currObject.timeSlot1 === "" || currObject.timeSlot1 === "none"))) || 
+			(currObject.daysList2.length !=0 && (currObject.timeSlot2 === "" || currObject.timeSlot2 === "none")))
+	{
+		hasNoSchedule = 1;
+	}
+	
+	if(hasNoSchedule === 1){
+		currObject.room = "";//remove assigned room if any
+		updateANORoomList(currObject.courseId);
+		changeANOPanel('divANOSearchCoursesPanel', 'divANORoomAssignmentPanel');
+	}
+	
 	return currObject;
 }
 
@@ -2062,6 +2079,7 @@ function unassignRoomToAnOfferingANO(id){
 		hasFound = 0;
 		updateTemporaryOfferingList();
 		updateANORoomList(arr[0]+"-"+arr[1]+"-update"); //tempOffering = not DB version so in this case, course palang to so we pass courseID
+		changeANOPanel('divANOSearchCoursesPanel', 'divANORoomAssignmentPanel');
 	}
 }
 
@@ -2146,10 +2164,21 @@ function checkIfRoomAssignmentPossible(tempOfferingId){
 	
 	var tempOffering = tempCourseOfferings[arr[1]];
 	
-	if((tempOffering.timeSlot1 != "" && tempOffering.timeSlot1 != "none" && tempOffering.daysList1.length != 0) || (tempOffering.timeSlot2 != "" && tempOffering.timeSlot2 != "none" && tempOffering.daysList2.length != 0)){
+	var hasNoSchedule = 0;
+	if((tempOffering.daysList1.length === 0 && tempOffering.daysList2.length === 0) || 
+			(tempOffering.daysList1.length === 0 && (tempOffering.daysList2.length != 0 && (tempOffering.timeSlot2 === "" || tempOffering.timeSlot2 === "none"))) || 
+			(tempOffering.daysList1.length !=0 && (tempOffering.timeSlot1 === "" || tempOffering.timeSlot1 === "none")) ||
+			(tempOffering.daysList2.length === 0 && (tempOffering.daysList1.length != 0 && (tempOffering.timeSlot1 === "" || tempOffering.timeSlot1 === "none"))) || 
+			(tempOffering.daysList2.length !=0 && (tempOffering.timeSlot2 === "" || tempOffering.timeSlot2 === "none")))
+	{
+		hasNoSchedule = 1;
+	}
+	
+	if(hasNoSchedule === 0){
 		changeANOPanel('divANORoomAssignmentPanel', 'divANOSearchCoursesPanel');
 		updateANORoomList(tempOfferingId);
-	}else{
+	}else{ //if hasNoSchedule === 1
+		changeANOPanel('divANOSearchCoursesPanel', 'divANORoomAssignmentPanel');
 		$('#errorNoScheduleModal').modal('show');
 		$('#errorNoScheduleModal').removeData('modal').modal({
 			keyboard: false,
