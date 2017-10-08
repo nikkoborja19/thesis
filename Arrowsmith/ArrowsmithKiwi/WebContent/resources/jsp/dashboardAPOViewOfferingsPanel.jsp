@@ -22,7 +22,7 @@
 	           <th>AY</th>
 	           <th>Term</th>
 	           <th>Publish</th>
-	           <th>View/Delete</th><!-- put space para di masira yung header na fixed -->
+	           <th>View/Edit/Delete</th><!-- put space para di masira yung header na fixed -->
 	         </tr>
          </thead>
          <tbody>

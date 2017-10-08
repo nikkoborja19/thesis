@@ -174,6 +174,36 @@ WHERE r.room_id != ALL (SELECT d.room_id FROM days d, offering o
         return roomList;
     }
 	
+	public static ArrayList<Room> getAllRooms() throws SQLException{   
+		ArrayList<Room> roomList = new ArrayList<>();
+        Connection con = Connector.getConnector();
+        String defaultDay = "M", defaultBeginTime ="730", defaultEndTime ="900";
+        
+        String query = "SELECT * FROM " + Constants.ROOM_TABLE + " WHERE "+ Constants.ROOM_CODE + " NOT LIKE 'No Room' ORDER BY " + Constants.ROOM_CODE;
+        
+        PreparedStatement st = (PreparedStatement) con.prepareStatement(query);
+        
+        ResultSet rs = st.executeQuery();//wla pong variable dapat laman dito ty
+        
+        while(rs.next()){   
+        	Room r = new Room();
+        	r.setId(rs.getString(Constants.ROOM_ID));
+        	r.setRoomCode(rs.getString(Constants.ROOM_CODE));
+        	r.setRoomType(rs.getString(Constants.ROOM_TYPE));
+        	r.setRoomCapacity(rs.getString(Constants.ROOM_CAPACITY));
+        	r.setRoomLocation(rs.getString(Constants.ROOM_LOCATION));
+        	r.setBuildingId(rs.getString(Constants.ROOM_BUILDINGID));
+        	r.setBuilding(BuildingDAO.getBuildingByID(rs.getString(Constants.ROOM_BUILDINGID)));
+        	
+        	roomList.add(r);
+        }
+        
+        con.close();
+        st.close();
+        
+        return roomList;
+    }
+	
 	public static ArrayList<Room> getAllRoomsANOWithSearchKey(int buildingId, String roomType, String key) throws SQLException{   
 		ArrayList<Room> roomList = new ArrayList<>();
         Connection con = Connector.getConnector();

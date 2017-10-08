@@ -586,10 +586,10 @@ function updateRoomList(offeringId){
         		var building = currObject.building.buildingName;
         		var roomType = currObject.roomType;
         		var roomCapacity = currObject.roomCapacity;
-        		
-    			rows += "<tr id=\"" + id + "-id\" class=\"clicked-room-inactive roomRow "+id+"-id\">";
+
+        		if(roomCode != "No Room" || roomCode != "None"){ rows += "<tr id=\"" + id + "-id\" class=\"clicked-room-inactive roomRow "+id+"-id\">";
 				
-				if(roomCode != "No Room") rows+="<td>"+roomCode+"</td>";
+				rows+="<td>"+roomCode+"</td>";
     			
 				rows+=  "<td>"+roomType+"</td>"+
 						"<td>"+building+"</td>"+
@@ -598,7 +598,7 @@ function updateRoomList(offeringId){
 						"<tr>";
 	    		//console.log(rows);
 	    		$(rows).appendTo("#tableModalRARoomList tbody");
-        		
+				}
         	});
         },
     	error: function (data){
@@ -783,23 +783,25 @@ function updateViewOfferingsPanel(){
         				"<td>"+AY+"</td>"+
         				"<td>"+term+"</td>";
         				
-        				if(isPublished === "0"){
-        					//rows += "<td><a class=\"btn btn-default publish-active\" type=\"button\" onclick=\"publishAYTermOffering(this.id, 1)\"  id=\"" + concatId + "-publish\"><span><i class=\"fa fa-check\"></i></span></a> <a class=\"btn btn-default publish-inactive pushed-option\" type=\"button\" onclick=\"publishAYTermOffering(this.id, 0)\"  id=\"" + concatId + "-unpublish\" disabled><span><i class=\"fa fa-close\"></i></span></a></td>";
-        					rows += "<td><label class='switch'>" +
+		        		if(isPublished === "0"){
+							//rows += "<td><a class=\"btn btn-default publish-active\" type=\"button\" onclick=\"publishAYTermOffering(this.id, 1)\"  id=\"" + concatId + "-publish\"><span><i class=\"fa fa-check\"></i></span></a> <a class=\"btn btn-default publish-inactive pushed-option\" type=\"button\" onclick=\"publishAYTermOffering(this.id, 0)\"  id=\"" + concatId + "-unpublish\" disabled><span><i class=\"fa fa-close\"></i></span></a></td>";
+							rows += "<td><label class='switch'>" +
 								"<input id='" + id + "-id' type='checkbox' onclick='checkTogglePublish(this.id, this)'/>" +
 								"<span class='slider round'></span>" +
 								"</label></td>";
-        					rows += "<td><a class=\"btn btn-default\" type=\"button\" onclick=\"viewOfferingsInModal(this.id)\" data-toggle=\"modal\" data-target=\"#viewOfferingsModal\" data-backdrop=\"static\" data-keyboard=\"false\" id=\"" + concatId + "-view\"><span><i class=\"fa fa-search\"></i></span></a> ";
-    						rows+="<a class=\"btn btn-default trash-button\" type=\"button\" onclick=\"confirmDeleteOfferingList(this.id)\" data-toggle=\"modal\" data-target=\"#deleteClickedOfferingList\" data-backdrop=\"static\" data-keyboard=\"false\" id=\"" + concatId + "-view\"><span><i class=\"fa fa-trash\"></i></span></a></td>";	
-        				}else{
-        					//rows += "<td><a class=\"btn btn-default publish-active pushed-option\" type=\"button\" onclick=\"publishAYTermOffering(this.id, 1)\"  id=\"" + concatId + "-publish\" disabled><span><i class=\"fa fa-check\"></i></span></a> <a class=\"btn btn-default publish-inactive\" type=\"button\" onclick=\"publishAYTermOffering(this.id, 0)\"  id=\"" + concatId + "-unpublish\"><span><i class=\"fa fa-close\"></i></span></a></td>";
-        					rows += "<td><label class='switch'>" +
+							rows += "<td><a class=\"btn btn-default\" type=\"button\" onclick=\"viewOfferingsInModal(this.id)\" data-toggle=\"modal\" data-target=\"#viewOfferingsModal\" data-backdrop=\"static\" data-keyboard=\"false\" id=\"" + concatId + "-view\"><span><i class=\"fa fa-search\"></i></span></a> ";
+							rows+="<a class=\"btn btn-default edit-button\" type=\"button\" onclick=\"initEditOfferingListModal(this.id)\" id=\"" + concatId + "-edit\"><span><i class=\"fa fa-edit\"></i></span></a>";
+							rows+="<a class=\"btn btn-default trash-button\" type=\"button\" onclick=\"confirmDeleteOfferingList(this.id)\" data-toggle=\"modal\" data-target=\"#deleteClickedOfferingList\" data-backdrop=\"static\" data-keyboard=\"false\" id=\"" + concatId + "-view\"><span><i class=\"fa fa-trash\"></i></span></a></td>";	
+						}else{
+							//rows += "<td><a class=\"btn btn-default publish-active pushed-option\" type=\"button\" onclick=\"publishAYTermOffering(this.id, 1)\"  id=\"" + concatId + "-publish\" disabled><span><i class=\"fa fa-check\"></i></span></a> <a class=\"btn btn-default publish-inactive\" type=\"button\" onclick=\"publishAYTermOffering(this.id, 0)\"  id=\"" + concatId + "-unpublish\"><span><i class=\"fa fa-close\"></i></span></a></td>";
+							rows += "<td><label class='switch'>" +
 								"<input id='" + id + "-id' type='checkbox' onclick='checkTogglePublish(this.id, this)' checked />" +
 								"<span class='slider round'></span>" +
 								"</label></td>";
-        					rows += "<td><a class=\"btn btn-default\" type=\"button\" onclick=\"viewOfferingsInModal(this.id)\" data-toggle=\"modal\" data-target=\"#viewOfferingsModal\" data-backdrop=\"static\" data-keyboard=\"false\" id=\"" + concatId + "-view\"><span><i class=\"fa fa-search\"></i></span></a> ";
-    						rows+="<a class=\"btn btn-default trash-button\" type=\"button\" id=\"" + concatId + "-delete\" disabled><span><i class=\"fa fa-trash\"></i></span></a></td>";	
-        				}
+							rows += "<td><a class=\"btn btn-default\" type=\"button\" onclick=\"viewOfferingsInModal(this.id)\" data-toggle=\"modal\" data-target=\"#viewOfferingsModal\" data-backdrop=\"static\" data-keyboard=\"false\" id=\"" + concatId + "-view\"><span><i class=\"fa fa-search\"></i></span></a> ";
+							rows+="<a class=\"btn btn-default edit-button\" type=\"button\" id=\"" + concatId + "-edit\" disabled><span><i class=\"fa fa-edit\"></i></span></a>";
+							rows+="<a class=\"btn btn-default trash-button\" type=\"button\" id=\"" + concatId + "-delete\" disabled><span><i class=\"fa fa-trash\"></i></span></a></td>";	
+						}
         				//data backdrop static prevents exit from background while data-keyboard false prevents exit using keyboard keys
         				
         					rows+="</tr>";
@@ -1173,6 +1175,8 @@ function initAddNewOfferingsModal(){
 		changeANOPanel('divANOSearchCoursesPanel', 'divANORoomAssignmentPanel');
 		$('#setNewOfferingsModal').modal('hide');
 		$('#addNewOfferingsModal').modal('show');
+		$('#saveEditedOfferingsButtonANO').hide();
+		$('#saveNewOfferingsButtonANO').show(); //cause we're saving new offerings not through edited DB
 		$('#addNewOfferingsModal').removeData('modal').modal({
 			keyboard: false,
 			backdrop: 'static',
@@ -1180,10 +1184,9 @@ function initAddNewOfferingsModal(){
 			target: '#addNewOfferingsModal'
 		});
 		$('#addNewOfferingsModalTitle').text('Offerings for AY '+globalStartYear+'-'+globalEndYear+' Term '+ globalTerm);
-		updateAddNewOfferingsDropdowns();
 		
+		updateAddNewOfferingsDropdowns();
 	}
-	
 }
 
 function updateAddNewOfferingsDropdowns(){
@@ -1451,7 +1454,7 @@ function updateTemporaryOfferingList(){
 				"<td class=\"editable-cell\" id=\""+id+"-section\" contenteditable>"+section+"</td>"+
 				"<td id=\""+id+"-timeslot\">"+timeslot+"</td>";
 				
-				if(room === ""){
+				if(room === "" || room === "No Room" || room === "None"){
 					rows += "<td><a class=\"btn btn-default assign-button\" type=\"button\" onclick=\"checkIfRoomAssignmentPossible(this.id)\" id=\""+id+"-room\"><span><i class=\"fa fa-chain\"></i></span></a></td>"
 				}else{
 					rows+="<td id=\""+id+"-room\">"+room+" <a class=\"btn btn-default unassign-button\" type=\"button\" onclick=\"unassignRoomToAnOfferingANO(this.id)\" id=\""+id+"-room\"><span><i class=\"fa fa-chain-broken\"></i></span></a></td>";
@@ -1825,9 +1828,15 @@ function saveTemporaryOfferingTimeSlots(currObject, days, list){
 		}
 	}
 	
+	/*if((currObject.daysList1.length === 0 && currObject.daysList2.length === 0))  console.log("1");
+	if((currObject.daysList1.length === 0 && (currObject.daysList2.length != 0 && (currObject.timeSlot2 === "" || currObject.timeSlot2 === "none")))) console.log("2"); 
+	if((currObject.daysList1.length !=0 && (currObject.timeSlot1 === "" || currObject.timeSlot1 === "none"))) console.log("3");
+	if((currObject.daysList2.length === 0 && (currObject.daysList1.length != 0 && (currObject.timeSlot1 === "" || currObject.timeSlot1 === "none")))) console.log("4");
+	if((currObject.daysList2.length !=0 && (currObject.timeSlot2 === "" || currObject.timeSlot2 === "none"))) console.log("5");
+	*/
 	var hasNoSchedule = 0;
 	//IF WALANG DAY AND TIME AND NAGROOM ASSIGN NA BEFORE, REMOVE ROOM CAUSE DAPAT MAY SCHEDULE BEFORE ROOM ASSIGN
-	if((currObject.daysList1.length === 0 && currObject.daysList2.length === 0) || 
+	if((currObject.daysList1.length === 0 && currObject.daysList2.length === 0) ||
 			(currObject.daysList1.length === 0 && (currObject.daysList2.length != 0 && (currObject.timeSlot2 === "" || currObject.timeSlot2 === "none"))) || 
 			(currObject.daysList1.length !=0 && (currObject.timeSlot1 === "" || currObject.timeSlot1 === "none")) ||
 			(currObject.daysList2.length === 0 && (currObject.daysList1.length != 0 && (currObject.timeSlot1 === "" || currObject.timeSlot1 === "none"))) || 
@@ -2028,6 +2037,131 @@ function addNewOfferingsToDB(){
 	emptyAddNewOfferingsModal();
 }
 
+function initEditOfferingListModal(id){
+	var arr = [];
+	arr = id.split('-'); //arr[0] = start year, arr[1] = end year, arr[2] = term, arr[3] = extra word
+	
+	globalStartYear = arr[0];
+	globalEndYear = arr[1];
+	globalTerm = arr[2];
+	
+	if(globalStartYear.length!=0 && globalEndYear.length!=0 && globalTerm.length!=0){
+		changeANOPanel('divANOSearchCoursesPanel', 'divANORoomAssignmentPanel');
+		$('#setNewOfferingsModal').modal('hide');
+		$('#addNewOfferingsModal').modal('show');
+		$('#saveEditedOfferingsButtonANO').show();//cause we're editing the offerings in the DB.
+		$('#saveNewOfferingsButtonANO').hide(); 
+		$('#addNewOfferingsModal').removeData('modal').modal({
+			keyboard: false,
+			backdrop: 'static',
+			toggle: 'modal',
+			target: '#addNewOfferingsModal'
+		});
+		$('#addNewOfferingsModalTitle').text('Offerings for AY '+globalStartYear+'-'+globalEndYear+' Term '+ globalTerm);
+		updateAddNewOfferingsDropdowns();
+		
+		/*****LOAD THE COURSES/OFFERINGS TO BE EDITED IN THE DB*****/
+		$.ajax({
+	        type: 'GET',
+	        dataType: 'json',
+	        cache: false,
+	        url: 'getAllOfferingsWithoutFilters',
+	        data: {
+	        	"startYear": arr[0],
+	        	"endYear": arr[1],
+	        	"term": arr[2]
+	        },
+	        success: function (data) {
+	        	appenderID = 0; //setAppenderID to zero
+	        	roomAppenderID = 0;
+	        	tempCourseOfferings = [];
+	        	tempRooms = [];
+	        	
+	        	$.each(data, function(i, currObject){
+	        		var offeringId = currObject.offeringId;
+	        		var degreeProgram = currObject.degreeProgram;
+	        		var courseId = currObject.course.courseId + "-" + appenderID;
+	        		var courseCode = currObject.course.courseCode;
+	        		var section = currObject.section;
+	        		var batch = ""; //kasi integer ung batch sa DB so minsan nagiging zero
+	        		if(currObject.batch != 0){
+	        			batch = currObject.batch;
+	        		}
+	        		var term = currObject.term;
+	        		var status = currObject.status;
+	        		var remarks = currObject.remarks;
+	        		var days1 = [];
+	        		var days2 = [];
+	        		var timeSlot1 = "";
+	        		var timeSlot2 = "";
+	        		var room = "";
+	        		
+	        		/****DAYS****/
+	        		$.each(currObject.days, function(j, currDay){
+	        			var startTime = ('0' + currDay.beginTime).slice(-4); 
+	        			var endTime = ('0' + currDay.endTime).slice(-4); 
+	        			//minus 4 sa slice meaning dapat 4 digit number. Kapag 3 lang ung nadetect, add zero infront. Otherwise, if 4 digit nadetect, do nothing.
+	        			//https://stackoverflow.com/questions/8513032/less-than-10-add-0-to-number
+	        			var tempTime = startTime + "-" + endTime;
+
+	        			if(timeSlot1 != "" && timeSlot1 === tempTime){
+	        				days1.push(currDay.classDay);
+	        			}else if(timeSlot1 === "" && timeSlot2 != tempTime){
+	        				timeSlot1 = tempTime;
+	        				days1.push(currDay.classDay);
+	        			}else if(timeSlot2 != "" && timeSlot2 === tempTime){
+	        				days2.push(currDay.classDay);
+	        			}else if(timeSlot2 === "" && timeSlot1 != tempTime){
+	        				timeSlot2 = tempTime;
+	        				days2.push(currDay.classDay);
+	        			}else{
+	        				alert("Error importing time of "+ courseCode + " " + section);
+	        			}
+	        			
+	        			/****ROOM****/
+	        			if(currDay.room.roomCode === "No Room") room+= "";
+	    				else{
+	    					room = currDay.room.roomCode;
+	    					//console.log(room);
+	    					var roomObject = new TempRoom(currDay.room.roomId, currDay.room.roomCode, courseId);
+	    					tempRooms[roomAppenderID] = roomObject;
+	    					roomAppenderID++;
+	    				}
+	        			/****ROOM****/
+	        		});
+	        		/****DAYS****/
+	        		var offering = new TempOffering(degreeProgram, courseId, courseCode, section, batch, term, status, remarks);
+	        		offering.daysList1 = [];
+	        		offering.daysList2 = [];
+	        		offering.daysList1 = days1.slice(0); //Array.prototype.slice returns a shallow copy of a portion of an array. Giving it 0 as the first parameter means you are returning a copy of all the elements (starting at index 0 that is)
+	        		offering.daysList2 = days2.slice(0);
+	        		offering.timeSlot1 = timeSlot1;
+	        		offering.timeSlot2 = timeSlot2;
+	        		offering.room = room; //not confuse room with roomObject
+
+	        		tempCourseOfferings[appenderID] = offering;
+	            	appenderID++; //for next offering
+	            	updateTemporaryOfferingList();
+	        	});
+	        },
+	    	error: function (data){
+	    		console.log(data);
+	    	}
+	    });	
+		/*****LOAD THE COURSES/OFFERINGS TO BE EDITED IN THE DB*****/
+	}
+}
+
+function addEditedOfferingsToDB(){
+	var arr = [];
+	
+	$('#viewOfferingsPanelAYDump').val(globalStartYear + "-" + globalEndYear + "-"+ globalTerm + "-delete");
+	//console.log($('#viewOfferingsPanelAYDump').val());
+	deleteOfferingList(); //para madelete muna ung offering list sa DB then add the whole thing again.
+	$('#viewOfferingsPanelAYDump').val(''); //make sure empty or else baka may madelete.
+	addNewOfferingsToDB(); //add na
+}
+
 function closeModal(id){
 	$('#'+id).modal('hide');
 	$('body').removeClass('modal-open');
@@ -2156,8 +2290,8 @@ function updateANORoomList(tempOfferingId){
     			if(!foundMatch) 
     				rows += "<tr id=\"" + id + "-id\" class=\"clicked-room-inactive roomRow "+id+"-id\">";
     			else rows += "<tr id=\"" + id + "-id\" class=\"roomRow match-room-offering "+id+"-id\">";
-    				
-				if(roomCode != "No Room") rows+="<td>"+roomCode+"</td>";
+    			
+				rows+="<td>"+roomCode+"</td>";
     			
 				rows+=  "<td>"+roomType+"</td>"+
 						"<td>"+building+"</td>"+
@@ -2166,7 +2300,7 @@ function updateANORoomList(tempOfferingId){
 						"<tr>";
 	    		//console.log(rows);
 	    		$(rows).appendTo("#tableANOModalRARoomList tbody");
-        		
+				
         	});
         },
     	error: function (data){

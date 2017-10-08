@@ -537,6 +537,24 @@ public class APOController {
 		return offeringList;
 	}
 	
+	@RequestMapping(value="/getAllOfferingsWithoutFilters", method=RequestMethod.GET, produces="application/json")
+	public @ResponseBody ArrayList<Offering> getAllOfferingsWithoutFilters(
+			@RequestParam("startYear") String startYear,
+			@RequestParam("endYear") String endYear,
+			@RequestParam("term") String term) {
+		
+		ArrayList<Offering> offeringList = new ArrayList<Offering>();
+		
+		try {
+			offeringList = OfferingDAO.getListOfferingsByTerm(startYear, endYear, term);
+			//System.out.println(offeringList.size());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return offeringList;
+	}
+	
 	@RequestMapping(value="/publishAYTerm", method=RequestMethod.POST, produces="application/json")
 	public @ResponseBody StringResponse publishAYTerm(
 			@RequestParam("startYear") String startYear,

@@ -19,13 +19,17 @@ public class OfferingDAO {
 	public static ArrayList<Offering> getListOfferingsByTerm(String startYear, String endYear, String term) throws SQLException{
         ArrayList<Offering> offerings = new ArrayList<Offering>();
         Connection con = Connector.getConnector();
-        String query = "SELECT * FROM " + Constants.OFFERING_TABLE + " ot WHERE ot." + Constants.OFFERING_STARTYEAR + " = ? AND ot." + Constants.OFFERING_ENDYEAR + " = ? AND ot." + Constants.OFFERING_TERM + " = ?";
+        String query = "SELECT * FROM " + Constants.OFFERING_TABLE + " o, " + Constants.COURSE_TABLE + " c WHERE o." 
+        		+ Constants.COURSE_ID + " = c." + Constants.COURSE_ID + " AND o." + Constants.OFFERING_STARTYEAR 
+        		+ " = ? AND o." + Constants.OFFERING_ENDYEAR + " = ? AND o." + Constants.OFFERING_TERM + " = ? "
+        		+ "ORDER BY c." + Constants.COURSE_CODE + ", o."+ Constants.OFFERING_SECTION + ", o." + Constants.OFFERING_BATCH
+        		+ ", o." + Constants.OFFERING_STATUS;
         PreparedStatement st = (PreparedStatement) con.prepareStatement(query);
         st.setString(1, startYear);
         st.setString(2, endYear);
         st.setString(3, term);
         
-//        System.out.println("PStatement: " + st);
+        //System.out.println(query);
         
         ResultSet rs = st.executeQuery();
         
@@ -55,6 +59,7 @@ public class OfferingDAO {
             o.setIsPublished(rs.getString(Constants.OFFERING_ISPUBLISHED));
             o.setDays(DaysDAO.getListDays(o.getOfferingId())); 
             o.setCourse(CourseDAO.getCourseByID(o.getCourseId()));
+            o.setFaculty(FacultyDAO.getFacultyByID(rs.getString(Constants.OFFERING_FACULTYID)));
             
             String oTerm = rs.getString(Constants.OFFERING_TERM); 
             String oStartYear = rs.getString(Constants.OFFERING_STARTYEAR); 

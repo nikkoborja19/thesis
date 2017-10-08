@@ -233,7 +233,8 @@
       
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" onclick="exitAddNewOfferingsModal()">Close</button>
-        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="addNewOfferingsToDB()">Save New Offerings</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="addEditedOfferingsToDB()" id="saveEditedOfferingsButtonANO">Save Edited Offerings</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="addNewOfferingsToDB()" id="saveNewOfferingsButtonANO">Save New Offerings</button>
       </div>
       
     </div>

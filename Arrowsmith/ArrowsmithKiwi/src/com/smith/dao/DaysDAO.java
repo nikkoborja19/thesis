@@ -116,7 +116,11 @@ public class DaysDAO {
 
             ps = con.prepareStatement(query);
             ps.setInt(1, id);
-            ps.setInt(2, Integer.parseInt(RoomDAO.getRoomByCode(roomCode).getId()));
+            if(roomCode.equalsIgnoreCase("") || roomCode.isEmpty()){
+            	ps.setInt(2, Integer.parseInt(Constants.NO_ROOM_ID));
+            }else{
+            	ps.setInt(2, Integer.parseInt(RoomDAO.getRoomByCode(roomCode).getId()));
+            }
             ps.setString(3, d.getClassDay());
             ps.setInt(4, Integer.parseInt(d.getBeginTime()));
             ps.setInt(5, Integer.parseInt(d.getEndTime()));
