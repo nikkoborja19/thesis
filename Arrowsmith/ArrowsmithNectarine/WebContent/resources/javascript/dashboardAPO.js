@@ -1638,6 +1638,8 @@ function editTemporaryOffering(id){
 			//var tempOffering = new TempOffering($('#flowchartDegreeProgramANODropdown').find(":selected").text(), arr[0], currObject.courseCode, currObject.section, $('#flowchartBatchANODropdown').find(":selected").text(), $('input[name=termRadio]:checked').val(), currObject.status, currObject.remarks);
 			var tempOffering = new TempOffering(currObject.degreeProgram, arr[0], currObject.courseCode, currObject.section, currObject.batch, globalTerm, currObject.status, currObject.remarks); //degreeProgram, batch, term are global
 			tempOffering.room = currObject.room;
+			tempOffering.faculty = currObject.faculty;
+			tempOffering.facultyId = currObject.facultyId;
 			tempOffering.daysList1 = currObject.daysList1;
 			tempOffering.daysList2 = currObject.daysList2;
 			tempOffering.timeSlot1 = currObject.timeSlot1;
@@ -1663,6 +1665,7 @@ function initEditTemporaryOfferingModal(o, id, state){
 		$('#degreeProgramETO').val(o.degreeProgram);
 		$('#batchETO').val(o.batch);
 		$('#termETO').val(o.term);
+		$('#facultyETO').val(o.faculty);
 		$('#sectionETO').val(o.section);
 		$('#statusETO').val(o.status);
 		$('#remarksETO').val(o.remarks);
@@ -1797,6 +1800,8 @@ function saveTemporaryOffering(){
 			currObject.term = term;
 			currObject.status = status;
 			currObject.room = currObject.room;
+			currObject.faculty = currObject.faculty;
+			currObject.facultyId = currObject.facultyId;
 			currObject.remarks = remarks;
 			currObject.daysList1 = []; //if the user clicked save again, babalik lang din un mga nakatoggle
 			currObject.daysList2 = [];//magstack ung days if di inempty before lagyan ulit
@@ -2008,6 +2013,7 @@ function addNewOfferingsToDB(){
 					"status": currOffering.status,
 					"remarks": currOffering.remarks,
 					"room": currOffering.room,
+					"facultyId": currOffering.facultyId,
 					"daysList1": currOffering.daysList1,
 					"daysList2": currOffering.daysList2,
 					"timeSlot1": currOffering.timeSlot1,
@@ -2103,6 +2109,9 @@ function initEditOfferingListModal(id){
 	        		var timeSlot1 = "";
 	        		var timeSlot2 = "";
 	        		var room = "";
+	        		var faculty = currObject.faculty.firstName + " " + currObject.faculty.lastName;
+	        		var facultyId = currObject.faculty.facultyId;
+	        		//console.log(faculty + "---> "+ facultyId);
 	        		
 	        		/****DAYS****/
 	        		$.each(currObject.days, function(j, currDay){
@@ -2146,7 +2155,9 @@ function initEditOfferingListModal(id){
 	        		offering.timeSlot1 = timeSlot1;
 	        		offering.timeSlot2 = timeSlot2;
 	        		offering.room = room; //not confuse room with roomObject
-
+	        		offering.facultyId = facultyId;
+	        		offering.faculty = faculty;
+	        		
 	        		tempCourseOfferings[appenderID] = offering;
 	        		//console.log(tempCourseOfferings[appenderID].courseCode);
 	            	appenderID++; //for next offering

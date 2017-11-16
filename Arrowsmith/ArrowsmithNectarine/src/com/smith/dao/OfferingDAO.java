@@ -520,7 +520,7 @@ public class OfferingDAO {
     }
     
     public static int addNewOfferingsToDB(String startYear, String endYear, String term, String degreeProgram, String courseId, String courseCode, String section,
-    									String batch, String status, String remarks, String room, String[] days1, String[] days2, String time1, String time2) throws SQLException{
+    									String batch, String status, String remarks, String room, String facultyId, String[] days1, String[] days2, String time1, String time2) throws SQLException{
     	ArrayList<Days> days = new ArrayList<Days>();
     	
     	String[] arr, arr2;
@@ -528,6 +528,7 @@ public class OfferingDAO {
     	String endTime1 = "0000";
     	String beginTime2 = "000";
     	String endTime2 = "0000";
+    	String newFacultyId = "";
 
     	if(time1.contains("-")){
 	    	arr = time1.split("-");
@@ -539,6 +540,9 @@ public class OfferingDAO {
 	    	beginTime2 = arr2[0];
 	    	endTime2 = arr2[1];
     	}
+    	
+    	if(facultyId.equalsIgnoreCase("") || facultyId.isEmpty()) newFacultyId = Constants.NO_FACULTY_ID;
+    	else newFacultyId = facultyId;
     	
     	for(int i = 0; i < days1.length; i++){
     		boolean found = false;
@@ -570,7 +574,7 @@ public class OfferingDAO {
 				days.add(new Days(days2[i], beginTime2, endTime2));
     	}
     	
-    	insertOffering(startYear, endYear, term, degreeProgram, courseId, section, batch, status, remarks);
+    	insertOffering(startYear, endYear, term, degreeProgram, courseId, section, batch, status, remarks, newFacultyId);
     	int lastId = getLastRecordIndex();
     	//System.out.println("COURSE CODE: " +courseCode);
     	//System.out.println("LAST ID: " +lastId);
@@ -583,7 +587,7 @@ public class OfferingDAO {
     	return 1;
     }
     
-    public static void insertOffering(String startYear, String endYear, String term, String degreeProgram, String courseId, String section, String batch, String status, String remarks){
+    public static void insertOffering(String startYear, String endYear, String term, String degreeProgram, String courseId, String section, String batch, String status, String remarks, String facultyId){
     	int maxStudent = 45, currStudent = 0, isNonAcad = 0, isSHS = 0, isMasters = 0, isElective = 0, isServiceCourse = 0, isPublished = 0;
     	String electiveType = " ", location = "Main";
     	float iteo = 5.0f;
@@ -600,7 +604,9 @@ public class OfferingDAO {
     	if(term.isEmpty() || removeSpaces(term).equalsIgnoreCase("")){
     		term = "1";
     	}
-    		
+    	
+    	if(facultyId.equalsIgnoreCase("") || facultyId.isEmpty()) facultyId = Constants.NO_FACULTY_ID;
+    	
         try{
             Connection con = new Connector().getConnector();
             PreparedStatement ps;
@@ -614,7 +620,7 @@ public class OfferingDAO {
 
             ps = con.prepareStatement(query);
             ps.setInt(1,Integer.parseInt(courseId));
-            ps.setInt(2, Integer.parseInt(Constants.NO_FACULTY_ID));
+            ps.setInt(2, Integer.parseInt(facultyId));
             ps.setString(3, degreeProgram);
             ps.setString(4, section);
             ps.setInt(5, Integer.parseInt(batch));

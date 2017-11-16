@@ -1,7 +1,10 @@
 package com.smith.servlet;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +26,7 @@ import com.smith.model.AcademicYear;
 import com.smith.model.College;
 import com.smith.model.Constants;
 import com.smith.model.Course;
+import com.smith.model.Days;
 import com.smith.model.Degreeprogram;
 import com.smith.model.Department;
 import com.smith.model.Faculty;
@@ -362,7 +366,7 @@ public class CVCController {
 			@RequestParam("endYear") String endYear,
 			@RequestParam("term") String term) throws SQLException {
 
-		StringResponse s = new StringResponse("Success");
+		StringResponse s = new StringResponse("SUCCESS");
 		float units = 0;
 		String loadsId = "", currentloadsId ="";
 		units = OfferingDAO.getNumberOfUnits(offeringId);
@@ -387,6 +391,7 @@ public class CVCController {
 				        Load l = LoadDAO.getLoadByID(facultyId, startYear, endYear, term);
 				        Faculty f = FacultyDAO.getFacultyByID(facultyId, startYear, endYear, term);
 				        /****************************LOAD NECESSARY INFO******************************/
+				       
 				        /****************************DETERMINE MAX LOADS PER FACULTY TYPE******************************/
 				        float maxUnits = 12;
 				        
@@ -395,88 +400,111 @@ public class CVCController {
 				        else if(f.getFacultyType().equalsIgnoreCase("HT")) maxUnits = 6;
 				        /****************************DETERMINE MAX LOADS PER FACULTY TYPE******************************/
 				        /****************************FACULTY ASSIGNMENT PROPER******************************/
-						if(Integer.parseInt(l.getPreparations()) < 4){ //CHECK IF REACHED MAX PREPARATIONS
-						//first step of recommend algo
-							
-							/****************************CHECK IF TOTAL LOAD +UNITS OF COURSE OT BE ADDED IS GREATER THAN MAX UNITS******************************/
-							if((Float.parseFloat(l.getTotalLoad()) + Float.parseFloat(o.getCourse().getUnits())) <=  maxUnits){
-								Integer hasViolatedSixHoursPerDay = 0;
-								
-								if(hasViolatedSixHoursPerDay == 0){
-									FacultyDAO.assignFacultyToOffering(offeringId, facultyId); // assign the faculty id to offering id
-									loadsId = LoadDAO.getLoadsId(facultyId, startYear, endYear, term);
-									FacultyDAO.incrementLoad(loadsId, units);
+				        Boolean hasViolatedSixHoursPerDay = checkIfSixHoursRuleViolated(o, initialOfferingList);
+				        Boolean hasViolatedConsecutiveHours = checkIfConsecutiveHoursRuleViolated(o, initialOfferingList);
+				        
+				        if(hasViolatedSixHoursPerDay == false){ //meaning di naviolate
+				        	if(hasViolatedConsecutiveHours == false){ //meaning di naviolate
+								if(Integer.parseInt(l.getPreparations()) < 4){ //CHECK IF REACHED MAX PREPARATIONS
+								//first step of recommend algo
 									
-									/****************************UPDATE PREPARATION COUNT******************************/
-									int foundEquivalent = 0;
-									
-							        for(int j = 0; j < initialOfferingList.size(); j++){
-							        	if(EquivalenceDAO.checkIfTwoCoursesAreEquivalent(initialOfferingList.get(j).getCourseId()+"", o.getCourseId()+"") == 1){
-							        		foundEquivalent = 1;
-							        	}
-							        }
-							        if(foundEquivalent == 0) LoadDAO.updateFacultyPreparationCount(facultyId, startYear, endYear, term);
-							        /****************************UPDATE PREPARATION COUNT******************************/
-		
-									System.out.println("Finished adding units to faculty!");
-									s = new StringResponse("Success");
+									/****************************CHECK IF TOTAL LOAD +UNITS OF COURSE OT BE ADDED IS GREATER THAN MAX UNITS******************************/
+									if((Float.parseFloat(l.getTotalLoad()) + Float.parseFloat(o.getCourse().getUnits())) <=  maxUnits){
+										
+											FacultyDAO.assignFacultyToOffering(offeringId, facultyId); // assign the faculty id to offering id
+											loadsId = LoadDAO.getLoadsId(facultyId, startYear, endYear, term);
+											FacultyDAO.incrementLoad(loadsId, units);
+											
+											/****************************UPDATE PREPARATION COUNT******************************/
+											int foundEquivalent = 0;
+											
+									        for(int j = 0; j < initialOfferingList.size(); j++){
+												if(initialOfferingList.get(j).getCourseId().equalsIgnoreCase(o.getCourseId())){ //if same kasi ng courseID/code/name dnadagdagan parin
+										        	if(EquivalenceDAO.checkIfTwoCoursesAreEquivalent(initialOfferingList.get(j).getCourseId()+"", o.getCourseId()+"") == 1){
+										        		foundEquivalent = 1; //para wag dagadagan pag equivalent
+										        	}
+												}else{
+													foundEquivalent = 1; //para wag dagdagan pag same
+												}
+									        }
+									        
+									        if(foundEquivalent == 0) LoadDAO.updateFacultyPreparationCount(facultyId, startYear, endYear, term);
+									        /****************************UPDATE PREPARATION COUNT******************************/
+				
+											System.out.println("Finished adding units to faculty!");
+											s = new StringResponse("SUCCESS");
+											
+									}else if((Float.parseFloat(l.getTotalLoad()) + Float.parseFloat(o.getCourse().getUnits())) >  18){ //MAX LOADS 3: Over 15 na pag nagdagdag
+										s = new StringResponse("MAX-LOAD-REACHED");
+										
+										s.setLastName(f.getLastName());
+										s.setFirstName(f.getFirstName());
+										
+									}else if((Float.parseFloat(l.getTotalLoad()) >  maxUnits) && (Float.parseFloat(l.getTotalLoad()) <  18)){ //MAX LOADS 1: HAS REACHED MAX LOAD CHECKER
+										s = new StringResponse("ALREADY-OVERLOAD");
+										
+										s.setLastName(f.getLastName());
+										s.setFirstName(f.getFirstName());
+										
+										if(f.getFacultyType().equalsIgnoreCase("FT")){
+											s.setFacultyType("Full Time");
+											s.setMaxLoad(Float.parseFloat(Constants.MAX_LOAD_FULLTIME));
+										}else if(f.getFacultyType().equalsIgnoreCase("PT")){
+											s.setFacultyType("Part Time");
+											s.setMaxLoad(Float.parseFloat(Constants.MAX_LOAD_PARTTIME));
+										}if(f.getFacultyType().equalsIgnoreCase("HT")){
+											s.setFacultyType("Half Time");
+											s.setMaxLoad(Float.parseFloat(Constants.MAX_LOAD_HALFTIME));
+										}else{
+											s.setFacultyType("Full Time");
+											s.setMaxLoad(Float.parseFloat(Constants.MAX_LOAD_FULLTIME));
+										}
+									}else if((Float.parseFloat(l.getTotalLoad()) + Float.parseFloat(o.getCourse().getUnits())) >  maxUnits){ //MAX LOADS 2: ADDING THE SUBJECT WILL MAKE THE FACULTY OVERLOAD
+										s = new StringResponse("OVERLOAD-THREAT");
+										
+										s.setLastName(f.getLastName());
+										s.setFirstName(f.getFirstName());
+										
+										if(f.getFacultyType().equalsIgnoreCase("FT")){
+											s.setFacultyType("Full Time");
+											s.setMaxLoad(Float.parseFloat(Constants.MAX_LOAD_FULLTIME));
+										}else if(f.getFacultyType().equalsIgnoreCase("PT")){
+											s.setFacultyType("Part Time");
+											s.setMaxLoad(Float.parseFloat(Constants.MAX_LOAD_PARTTIME));
+										}if(f.getFacultyType().equalsIgnoreCase("HT")){
+											s.setFacultyType("Half Time");
+											s.setMaxLoad(Float.parseFloat(Constants.MAX_LOAD_HALFTIME));
+										}else{
+											s.setFacultyType("Full Time");
+											s.setMaxLoad(Float.parseFloat(Constants.MAX_LOAD_FULLTIME));
+										}
+									}
+								}else{ //PREPARATION CHECKER
+									s = new StringResponse("MAX-PREPARATION");
+									s.setFacultyType(f.getFacultyType());
+									s.setLastName(f.getLastName());
+									s.setFirstName(f.getFirstName());
+									s.setMaxPreparation(Integer.parseInt(Constants.MAX_PREPARATION));
 								}
-							}else if((Float.parseFloat(l.getTotalLoad()) + Float.parseFloat(o.getCourse().getUnits())) >  18){ //MAX LOADS 3: Over 15 na pag nagdagdag
-								s = new StringResponse("Maximum Load Reached");
-								
+				        	}else{ //CONSECUTIVE HOURS RULE CHECKER
+								s = new StringResponse("CONSECUTIVE-HOUR-THREAT");
+								s.setFacultyType(f.getFacultyType());
 								s.setLastName(f.getLastName());
 								s.setFirstName(f.getFirstName());
-								
-							}else if((Float.parseFloat(l.getTotalLoad()) >  maxUnits) && (Float.parseFloat(l.getTotalLoad()) <  18)){ //MAX LOADS 1: HAS REACHED MAX LOAD CHECKER
-								s = new StringResponse("Already Overload");
-								
-								s.setLastName(f.getLastName());
-								s.setFirstName(f.getFirstName());
-								
-								if(f.getFacultyType().equalsIgnoreCase("FT")){
-									s.setFacultyType("Full Time");
-									s.setMaxLoad(Float.parseFloat(Constants.MAX_LOAD_FULLTIME));
-								}else if(f.getFacultyType().equalsIgnoreCase("PT")){
-									s.setFacultyType("Part Time");
-									s.setMaxLoad(Float.parseFloat(Constants.MAX_LOAD_PARTTIME));
-								}if(f.getFacultyType().equalsIgnoreCase("HT")){
-									s.setFacultyType("Half Time");
-									s.setMaxLoad(Float.parseFloat(Constants.MAX_LOAD_HALFTIME));
-								}else{
-									s.setFacultyType("Full Time");
-									s.setMaxLoad(Float.parseFloat(Constants.MAX_LOAD_FULLTIME));
-								}
-							}else if((Float.parseFloat(l.getTotalLoad()) + Float.parseFloat(o.getCourse().getUnits())) >  maxUnits){ //MAX LOADS 2: ADDING THE SUBJECT WILL MAKE THE FACULTY OVERLOAD
-								s = new StringResponse("Overload Threat");
-								
-								s.setLastName(f.getLastName());
-								s.setFirstName(f.getFirstName());
-								
-								if(f.getFacultyType().equalsIgnoreCase("FT")){
-									s.setFacultyType("Full Time");
-									s.setMaxLoad(Float.parseFloat(Constants.MAX_LOAD_FULLTIME));
-								}else if(f.getFacultyType().equalsIgnoreCase("PT")){
-									s.setFacultyType("Part Time");
-									s.setMaxLoad(Float.parseFloat(Constants.MAX_LOAD_PARTTIME));
-								}if(f.getFacultyType().equalsIgnoreCase("HT")){
-									s.setFacultyType("Half Time");
-									s.setMaxLoad(Float.parseFloat(Constants.MAX_LOAD_HALFTIME));
-								}else{
-									s.setFacultyType("Full Time");
-									s.setMaxLoad(Float.parseFloat(Constants.MAX_LOAD_FULLTIME));
-								}
+								s.setMaxPreparation(Integer.parseInt(Constants.MAX_PREPARATION));
 							}
-						}else{ //PREPARATION CHECKER
-							s = new StringResponse("Max Preparation");
-							s.setFacultyType(f.getFacultyType());
+						}else{ //MAX 6 HOURS PER DAY VIOLATED
+							s = new StringResponse("6-HOUR-THREAT");
+							
 							s.setLastName(f.getLastName());
 							s.setFirstName(f.getFirstName());
-							s.setMaxPreparation(Integer.parseInt(Constants.MAX_PREPARATION));
 						}
 						/****************************FACULTY ASSIGNMENT PROPER******************************/
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
+					}finally{
+						
 					}
 				} else { // create new loads id
 					LoadDAO.addNewLoadsId(facultyId, startYear, endYear, term);
@@ -500,6 +528,8 @@ public class CVCController {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} finally{
+				
 			}
 
 		} else // the faculty is already assigned to the offering
@@ -528,8 +558,12 @@ public class CVCController {
 			int foundEquivalent = 0;
 			
 	        for(int j = 0; j < initialOfferingList.size(); j++){
-	        	if(EquivalenceDAO.checkIfTwoCoursesAreEquivalent(initialOfferingList.get(j).getCourseId()+"", o.getCourseId()+"") == 1){
-	        		foundEquivalent = 1;
+	        	if(initialOfferingList.get(j).getCourseId().equalsIgnoreCase(o.getCourseId())){ //if same kasi ng courseID/code/name binabawan parin
+		        	if(EquivalenceDAO.checkIfTwoCoursesAreEquivalent(initialOfferingList.get(j).getCourseId()+"", o.getCourseId()+"") == 1){
+		        		foundEquivalent = 1; //to not decrease since may equivalent
+		        	}
+	        	}else{
+	        		foundEquivalent = 1; // to not decrease since may kasame na course
 	        	}
 	        }
 	        
@@ -580,7 +614,314 @@ public class CVCController {
 
 	/*********************FACULTY RELATED METHODS****************************/
 	
+	public boolean checkIfSixHoursRuleViolated(Offering o, ArrayList<Offering> offeringList){
+		boolean hasViolatedRule = false;
+		
+		for(int i = 0; i < o.getDays().size(); i++){
+			Days day1 = o.getDays().get(i); //get single day from offering to be added
+			Integer sumOfHours = getSumOfHours(Integer.parseInt(day1.getBeginTime()), Integer.parseInt(day1.getEndTime())); //add ung hours ng offering to be added
+			Integer hoursDifference = sumOfHours / 100;
+			Integer minutesDifference = sumOfHours % 100;
+			
+			for(int j = 0; j < offeringList.size(); j++){
+				ArrayList<Days> daysList = offeringList.get(j).getDays(); //days of the offering in DB
+				
+				//System.out.println("SIZEs: " + daysList.size());
+				for(int k = 0; k < daysList.size(); k++){
+					Days day2 = daysList.get(k); //get single day from offering in DB
+					//System.out.println(sumOfHours + " SUM FIRST HOURS");
+					if(day1.getClassDay().equalsIgnoreCase(day2.getClassDay())){
+						//System.out.println(day2.getClassDay() + " " + day2.getBeginTime() + " " + day2.getEndTime());
+						//System.out.println(sumOfHours + " SUM INITIAL HOURS");
+						sumOfHours = getSumOfHours(Integer.parseInt(day2.getBeginTime()), Integer.parseInt(day2.getEndTime())); //add ung hours ng offering na nasa DB
+						System.out.println(sumOfHours + " SUM AFTER HOURS");
+						hoursDifference += sumOfHours / 100;
+						minutesDifference += sumOfHours % 100;
+						
+						
+						if(minutesDifference > 60){
+							hoursDifference += (minutesDifference/60); 
+							minutesDifference -= 60;
+						}
+						System.out.println(hoursDifference + " ==== " + minutesDifference);
+						System.out.println(hoursDifference + "DIFF HOURS");
+						
+						if(hoursDifference > 6){ //if more than 6 hours na ung cours ena to. maviviolate na nya ung 6 hours
+							hasViolatedRule = true;
+							//optional return below
+							return true;
+						}
+					}
+				}
+			}
+		}
+		
+		return hasViolatedRule;
+	}
 	
+	public boolean checkIfConsecutiveHoursRuleViolated(Offering o, ArrayList<Offering> offeringList){
+		boolean hasViolatedRule = false;
+		
+		for(int i = 0; i < o.getDays().size(); i++){
+			Days day1 = o.getDays().get(i); //get single day from offering to be added
+			Integer sumOfHours = getSumOfHours(Integer.parseInt(day1.getBeginTime()), Integer.parseInt(day1.getEndTime())); //add ung hours ng offering to be added
+			Integer hoursDifference = sumOfHours / 100;
+			Integer minutesDifference = sumOfHours % 100;
+			ArrayList<Days> previousSchedList = new ArrayList<Days>();
+			ArrayList<Days> nextSchedList = new ArrayList<Days>();
+			Boolean hasPreviousSched = false, hasNextSched = false, hasPreviousPreviousSched = false, hasNextNextSched = false;
+			Days previousSched = new Days("","","");
+			Days nextSched = new Days("","","");
+			Days previousPreviousSched = new Days("","","");
+			Days nextNextSched = new Days("","","");
+			Integer consecutiveCounterForTheDay = 0; //tracks the number of consecutive
+			
+			for(int j = 0; j < offeringList.size(); j++){
+				ArrayList<Days> daysList = offeringList.get(j).getDays(); //days of the offering in DB
+				//System.out.println("-------->"+offeringList.size());
+				//System.out.println("SIZEs: " + daysList.size());
+				for(int k = 0; k < daysList.size(); k++){
+					Days day2 = daysList.get(k); //get single day from offering in DB
+					//System.out.println(sumOfHours + " SUM FIRST HOURS");
+					
+					//System.out.println("***"+day2.getBeginTime());
+					if(day1.getClassDay().equalsIgnoreCase(day2.getClassDay())){
+						
+						/****************SORT TO APPROPRIATE ARRAYLISTS*********************/
+						if((Integer.parseInt(day1.getBeginTime()) > Integer.parseInt(day2.getBeginTime())) && (Integer.parseInt(day1.getEndTime()) >= Integer.parseInt(day2.getBeginTime()))){
+							//if day 1 sched is below the sched in faculty's offering list
+							previousSchedList.add(day2); //kasi nasa baba ung iaadd na offering
+							
+							if(hasPreviousSched){ //if true meaning may nakalagay na sa previousSched na variable. Else, first time siya lalagyan
+								//pag pumasok dito meron nang previous sched. 
+								//Now, compare the previous at ung current Day2(another sched sa list ng faculty) kung sino mas malapit sa sched ng offering na iaadd
+								
+								if(checkIfPreviousSchedNeedsToChange(previousSched, day2)){
+									
+									if(hasPreviousPreviousSched){
+										if(checkIfPreviousSchedNeedsToChange(previousPreviousSched, previousSched)){
+											previousPreviousSched = new Days(previousSched.getClassDay(), previousSched.getBeginTime(), previousSched.getEndTime());
+											hasPreviousPreviousSched = true;
+										}
+									}else{
+										previousPreviousSched = new Days(previousSched.getClassDay(), previousSched.getBeginTime(), previousSched.getEndTime());
+										hasPreviousPreviousSched = true;
+									}
+									
+									previousSched = new Days(day2.getClassDay(), day2.getBeginTime(), day2.getEndTime()); //pag sa una to ung previousPrevious sched magiging same
+								}else{
+									if(hasPreviousPreviousSched){
+										if(checkIfPreviousSchedNeedsToChange(previousPreviousSched, day2)){
+											previousPreviousSched = new Days(day2.getClassDay(), day2.getBeginTime(), day2.getEndTime());
+											hasPreviousPreviousSched = true;
+										}
+									}else{
+										previousPreviousSched = new Days(day2.getClassDay(), day2.getBeginTime(), day2.getEndTime());
+										hasPreviousPreviousSched = true;
+									}
+								}
+								
+							}else{
+								previousSched = new Days(day2.getClassDay(), day2.getBeginTime(), day2.getEndTime());
+								hasPreviousSched = true;
+							}
+						
+						}else if((Integer.parseInt(day1.getBeginTime()) <= Integer.parseInt(day2.getEndTime())) && (Integer.parseInt(day1.getEndTime()) < Integer.parseInt(day2.getEndTime()))){
+							//if day 1 sched is after the sched in the faculty's offering list
+							nextSchedList.add(day2); //kasi nasa baba ung iaadd na offering
+							
+							if(hasNextSched){ //if true meaning may nakalagay na sa previousSched na variable. Else, first time siya lalagyan
+								//pag pumasok dito meron nang previous sched. 
+								//Now, compare the previous at ung current Day2(another sched sa list ng faculty) kung sino mas malapit sa sched ng offering na iaadd
+								
+								if(checkIfNextSchedNeedsToChange(nextSched, day2)){
+									
+									if(hasNextNextSched){
+										if(checkIfNextSchedNeedsToChange(nextNextSched, nextSched)){
+											nextNextSched = new Days(nextSched.getClassDay(), nextSched.getBeginTime(), nextSched.getEndTime());
+											hasNextNextSched = true;
+										}
+									}else{
+										nextNextSched = new Days(nextSched.getClassDay(), nextSched.getBeginTime(), nextSched.getEndTime());
+										hasNextNextSched = true;
+									}
+									
+									nextSched = new Days(day2.getClassDay(), day2.getBeginTime(), day2.getEndTime()); //pag sa una to ung previousPrevious sched magiging same
+								}else{
+									if(hasNextNextSched){
+										if(checkIfNextSchedNeedsToChange(nextNextSched, day2)){
+											nextNextSched = new Days(day2.getClassDay(), day2.getBeginTime(), day2.getEndTime());
+											hasNextNextSched = true;
+										}
+									}else{
+										nextNextSched = new Days(day2.getClassDay(), day2.getBeginTime(), day2.getEndTime());
+										hasNextNextSched = true;
+									}
+								}
+								
+							}else{
+								nextSched = new Days(day2.getClassDay(), day2.getBeginTime(), day2.getEndTime());
+								hasNextSched = true;
+							}
+						}
+						/****************SORT TO APPROPRIATE ARRAYLISTS*********************/
+						/****************CHECK IF RULE VIOLATION*********************/
+						Integer timeDifference = 0;
+						Integer previousSchedSum = 0, nextSchedSum = 0, previousPreviousSchedSum = 0, nextNextSchedSum = 0;
+						if(hasPreviousSched) previousSchedSum = getSumOfHours(Integer.parseInt(previousSched.getBeginTime()), Integer.parseInt(previousSched.getEndTime()));
+						if(hasNextSched) nextSchedSum = getSumOfHours(Integer.parseInt(nextSched.getBeginTime()), Integer.parseInt(nextSched.getEndTime()));
+						Integer offeringSum = getSumOfHours(Integer.parseInt(day1.getBeginTime()), Integer.parseInt(day1.getEndTime()));
+						if(hasPreviousPreviousSched) previousPreviousSchedSum = getSumOfHours(Integer.parseInt(previousPreviousSched.getBeginTime()), Integer.parseInt(previousPreviousSched.getEndTime()));
+						if(hasNextNextSched) nextNextSchedSum = getSumOfHours(Integer.parseInt(nextNextSched.getBeginTime()), Integer.parseInt(nextNextSched.getEndTime()));
+						
+						//System.out.println(day1.getClassDay() + "--" + hasPreviousPreviousSched + "--"+ hasPreviousSched + "--" + hasNextSched + "--" + hasNextNextSched);
+						//System.out.println(day1.getClassDay() + "--" + previousPreviousSched.getBeginTime() + "--"+ previousSched.getBeginTime() + "--" + nextSched.getBeginTime() + "--" + nextNextSched.getBeginTime());
+						
+						if(hasPreviousSched && hasNextSched){ //will be inserting sched in the middle
+							if(getTimeIntervalInBetween(previousSched, day1) < 45 && getTimeIntervalInBetween(day1, nextSched) < 45){ 
+								if(getTimeEquivalentInHours(previousSchedSum + nextSchedSum + offeringSum) > 4.5){
+									return true; 
+								}
+							}else{
+								if(hasPreviousPreviousSched){
+									if(getTimeIntervalInBetween(previousPreviousSched, previousSched) < 45 && getTimeIntervalInBetween(previousSched, day1) < 45){
+										if(getTimeEquivalentInHours(previousPreviousSchedSum + previousSchedSum + offeringSum) > 4.5){
+											return true; 
+										}else if(getTimeIntervalInBetween(day1, nextSched) < 45 && getTimeEquivalentInHours(previousPreviousSchedSum + previousSchedSum + offeringSum + nextSchedSum) > 4.5){
+											return true;
+										}
+									}
+								}else if(hasNextNextSched){
+									if(getTimeIntervalInBetween(day1, nextSched) < 45 && getTimeIntervalInBetween(nextSched, nextNextSched) < 45){
+										if(getTimeEquivalentInHours(offeringSum + nextSchedSum + nextNextSchedSum) > 4.5){
+											return true; 
+										}else if(getTimeIntervalInBetween(previousSched, day1) < 45 && getTimeEquivalentInHours(previousSchedSum + offeringSum + nextSchedSum + nextNextSchedSum) > 4.5){
+											return true;
+										}
+									}
+								}
+							}
+						}else if(hasPreviousSched && !hasNextSched){ //will be at the later part of the day
+							if(hasPreviousPreviousSched){
+								if(getTimeIntervalInBetween(previousPreviousSched, previousSched) < 45 && getTimeIntervalInBetween(previousSched, day1) < 45){ 
+									if(getTimeEquivalentInHours(previousPreviousSchedSum + previousSchedSum + offeringSum) > 4.5){
+										return true; 
+									}
+								}
+							}
+						}else if(!hasPreviousSched && hasNextSched){ //will be at the earlier part of the day
+							if(hasNextNextSched){
+								if(getTimeIntervalInBetween(day1, nextSched) < 45 && getTimeIntervalInBetween(nextSched, nextNextSched) < 45){ 
+									if(getTimeEquivalentInHours(offeringSum + nextSchedSum + nextNextSchedSum) > 4.5){
+										return true; 
+									}
+								}
+							}
+						}
+						/****************CHECK IF RULE VIOLATION*********************/
+					}
+					
+				}
+			}
+		}
+		return hasViolatedRule;
+	}
+	
+	public boolean checkIfPreviousSchedNeedsToChange(Days sched1, Days sched2){
+		
+		if(Integer.parseInt(sched1.getEndTime()) < Integer.parseInt(sched2.getEndTime())){ //current Sched is nearer
+			//sched1 = new Days(sched2.getClassDay(), sched2.getBeginTime(), sched2.getEndTime());
+			return true;
+		}else if(Integer.parseInt(sched1.getEndTime()) == Integer.parseInt(sched2.getEndTime())){ //same sila ng end time
+			//if same ng end time, calculate sino mas malayo na startTime tapos ung biggest kunin para mas malaki ung timeDifference. Mas malalaman if naviolate ung 4.5 rule
+			if(Integer.parseInt(sched1.getBeginTime()) < Integer.parseInt(sched2.getBeginTime())){ //previous Sched is much earlier but same end Time. Viable
+				// dont change since previous sched is still previous sched
+			}else if(Integer.parseInt(sched1.getBeginTime()) > Integer.parseInt(sched2.getBeginTime())){ //day2 Sched is much earlier but same end Time. Viable
+				//sched1 = new Days(sched2.getClassDay(), sched2.getBeginTime(), sched2.getEndTime());
+				return true;
+			}else{
+				//same sila ng time. retain previous sched.
+			}
+		}else{
+			//previous sched is much nearer
+		}
+		
+		return false;
+	}
+	
+	public boolean checkIfNextSchedNeedsToChange(Days sched1, Days sched2){
+		
+		if(Integer.parseInt(sched1.getBeginTime()) > Integer.parseInt(sched2.getBeginTime())){ //current Sched is nearer
+			return true;//sched1 = new Days(sched2.getClassDay(), sched2.getBeginTime(), sched2.getEndTime());
+		}else if(Integer.parseInt(sched1.getBeginTime()) == Integer.parseInt(sched2.getBeginTime())){ //same sila ng begin time
+			//if same ng begin time, calculate sino mas malayo na endTime tapos ung biggest kunin para mas malaki ung timeDifference. Mas malalaman if naviolate ung 4.5 rule
+			if(Integer.parseInt(sched1.getEndTime()) > Integer.parseInt(sched2.getEndTime())){ //next Sched ends much later than day2 even though same begin Time. Viable
+				// dont change since previous sched is still previous sched
+			}else if(Integer.parseInt(sched1.getEndTime()) < Integer.parseInt(sched2.getEndTime())){ //day2 Sched ends much later than nextSched even though same begin Time. Viable
+				return true;//sched1 = new Days(sched2.getClassDay(), sched2.getBeginTime(), sched2.getEndTime());
+			}else{
+				//same sila ng time. retain next sched.
+			}
+		}else{
+			//next sched is much nearer
+		}
+		
+		return false;
+	}
+	
+	public Integer getTimeIntervalInBetween(Days sched1, Days sched2){
+		//System.out.println(Integer.parseInt(sched1.getEndTime()) + "--" + Integer.parseInt(sched2.getBeginTime()));
+		
+		return getSumOfHours(Integer.parseInt(sched1.getEndTime()), Integer.parseInt(sched2.getBeginTime()));
+	}
+	
+	public Float getTimeEquivalentInHours(Integer sumOfHours){
+		Float finalDifference = 0f;
+		
+		Integer hoursDifference = sumOfHours / 100;
+		Integer minutesDifference = sumOfHours % 100;
+		
+		finalDifference = (float)hoursDifference + (float)minutesDifference;
+		if(minutesDifference > 60){
+			finalDifference += finalDifference + (float)((float)minutesDifference/60); 
+			minutesDifference -= 60;
+		}
+		
+		return finalDifference;
+	}
+	
+	public Integer getSumOfHours(Integer startTime, Integer endTime){
+    	int timeDifference = 0;
+    	String firstTime = "00:00:00", secondTime = "00:00:00";
+    	//Integer startTime = 730, endTime = 900;
+    	long difference = 0;
+    
+    	//System.out.println(startTime);
+		
+		if(startTime / 100 >= 10) firstTime = (startTime / 100) + ":" + (startTime % 100) + ":00";
+		else firstTime = "0" + (startTime / 100) + ":" + (startTime % 100) + ":00"; //need 0 sa harap pag single digit lang ung hour
+		
+		if(endTime / 100 >= 10) secondTime = (endTime / 100) + ":" + (endTime % 100) + ":00";
+		else secondTime = "0" + (endTime / 100) + ":" + (endTime % 100) + ":00"; //need 0 sa harap pag single digit lang ung hour
+
+		SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+		
+		try {
+			Date date1 = format.parse(firstTime);
+			Date date2 = format.parse(secondTime);
+			difference = date2.getTime() - date1.getTime();
+          
+          	//System.out.println("Hour: " + (difference / (60 * 60 * 1000)*100));
+          	//System.out.println("Minutes: " + (difference / (60 * 1000) % 60));
+          	
+          	timeDifference = (int)((int)difference / (60 * 60 * 1000) * 100) + (int)((int)difference / (60 * 1000) % 60);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return Math.abs(timeDifference);
+	}
 	
 	
 	/**************************GET LIST OF FACULTY*******************************/

@@ -709,7 +709,7 @@ public class APOController {
 		
 		for(int i = 0; i < tempOfferingList.size(); i++){
 			TempOffering o = tempOfferingList.get(i);
-			int j = OfferingDAO.addNewOfferingsToDB(o.getStartYear(), o.getEndYear(), o.getTerm(), o.getDegreeProgram(), o.getCourseId(), o.getCourseCode(), o.getSection(), o.getBatch(), o.getStatus(), o.getRemarks(), o.getRoom(), o.getDays1(), o.getDays2(), o.getTime1(), o.getTime2());
+			int j = OfferingDAO.addNewOfferingsToDB(o.getStartYear(), o.getEndYear(), o.getTerm(), o.getDegreeProgram(), o.getCourseId(), o.getCourseCode(), o.getSection(), o.getBatch(), o.getStatus(), o.getRemarks(), o.getRoom(), o.getFacultyId(), o.getDays1(), o.getDays2(), o.getTime1(), o.getTime2());
 		}
 		
 		sr = new StringResponse(OfferingDAO.getLastRecordIndex()+"");
@@ -729,6 +729,7 @@ public class APOController {
 			@RequestParam("batch") String batch,
 			@RequestParam("status") String status,
 			@RequestParam("remarks") String remarks,
+			@RequestParam("facultyId") String facultyId,
 			@RequestParam("room") String room,
 			@RequestParam("daysList1[]") String[] days1,
 			@RequestParam("daysList2[]") String[] days2,
@@ -736,7 +737,7 @@ public class APOController {
 			@RequestParam("timeSlot2") String time2) throws SQLException{
 		StringResponse sr = new StringResponse("success " + courseCode);
 		
-		TempOffering o = new TempOffering(startYear, endYear, term, degreeProgram, courseId, courseCode,section, batch, status, remarks, room, days1, days2, time1, time2);
+		TempOffering o = new TempOffering(startYear, endYear, term, degreeProgram, courseId, courseCode,section, batch, status, remarks, room, facultyId, days1, days2, time1, time2);
 		tempOfferingList.add(o);
 		//saveNewOfferingList();
 		//int i = OfferingDAO.addNewOfferingsToDB(startYear, endYear, term, degreeProgram, courseId, courseCode, section, batch, status, remarks, days1, days2, time1, time2);

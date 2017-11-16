@@ -11,6 +11,7 @@ public class TempOffering {
 	private String batch;
 	private String remarks;
 	private String room;
+	private String facultyId;
 	private String term;
 	private String time1;
 	private String time2;
@@ -22,7 +23,7 @@ public class TempOffering {
 	}
 	
 	public TempOffering(String startYear, String endYear, String term, String degreeProgram, String courseId, String courseCode, String section,
-			String batch, String status, String remarks, String room, String[] days1, String[] days2, String time1, String time2){
+			String batch, String status, String remarks, String room, String facultyId, String[] days1, String[] days2, String time1, String time2){
 		this.startYear = startYear;
 		this.endYear = endYear;
 		this.term = term;
@@ -32,6 +33,7 @@ public class TempOffering {
 		this.section = section;
 		this.batch = batch;
 		this.status = status;
+		this.facultyId = facultyId;
 		this.remarks = remarks;
 		this.room = room;
 		this.days1 = days1;
@@ -158,6 +160,14 @@ public class TempOffering {
 
 	public void setRoom(String room) {
 		this.room = room;
+	}
+
+	public String getFacultyId() {
+		return facultyId;
+	}
+
+	public void setFacultyId(String facultyId) {
+		this.facultyId = facultyId;
 	}
 	
 }

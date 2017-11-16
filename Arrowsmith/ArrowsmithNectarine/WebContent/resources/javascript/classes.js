@@ -5,6 +5,8 @@ function TempOffering(degreeProgram, courseId, courseCode, section, batch, term,
 	this.section = section;
 	this.batch = batch;
 	this.term = term;
+	this.faculty = "";
+	this.facultyId = "";
 	this.status = status;
 	this.remarks = remarks;
 	this.daysList1 = [];

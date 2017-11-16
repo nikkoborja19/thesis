@@ -888,10 +888,30 @@ function assignThisFacultyToCourse(id){
         },
         success: function (data) {
         	console.log(data);
-        	if(data.response === "Success"){
+        	if(data.response === "SUCCESS"){
 	        	initFacultyAssignmentModal($('#assignFAFacultyCurrentAYDump').val());
 	        	initiateFARecommendedFacultyList(concatOfferingId);
-        	}else if(data.response === "Max Preparation"){
+        	}else if(data.response === "6-HOUR-THREAT"){
+        		$('#errorRuleBrokenModal').modal('show');
+        		$('#errorRuleBrokenModalTitle').text('6-Hour Rule');
+        		$('#errorRuleBrokenMessage').text("Assigning this course to " + data.firstName + " " + data.lastName + " will violate the maximum 6 hours per day rule of the university. Therefore, this assignment will not be carried out.");
+        		$('#errorRuleBrokenModal').removeData('modal').modal({
+        			keyboard: false,
+        			backdrop: 'static',
+        			toggle: 'modal',
+        			target: '#errorRuleBrokenModal'
+        		});
+        	}else if(data.response === "CONSECUTIVE-HOUR-THREAT"){
+        		$('#errorRuleBrokenModal').modal('show');
+        		$('#errorRuleBrokenModalTitle').text('4.5 Consecutive Hour Rule');
+        		$('#errorRuleBrokenMessage').text("Assigning this course to " + data.firstName + " " + data.lastName + " will violate the maximum consecutive hours(4.5) per day rule of the university. Therefore, this assignment will not be carried out.");
+        		$('#errorRuleBrokenModal').removeData('modal').modal({
+        			keyboard: false,
+        			backdrop: 'static',
+        			toggle: 'modal',
+        			target: '#errorRuleBrokenModal'
+        		});
+        	}else if(data.response === "MAX-PREPARATION"){
         		$('#errorRuleBrokenModal').modal('show');
         		$('#errorRuleBrokenModalTitle').text('Maximum Preparations');
         		$('#errorRuleBrokenMessage').text(data.firstName + " " + data.lastName + " has already reached the maximum allowed preparations.");
@@ -901,7 +921,7 @@ function assignThisFacultyToCourse(id){
         			toggle: 'modal',
         			target: '#errorRuleBrokenModal'
         		});
-        	}else if(data.response === "Already Overload"){
+        	}else if(data.response === "ALREADY-OVERLOAD"){
         		$('#confirmRuleBrokenModal').modal('show');
         		$('#confirmRuleBrokenModalTitle').text('Already Overload');
         		$('#confirmRuleBrokenMessage').text(data.firstName + " " + data.lastName + " has already reached the maximum allowed loads for a " + data.facultyType + " faculty. Would you still like to continue the assignment? ");
@@ -911,7 +931,7 @@ function assignThisFacultyToCourse(id){
         			toggle: 'modal',
         			target: '#confirmRuleBrokenModal'
         		});
-        	}else if(data.response === "Overload Threat"){
+        	}else if(data.response === "OVERLOAD-THREAT"){
         		$('#confirmRuleBrokenModal').modal('show');
         		$('#confirmRuleBrokenModalTitle').text('Overload Threat');
         		$('#confirmRuleBrokenMessage').text("Assigning this offering will force " + data.firstName + " " + data.lastName + " to overload. Would you like to continue? ");
@@ -921,7 +941,7 @@ function assignThisFacultyToCourse(id){
         			toggle: 'modal',
         			target: '#confirmRuleBrokenModal'
         		});
-        	}else if(data.response === "Maximum Load Reached"){
+        	}else if(data.response === "MAX-LOAD-REACHED"){
         		$('#errorRuleBrokenModal').modal('show');
         		$('#errorRuleBrokenModalTitle').text('Maximum Loads Reached');
         		$('#errorRuleBrokenMessage').text(data.firstName + " " + data.lastName + " has already reached the maximum allowed loads. You cannot assign anymore.");
@@ -931,6 +951,9 @@ function assignThisFacultyToCourse(id){
         			toggle: 'modal',
         			target: '#errorRuleBrokenModal'
         		});
+        	}else{
+        		initFacultyAssignmentModal($('#assignFAFacultyCurrentAYDump').val());
+	        	initiateFARecommendedFacultyList(concatOfferingId);
         	}
         		
         	clickOffering($('#assignFAOfferingIDDump').val());
@@ -1412,6 +1435,7 @@ function updateTemporaryOfferingList(){
 		var room = currObject.room; //roomCode 
 		var status = currObject.status;
 		var remarks = currObject.remarks;
+		var faculty = currObject.faculty;
 		
 		/***CHANGE THE ROW COLOR***/
 		var foundMatch = 0;
@@ -1636,6 +1660,7 @@ function initEditTemporaryOfferingModal(o, id, state){
 		$('#degreeProgramETO').val(o.degreeProgram);
 		$('#batchETO').val(o.batch);
 		$('#termETO').val(o.term);
+		$('#facultyETO').val(o.faculty);
 		$('#sectionETO').val(o.section);
 		$('#statusETO').val(o.status);
 		$('#remarksETO').val(o.remarks);
@@ -1768,6 +1793,8 @@ function saveTemporaryOffering(){
 			currObject.section = section;
 			currObject.batch = batch;
 			currObject.term = term;
+			currObject.faculty = faculty;
+			currObject.facultyId = facultyId;
 			currObject.status = status;
 			currObject.room = currObject.room;
 			currObject.remarks = remarks;
@@ -1962,6 +1989,7 @@ function addNewOfferingsToDB(){
 					"batch": currOffering.batch,
 					"status": currOffering.status,
 					"remarks": currOffering.remarks,
+					"facultyId": currObject.facultyId,
 					"room": currOffering.room,
 					"daysList1": currOffering.daysList1,
 					"daysList2": currOffering.daysList2,
@@ -2051,6 +2079,8 @@ function initEditOfferingListModal(id){
 	        			batch = currObject.batch;
 	        		}
 	        		var term = currObject.term;
+	        		var faculty = currObject.faculty.firstName + " " + currObject.faculty.lastName;
+	        		console.log(faculty + " " + term);
 	        		var status = currObject.status;
 	        		var remarks = currObject.remarks;
 	        		var days1 = [];
@@ -2094,6 +2124,7 @@ function initEditOfferingListModal(id){
 	        		});
 	        		/****DAYS****/
 	        		var offering = new TempOffering(degreeProgram, courseId, courseCode, section, batch, term, status, remarks);
+	        		offering.faculty = faculty;
 	        		offering.daysList1 = [];
 	        		offering.daysList2 = [];
 	        		offering.daysList1 = days1.slice(0); //Array.prototype.slice returns a shallow copy of a portion of an array. Giving it 0 as the first parameter means you are returning a copy of all the elements (starting at index 0 that is)

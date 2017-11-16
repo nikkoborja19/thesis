@@ -12,6 +12,7 @@ public class Constants {
 	public static final String MAX_LOAD_FULLTIME = "12";
 	public static final String MAX_LOAD_PARTTIME = "9";
 	public static final String MAX_LOAD_HALFTIME = "6";
+	public static final String FOUR_FIVE_REPRESENTATION = "430"; //4 hours and a half(30 minutes) = 4.5 hours
 	
     public static final String COURSE_TABLE = "course";
     public static final String COLLEGE_TABLE = "college";

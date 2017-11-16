@@ -97,7 +97,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="exitEditOfferingModal()">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="exitEditTemporaryOfferingModal()">Close</button>
                 <button type="button" class="btn btn-default save-button" id="saveTemporaryButton" data-dismiss="modal" onclick="saveTemporaryOffering()"><span><i class="fa fa-save"></i></span> Save</button>
                 <button type="button" class="btn btn-default save-button" id="saveToDatabaseButton" data-dismiss="modal" onclick="saveOfferingToDatabase()"><span><i class="fa fa-database"></i></span> Save To Database</button>
             </div>
