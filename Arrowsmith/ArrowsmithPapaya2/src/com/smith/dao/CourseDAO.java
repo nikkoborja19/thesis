@@ -29,7 +29,6 @@ public class CourseDAO {
             c.setAreaId(rs.getString(Constants.COURSE_AREAID));
             c.setCourseCode(rs.getString(Constants.COURSE_CODE));
             c.setCourseName(rs.getString(Constants.COURSE_NAME));
-            c.setCourseType(rs.getString(Constants.COURSE_TYPE));
             c.setUnits(rs.getString(Constants.COURSE_UNITS));
             c.setDescription(rs.getString(Constants.COURSE_DESCRIPTION));
             c.setCollege(CollegeDAO.getCollegeByID(rs.getString(Constants.COURSE_COLLEGEID)));
@@ -64,7 +63,7 @@ public class CourseDAO {
         Connection con = Connector.getConnector();
        
         //SELECT * FROM course WHERE course_type LIKE 'TL' AND (course_code LIKE '%Discrete%' OR course_name LIKE '%Discrete%')
-        String query = "SELECT * FROM " + Constants.COURSE_TABLE + " WHERE "+ Constants.COURSE_TYPE +" LIKE 'TL' AND (" 
+        String query = "SELECT * FROM " + Constants.COURSE_TABLE + " WHERE (" 
         			+ Constants.COURSE_CODE + " LIKE '%"+ key + "%' OR "+ Constants.COURSE_NAME + " LIKE '%"+ key + "%') ORDER BY "+Constants.COURSE_CODE;
 
         PreparedStatement st = (PreparedStatement) con.prepareStatement(query);
@@ -79,7 +78,6 @@ public class CourseDAO {
             c.setAreaId(rs.getString(Constants.COURSE_AREAID));
             c.setCourseCode(rs.getString(Constants.COURSE_CODE));
             c.setCourseName(rs.getString(Constants.COURSE_NAME));
-            c.setCourseType(rs.getString(Constants.COURSE_TYPE));
             c.setUnits(rs.getString(Constants.COURSE_UNITS));
             c.setDescription(rs.getString(Constants.COURSE_DESCRIPTION));
             c.setCollege(CollegeDAO.getCollegeByID(rs.getString(Constants.COURSE_COLLEGEID)));
@@ -109,7 +107,7 @@ public class CourseDAO {
         				"d." + Constants.DEGREEPROGRAM_ID + " = b." +Constants.BATCHINFO_DEGREEPROGRAMID + " AND f." + Constants.DEGREEPROGRAM_ID + " = d." +Constants.DEGREEPROGRAM_ID +
         				" AND f." + Constants.FLOWCHART_ID + " = fc." + Constants.FLOWCOURSES_FLOWCHARTID + " AND fc." + Constants.FLOWCOURSES_COURSEID + " = c." + Constants.COURSE_ID +
         				" AND b." +Constants.BATCHINFO_BATCH +" = ? AND d."+ Constants.DEGREEPROGRAM_CODE + " LIKE '" + degreeProgram + "' AND f." + Constants.FLOWCHART_STARTYEAR + " = ?"+
-        				" AND f." +Constants.FLOWCHART_ENDYEAR + " = ? AND fc." + Constants.FLOWCOURSES_TERM + " = ? AND c." + Constants.COURSE_TYPE + " LIKE 'TL' ORDER BY c." + Constants.COURSE_CODE + " ASC;"; 
+        				" AND f." +Constants.FLOWCHART_ENDYEAR + " = ? AND fc." + Constants.FLOWCOURSES_TERM + " = ? ORDER BY c." + Constants.COURSE_CODE + " ASC;"; 
          
         PreparedStatement st = (PreparedStatement) con.prepareStatement(query);
         st.setInt(1, Integer.parseInt(batch));
@@ -127,7 +125,6 @@ public class CourseDAO {
             c.setAreaId(rs.getString(Constants.COURSE_AREAID));
             c.setCourseCode(rs.getString(Constants.COURSE_CODE));
             c.setCourseName(rs.getString(Constants.COURSE_NAME));
-            c.setCourseType(rs.getString(Constants.COURSE_TYPE));
             c.setUnits(rs.getString(Constants.COURSE_UNITS));
             c.setDescription(rs.getString(Constants.COURSE_DESCRIPTION));
             c.setCollege(CollegeDAO.getCollegeByID(rs.getString(Constants.COURSE_COLLEGEID)));
@@ -166,9 +163,9 @@ public class CourseDAO {
         String query = "INSERT INTO " + Constants.COURSE_TABLE + 
         				"(" + Constants.COURSE_COLLEGEID + "," + Constants.COURSE_DEPTID + "," + 
         				Constants.COURSE_AREAID + "," + Constants.COURSE_CODE + "," + Constants.COURSE_NAME + "," + 
-        				Constants.COURSE_TYPE + "," + Constants.COURSE_UNITS + "," + Constants.COURSE_REMARKS + "," +
+        				Constants.COURSE_UNITS + "," + Constants.COURSE_REMARKS + "," +
         				Constants.COURSE_DESCRIPTION + ")" + 
-        				" VALUES(?,?,?,?,?,?,?,?,?)";
+        				" VALUES(?,?,?,?,?,?,?,?)";
         
         PreparedStatement st = (PreparedStatement) con.prepareStatement(query);
         st.setString(1, course.getCollegeId());
@@ -176,10 +173,9 @@ public class CourseDAO {
         st.setString(3, course.getAreaId());
         st.setString(4, course.getCourseCode());
         st.setString(5, course.getCourseName());
-        st.setString(6, course.getCourseType());
-        st.setString(7, course.getUnits());
-        st.setString(8, course.getRemarks());
-        st.setString(9, course.getDescription());
+        st.setString(6, course.getUnits());
+        st.setString(7, course.getRemarks());
+        st.setString(8, course.getDescription());
         
         st.executeUpdate();
     }

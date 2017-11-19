@@ -2950,8 +2950,8 @@ function setDeptAddNewCourse(){
         success: function (data) {
         	console.log("Dept Loaded");
         	
-        	$("#newCourseDept").html(data.deptCode);
-        	$("#newCourseDeptH").val(data.deptCode);
+        	$("#newCourseDept").html(data.message);
+        	$("#newCourseDeptH").val(data.message);
         },
     	error: function (data){
     		console.log("ERROR");
@@ -3002,6 +3002,31 @@ function initCourseSearchSuggestion(){
 	    	}
 	    });
 	}
+}
+
+function updateCourseSearchSuggestion(){
+	var cname = getCookie("Gamer");
+	
+	$.ajax({
+        type: 'GET',
+        dataType: 'json',
+        cache: false,
+        url: 'getAllCoursesSuggestion',
+        data: {
+			"userId": cname
+        },
+        success: function (data) {
+        	console.log("Suggestion Updated");
+        	newCourseSuggestList = [];
+        	
+        	$.each(data, function(i, currOption){
+        		newCourseSuggestList.push(currOption);
+        	});
+        },
+    	error: function (data){
+    		console.log(data);
+    	}
+    });
 }
 
 function addNewRequisiteRow(){
@@ -3140,7 +3165,7 @@ $(document).ready(function(){
     })
     /*********THESE FIXES ANY PROBLEM RELATED TO MODAL SCROLLBARS************/
     /*********FOR AUTOCOMPLETE ADD NEW COURSES*******************************/
-    $("#newCourseReqList").on('click', '.newCourseReqInput', function() {
+    $("#newCourseReqList").on('focus', '.newCourseReqInput', function() {
     	$( ".newCourseReqInput" ).autocomplete({
     	  source: newCourseSuggestList
     	});
@@ -3188,12 +3213,18 @@ $(document).ready(function(){
 	        url: 'addNewCourseToDB',
 	        data: $('#addNewCourseForm').serialize(),
 	        success: function (data) {
-	        	console.log("Success");
+	        	console.log(data.message);
+	        	updateCourseSearchSuggestion();
+	        	
+//	        	for(var i = 0; i < newCourseSuggestList.length; i++){
+//	        		console.log("suggestList: " + newCourseSuggestList[i]);
+//	        	}
 	        },
 	    	error: function (data){
 	    		console.log(data);
 	    	}
 	    });
+		
 	});
     /*********FOR SUBMITTING ADD NEW COURSE FORM*****************************/
     /*********FOR ADD NEW COURSE FORM ERROR**********************************/

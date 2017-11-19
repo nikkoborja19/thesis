@@ -44,7 +44,7 @@
 								<label class="control-label col-sm-2" for="newFacultyMiddleName">Middle Name: </label>
 								
 								<div class="col-sm-4" id="newFacultyMiddleNameHelp">
-									<input type="text" class="form-control filledOut" id="newFacultyMiddleName" name="newFacultyMiddleName" placeholder="Enter Middle Name" required/>
+									<input type="text" class="form-control" id="newFacultyMiddleName" name="newFacultyMiddleName" placeholder="Enter Middle Name"/>
 								</div>
 							</div>
 							

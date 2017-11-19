@@ -121,6 +121,7 @@ public class FlowchartDAO {
         PreparedStatement st = (PreparedStatement) con.prepareStatement(query);
         
         ResultSet rs = st.executeQuery();
+        String currYearLevel = "";
         int lastIndex = 0;
         
         while(rs.next()) {
@@ -135,23 +136,29 @@ public class FlowchartDAO {
         		Constants.FLOWCHART_ENDYEAR + ") " + 
         		"VALUES(?,?,?,?,?,?)";
         
+        System.out.println("courseTimeframes: " + flowchart.getCourseTimeframes().size());
+        
         for (CourseTimeframe courseTF : flowchart.getCourseTimeframes()) {
-        	st = (PreparedStatement) con.prepareStatement(query);
-            st.setString(1, lastIndex + "");
-            st.setString(2, flowchart.getDegreeprogramId());
-            st.setString(3, flowchart.getBatch());
+        	if(!currYearLevel.equals(courseTF.getYearLevel())) {
+        		currYearLevel = courseTF.getYearLevel();
+        		
+        		st = (PreparedStatement) con.prepareStatement(query);
+                st.setString(1, lastIndex + "");
+                st.setString(2, flowchart.getDegreeprogramId());
+                st.setString(3, flowchart.getBatch());
+                
+                st.setString(4, courseTF.getYearLevel());
+                st.setString(5, courseTF.getTimeframe().getStartYear());
+                st.setString(6, courseTF.getTimeframe().getEndYear());
+                
+                System.out.println("Year: " + courseTF.getYearLevel() + "|" + courseTF.getTimeframe().getStartYear() + "-" + courseTF.getTimeframe().getEndYear());
+                
+                st.executeUpdate();
+                
+                lastIndex++;
+        	}
             
-            st.setString(4, courseTF.getYearLevel());
-            st.setString(5, courseTF.getTimeframe().getStartYear());
-            st.setString(6, courseTF.getTimeframe().getEndYear());
-            
-            //System.out.println("query: " + st.toString());
-            
-            st.executeUpdate();
-            
-            FlowcoursesDAO.insertFlowcourses(courseTF, lastIndex);
-            
-            lastIndex++;
+            FlowcoursesDAO.insertFlowcourses(courseTF);
 		}
 	}
 }

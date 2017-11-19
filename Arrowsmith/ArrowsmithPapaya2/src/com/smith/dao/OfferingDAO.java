@@ -258,7 +258,7 @@ public class OfferingDAO {
         String query = "SELECT * FROM " + Constants.OFFERING_TABLE + " o, "+ Constants.COURSE_TABLE +" c WHERE "
         		+ "c." + Constants.COURSE_ID + " = o."+ Constants.OFFERING_COURSEID +" AND o." + Constants.OFFERING_STARTYEAR 
         		+ " = ? AND o." + Constants.OFFERING_ENDYEAR + " = ? AND o." + Constants.OFFERING_TERM + " = ?"
-        		+ " AND c." + Constants.COURSE_TYPE + " LIKE 'TL' AND c." + Constants.COURSE_CODE 
+        		+ " AND c." + Constants.COURSE_CODE 
         		+ " LIKE '%"+key+"%' ORDER BY c." + Constants.COURSE_CODE +" asc;";
         
         

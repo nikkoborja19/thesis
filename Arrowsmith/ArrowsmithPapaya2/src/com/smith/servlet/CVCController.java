@@ -1147,7 +1147,7 @@ public class CVCController {
 	}
 	
 	@RequestMapping(value="/getSingleDepartment", method=RequestMethod.GET)
-	public @ResponseBody Department getSingleDeptAddNewCourse(@RequestParam("userId") String userId) {
+	public @ResponseBody Envelope getSingleDeptAddNewCourse(@RequestParam("userId") String userId) {
 		Department dept = new Department();
 		User user = null;
 		
@@ -1162,11 +1162,11 @@ public class CVCController {
 			e.printStackTrace();
 		}
 		
-		return dept;
+		return new Envelope(dept.getDeptCode());
 	}
 	
 	@RequestMapping(value="/addNewCourseToDB", method=RequestMethod.POST, produces="application/json")
-	public void insertNewCourseIntoDB(@RequestParam Map<String, String> params, 
+	public @ResponseBody Envelope insertNewCourseIntoDB(@RequestParam Map<String, String> params, 
 			@RequestParam("newCourseReq[]") String[] newCourseReq, 
 			@RequestParam("newCourseReqType[]") String[] newCourseReqType) {
 
@@ -1181,22 +1181,21 @@ public class CVCController {
 			
 			Course course = new Course(college.getId(), dept.getId(), "0", 
 					params.get("newCourseCourseCode").toUpperCase(), params.get("newCourseCourseTitle"), 
-					params.get("newCourseCourseType"), params.get("newCoursePassGrade"), "", 
-					params.get("newCourseCourseDesc"));
+					params.get("newCourseFacUnits"), "", params.get("newCourseCourseDesc"));
 			
 			CourseDAO.insertCourseToDB(course);
 			
 			for(int i = 0; i < newCourseReq.length; i++) {
 				if(newCourseReqType[i].toUpperCase().equals("EQUIVALENT")) {
 					String currCourseId = CourseDAO.getIDByCode(course.getCourseCode());
-					String equivalentCourseId = CourseDAO.getIDByCode(newCourseReq[i]);
+					String equivalentCourseId = CourseDAO.getIDByCode(newCourseReq[i].toUpperCase());
 					
 					EquivalenceDAO.insertEquivalenceIntoDB(currCourseId, equivalentCourseId);
 					
 					System.out.println("Equivalence added: " + course.getCourseCode() + "|" + newCourseReq[i]);
 				} else if(newCourseReqType[i].toUpperCase().equals("PRE-REQ") || newCourseReqType[i].toUpperCase().equals("POST-REQ")) {
 					String currCourseId = CourseDAO.getIDByCode(course.getCourseCode());
-					String requisiteCourseId = CourseDAO.getIDByCode(newCourseReq[i]);
+					String requisiteCourseId = CourseDAO.getIDByCode(newCourseReq[i].toUpperCase());
 					
 					RequisiteDAO.insertRequisiteIntoDB(currCourseId, requisiteCourseId, newCourseReqType[i]);
 					
@@ -1204,11 +1203,15 @@ public class CVCController {
 				}
 			}
 			
-			System.out.println("Insertion Complete");
+			System.out.println("Insertion Complete"); 
+			
+			return new Envelope("Success");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return new Envelope();
 	}
 	/**************************ADD NEW COURSE*******************************/
 	/**************************ADD NEW FACULTY******************************/
@@ -1264,5 +1267,25 @@ public class CVCController {
 	public static String removeSpaces(String s){
 		s = s.replaceAll("\\s",""); 
 		return s;
+	}
+	
+	private class Envelope{
+		String message;
+
+		public Envelope() {
+			this.message = "Something went wrong";
+		}
+		
+		public Envelope(String msg) {
+			this.message = msg;
+		}
+		
+		public String getMessage() {
+			return message;
+		}
+
+		public void setMessage(String message) {
+			this.message = message;
+		}
 	}
 }

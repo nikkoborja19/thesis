@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import com.smith.constants.FlowcoursesEnum;
 import com.smith.database.Connector;
+import com.smith.model.Constants;
 import com.smith.model.Course;
 import com.smith.model.CourseTimeframe;
 
@@ -34,15 +35,29 @@ public class FlowcoursesDAO {
         return res;
     }
 	
-	public static void insertFlowcourses(CourseTimeframe courseTF, int flowchartId) throws SQLException {
+	public static void insertFlowcourses(CourseTimeframe courseTF) throws SQLException {
 		Connection con = Connector.getConnector();
-		String query = "INSERT INTO " + FlowcoursesEnum.flowcourses + 
+		
+		String query = "SELECT MAX(" + Constants.FLOWCHART_ID + ")  as " + Constants.FLOWCHART_ID + " FROM " + Constants.FLOWCHART_TABLE;
+        PreparedStatement st = (PreparedStatement) con.prepareStatement(query);
+        
+        ResultSet rs = st.executeQuery();
+        String currYearLevel = "";
+        int lastIndex = 0;
+        
+        while(rs.next()) {
+        	lastIndex = rs.getInt(Constants.FLOWCHART_ID);
+        }
+        
+        System.out.println("flowcourses lastIndex: " + lastIndex);
+        
+		query = "INSERT INTO " + FlowcoursesEnum.flowcourses + 
 				" (" + FlowcoursesEnum.flowchart_id + ", " + FlowcoursesEnum.course_id + ", " + FlowcoursesEnum.term + ") " +
 				"VALUES (?,?,?)";
 		
 		for (Course course : courseTF.getCourseList()) {
-			PreparedStatement st = (PreparedStatement) con.prepareStatement(query);
-	        st.setString(1, flowchartId + "");
+			st = (PreparedStatement) con.prepareStatement(query);
+	        st.setString(1, lastIndex + "");
 	        st.setString(2, course.getCourseId());
 	        st.setString(3, courseTF.getTimeframe().getTerm());
 	        

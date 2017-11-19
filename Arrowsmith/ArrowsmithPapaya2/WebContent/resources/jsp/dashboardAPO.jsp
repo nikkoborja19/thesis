@@ -31,7 +31,7 @@ pageEncoding="ISO-8859-1"%>
 			<jsp:include page="dashboardAPORoomAssignmentPanel.jsp"/>
 			<jsp:include page="dashboardAPOViewOfferingsPanel.jsp"/>
 			<jsp:include page="dashboardAPOFlowchartsPanel.jsp"/>
-			<jsp:include page="dashboardAPOUploadFlowchartPanel.jsp"/>
+			<jsp:include page="dashboardAPOUploadFlowchartModal.jsp"/>
 		</div>
 	</div>
 	<jsp:include page="footer.jsp"/>
@@ -41,6 +41,7 @@ pageEncoding="ISO-8859-1"%>
 		<jsp:include page="dashboardAPOViewOfferingsModal.jsp"/>
 		<jsp:include page="dashboardAPOAddNewOfferingsModal.jsp"/>
 		<jsp:include page="editAndDeleteTemporaryOfferingModal.jsp"/>
+		<jsp:include page="dashboardAPOUploadFlowchartModal.jsp"/>
 	<!-- MODALS -->
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

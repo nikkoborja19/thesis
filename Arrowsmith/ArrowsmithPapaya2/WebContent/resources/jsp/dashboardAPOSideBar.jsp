@@ -10,6 +10,6 @@
     <a href="#" class="list-group-item" onclick="clickViewRoomAssignment(this.id)" id="roomAssignNav"><span><i class="fa fa-cogs"></i></span> Room Assignment <!--<span class="badge">33</span>--></a>
     <a href="#" class="list-group-item" onclick="clickBuildingsAndRooms(this.id)" id="buildingsAndRoomsNav"><span><i class="fa fa-university"></i></span> DLSU Buildings & Rooms <!--<span class="badge">203</span>--></a>
   	<!-- YOU CANNOT HAVE AN EMPTY #. NAG EERRO PUTANGINA KAPAG WALA. -->
-  	<a href="#" class="list-group-item" onclick="clickUploadFlowchart(this.id)" id="fileUploadNav"><span><i class="fa fa-file"></i></span> Upload Flowchart</a>
+  	<!-- <a href="#" class="list-group-item" onclick="clickUploadFlowchart(this.id)" id="fileUploadNav"><span><i class="fa fa-file"></i></span> Upload Flowchart</a> -->
   </div>
 </div>

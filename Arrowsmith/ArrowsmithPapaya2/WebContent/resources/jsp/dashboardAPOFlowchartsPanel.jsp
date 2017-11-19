@@ -10,6 +10,14 @@
       <h3 class="panel-title"><span><i class="fa fa-calendar-o"></i></span> Flowcharts</h3>
     </div>
 	    <div class="panel-body">
+	    	<div class="row">
+	    		<div class="col-md-12">
+	    			<div class="col-md-3">
+	    				<button class="btn btn-default" data-toggle="modal" data-target="#uploadFlowchartModal" data-backdrop="static" data-keyboard="false">Upload Flowchart</button>
+	    			</div>
+	    		</div>	    	
+	    	</div>
+	    	<br>
 	      	<div class="row">
 	          <!-- <div class="col-md-4">
 	               <a class="btn btn-default" type="button" onclick="" data-toggle="modal" data-target="#setNewOfferingsModal" data-backdrop="static" data-keyboard="false" id="addNewOfferingsButton"><span><i class="fa fa-calendar-plus-o"></i></span> Add New Offerings</a>

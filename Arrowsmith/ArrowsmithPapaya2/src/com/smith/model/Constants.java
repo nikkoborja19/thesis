@@ -38,7 +38,6 @@ public class Constants {
     public static final String COURSE_AREAID = "area_id";
     public static final String COURSE_CODE = "course_code";
     public static final String COURSE_NAME = "course_name";
-    public static final String COURSE_TYPE = "course_type";
     public static final String COURSE_UNITS = "units";
     public static final String COURSE_REMARKS = "remarks";
     public static final String COURSE_DESCRIPTION = "description";

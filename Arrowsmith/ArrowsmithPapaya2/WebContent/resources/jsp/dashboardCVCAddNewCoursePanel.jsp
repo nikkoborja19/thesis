@@ -44,8 +44,6 @@
 								</div>
 							</div>
 							
-							-->
-							
 							<div class="form-group">
 								<label class="control-label col-sm-2" for="newCourseGrpLvl">Group Level: </label>
 								<div class="col-sm-4">
@@ -55,8 +53,6 @@
 									</select>
 								</div>
 							</div>
-							
-							<!--  
 							
 							<div class="form-group">
 								<label class="control-label col-sm-2" for="newCourseDegLvl">Degree Level: </label>
@@ -76,6 +72,8 @@
 								</div>
 							</div>
 							
+							<!-- 
+							
 							<div class="form-group">
 								<label class="control-label col-sm-2" for="newCourseCourseType">Course Type: </label>
 								<div class="col-sm-4">
@@ -87,9 +85,7 @@
 										<option value="Service Course">Service Course</option>
 									</select>
 								</div>
-							</div>
-							
-							<!--  
+							</div>  
 							
 							<div class="form-group">
 								<label class="control-label col-sm-2" for="newCourseStudUnits">Student Units: </label>
@@ -105,7 +101,7 @@
 								<label class="control-label col-sm-2" for="newCourseFacUnits">Faculty Units: </label>
 								
 								<div class="col-sm-4" id="newCourseFacUnitsHelp">
-									<input type="number" min="0" class="form-control filledOut" id="newCourseFacUnits" name="newCourseFacUnits" placeholder="Enter Faculty Units" required title="Input must be numbers only" oninvalid="this.setCustomValidity('Please fill out with numbers')" oninput="setCustomValidity('')"/>
+									<input type="number" min="0" step="0.5" class="form-control filledOut" id="newCourseFacUnits" name="newCourseFacUnits" placeholder="Enter Faculty Units" required title="Input must be numbers only" oninvalid="this.setCustomValidity('Please fill out with numbers')" oninput="setCustomValidity('')"/>
 								</div>
 							</div>
 							

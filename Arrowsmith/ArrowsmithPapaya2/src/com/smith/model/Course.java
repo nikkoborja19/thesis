@@ -7,7 +7,6 @@ public class Course {
 	private String areaId;
 	private String courseCode;
 	private String courseName;
-	private String courseType;
 	private String units;
 	private String remarks;
 	private String description;
@@ -19,13 +18,12 @@ public class Course {
 		
 	}
 	
-	public Course(String collegeId, String deptId, String areaId, String courseCode, String courseName, String courseType, String units, String remarks, String description) {
+	public Course(String collegeId, String deptId, String areaId, String courseCode, String courseName, String units, String remarks, String description) {
 		this.collegeId = collegeId;
 		this.deptId = deptId;
 		this.areaId = areaId;
 		this.courseCode = courseCode;
 		this.courseName = courseName;
-		this.courseType = courseType;
 		this.units = units;
 		this.remarks = remarks;
 		this.description = description;
@@ -77,14 +75,6 @@ public class Course {
 
 	public void setCourseName(String courseName) {
 		this.courseName = courseName;
-	}
-
-	public String getCourseType() {
-		return courseType;
-	}
-
-	public void setCourseType(String courseType) {
-		this.courseType = courseType;
 	}
 
 	public String getUnits() {

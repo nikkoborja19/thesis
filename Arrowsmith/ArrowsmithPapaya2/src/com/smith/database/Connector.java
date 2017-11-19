@@ -13,7 +13,7 @@ import java.sql.*;
  */
 public class Connector {
     
-    private String host = "jdbc:mysql://localhost:3306/arrowsmithscylla";
+    private String host = "jdbc:mysql://localhost:3306/arrowsmiththunderbird";
     private String username = "root";
     private String password = "mervin1234";
     public Connection con;
