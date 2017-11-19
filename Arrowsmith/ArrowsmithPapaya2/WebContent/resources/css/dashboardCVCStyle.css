@@ -368,6 +368,18 @@ body.modal-open {
 	margin-bottom: 200px;
 }
 
+#panelAddNewFaculty{ 
+	margin-top: 20px;
+	height: 300px;
+	margin-bottom: 260px;
+}
+
+#panelAddNewCourse{ 
+	margin-top: 20px;
+	height: 300px;
+	margin-bottom: 260px;
+}
+
 #panelFlowcharts{ /*may extra stuff kaya hiwalay*/
 	margin-top: 20px;
 	height: 250px;

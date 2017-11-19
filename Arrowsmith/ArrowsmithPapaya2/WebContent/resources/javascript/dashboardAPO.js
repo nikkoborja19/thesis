@@ -937,7 +937,8 @@ function viewOfferingsInModal(id){
         		var section = currObject.section;
         		var batch = currObject.batch;
         		var remarks = currObject.remarks;
-        		var facultyName = currObject.faculty.user.firstName + " " + currObject.faculty.user.lastName;
+        		var facultyName = currObject.faculty.firstName + " " + currObject.faculty.lastName;
+        		//currObject.faculty.user.firstName + " " + currObject.faculty.user.lastName;
         		
     			rows += "<tr id=\"" + id + "-id\" class=\"clicked-offering-inactive offeringRow "+id+"-id\">"+
 						"<td>"+degreeProgram+"</td>"+
@@ -2703,11 +2704,11 @@ $('#searchRoomRA').on('input',function(e){
 });
 
 $('#divANOSearchRoomRA').keyup(function() {
-	updateANORoomList($('#assignRoomOfferingIDDump').val());
+	updateANORoomList($('#assignANORoomOfferingIDDump').val());
 });
 
 $('#divANOSearchRoomRA').on('input',function(e){
-	updateANORoomList($('#assignRoomOfferingIDDump').val());
+	updateANORoomList($('#assignANORoomOfferingIDDump').val());
 });
 
 $('#searchOfferingVO').keyup(function() {

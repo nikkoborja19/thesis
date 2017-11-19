@@ -179,13 +179,13 @@
 		        	<label for="searchRoom">Search Room</label>
 		          	<input type="text" class="form-control" id="divANOSearchRoomRA" placeholder="Search Room...">
 		        </div>
-		        <div class="col-md-8 form-group">
+		        <div class="col-md-3 form-group">
 		          <label for="roomType">Room Type</label>
 		            <select class="form-control" id="divANORoomTypeRADropdown" onChange="">
 					    <option selected>All</option>
 					</select>
 	       		</div>
-		        <div class="col-md-12 form-group">
+		        <div class="col-md-5 form-group">
 		          <label for="roomType">Building</label>
 		            <select class="form-control" id="divANOBuildingRADropdown" onChange="">
 					    <option selected>All</option>

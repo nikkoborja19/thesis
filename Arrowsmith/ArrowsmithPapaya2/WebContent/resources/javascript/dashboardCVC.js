@@ -465,7 +465,7 @@ function updateFacultyAssignmentOfferingList(id){
 	
 	arr = id.split('-');
 	
-	var searchKeyword = $('#divFASearchFaculty').val();
+	var searchKeyword = $('#searchCourseFA').val();
 	var selectedFacultyType = $('#divFAFacultyTypeDropdown :selected').text();
 	
 	$.ajax({
@@ -474,6 +474,7 @@ function updateFacultyAssignmentOfferingList(id){
         cache: false,
         url: 'getAllOfferingsWithoutFiltersCVC',
         data: {
+        	"searchKeyword": searchKeyword,
         	"startYear": globalStartYear,
         	"endYear": globalEndYear,
         	"term": globalTerm
@@ -550,7 +551,6 @@ function updateFacultyAssignmentOfferingList(id){
     	}
     });
 }
-
 function checkIfFacultyAssignmentPossible(offeringId){
 	//offering must have a schedule otherwise can't room assign
 	
@@ -3114,11 +3114,22 @@ $('#searchFacultyFA').keyup(function() {
 	}else updateFAFacultyList($('#assignFAFacultyOfferingIDDump').val());
 });
 
-$('#searchFacultyFA').on('input',function(e){
+/*$('#searchFacultyFA').on('input',function(e){
 	if($('#divFASearchFaculty').val() === ""){
 		initiateFARecommendedFacultyList($('#assignFAFacultyOfferingIDDump').val());
 	}else updateFAFacultyList($('#assignFAFacultyOfferingIDDump').val());
+});*/
+
+$('#searchCourseFA').keyup(function() {
+	//console.log("entered");
+	updateFacultyAssignmentOfferingList(globalStartYear + "-" + globalEndYear + "-" + globalTerm + "-year");
 });
+
+/*$('#searchCourseFA').on('input',function(e){
+	if($('#divFASearchFaculty').val() === ""){
+		initiateFARecommendedFacultyList($('#assignFAFacultyOfferingIDDump').val());
+	}else updateFAFacultyList($('#assignFAFacultyOfferingIDDump').val());
+});*/
 
 $('#CVCsearchOfferingVO').keyup(function() {
 	viewOfferingsInModalCVC($('#viewOfferingsCurrentAYDump').val());

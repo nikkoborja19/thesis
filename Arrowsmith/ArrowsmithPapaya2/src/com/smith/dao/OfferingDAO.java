@@ -76,6 +76,67 @@ public class OfferingDAO {
         return offerings;
     }
 	
+	public static ArrayList<Offering> getListOfferingsByTermWithKey(String startYear, String endYear, String term, String searchKeyword) throws SQLException{
+        ArrayList<Offering> offerings = new ArrayList<Offering>();
+        Connection con = Connector.getConnector();
+        String query = "SELECT * FROM " + Constants.OFFERING_TABLE + " o, " + Constants.COURSE_TABLE + " c WHERE o." 
+        		+ Constants.COURSE_ID + " = c." + Constants.COURSE_ID + " AND o." + Constants.OFFERING_STARTYEAR 
+        		+ " = ? AND o." + Constants.OFFERING_ENDYEAR + " = ? AND o." + Constants.OFFERING_TERM + " = ? "
+        		+ "AND (c." + Constants.COURSE_CODE + " LIKE '%" + searchKeyword + "%' OR c." + Constants.COURSE_NAME + " LIKE '%" + searchKeyword + "%') "
+        		+ "ORDER BY c." + Constants.COURSE_CODE + ", o."+ Constants.OFFERING_SECTION + ", o." + Constants.OFFERING_BATCH
+        		+ ", o." + Constants.OFFERING_STATUS;
+        PreparedStatement st = (PreparedStatement) con.prepareStatement(query);
+        st.setString(1, startYear);
+        st.setString(2, endYear);
+        st.setString(3, term);
+        
+        //System.out.println(query);
+        
+        ResultSet rs = st.executeQuery();
+        
+        while(rs.next()){
+        	Offering o = new Offering();
+            o.setOfferingId(rs.getString(Constants.OFFERING_ID));
+            o.setCourseId(rs.getString(Constants.OFFERING_COURSEID)); 
+            o.setFacultyId(rs.getString(Constants.OFFERING_FACULTYID)); 
+            o.setDegreeProgram(rs.getString(Constants.OFFERING_DEGREEPROGRAM)); 
+            o.setSection(rs.getString(Constants.OFFERING_SECTION)); 
+            o.setBatch(rs.getString(Constants.OFFERING_BATCH)); 
+            o.setMaxStudentsEnrolled(rs.getString(Constants.OFFERING_MAXSTUDENTSENROLLED));
+            o.setCurrStudentsEnrolled(rs.getString(Constants.OFFERING_CURRSTUDENTSENROLLED));
+            o.setIsNonAcad(rs.getString(Constants.OFFERING_ISNONACAD));
+            o.setIsShs(rs.getString(Constants.OFFERING_ISSHS));
+            o.setIsServiceCourse(rs.getString(Constants.OFFERING_ISSERVICECOURSE));
+            o.setServicedeptId(rs.getString(Constants.OFFERING_SERVICEDEPTID));
+            o.setIsMasters(rs.getString(Constants.OFFERING_ISMASTERS));
+            o.setIsElective(rs.getString(Constants.OFFERING_ISELECTIVE));
+            o.setElectiveType(rs.getString(Constants.OFFERING_ELECTIVETYPE));
+            o.setRemarks(rs.getString(Constants.OFFERING_REMARKS));
+            o.setStatus(rs.getString(Constants.OFFERING_STATUS));
+            o.setIteoEval(rs.getString(Constants.OFFERING_ITEOEVAL));
+            o.setStartYear(rs.getString(Constants.OFFERING_STARTYEAR));
+            o.setEndYear(rs.getString(Constants.OFFERING_ENDYEAR));
+            o.setTerm(rs.getString(Constants.OFFERING_TERM));
+            o.setIsPublished(rs.getString(Constants.OFFERING_ISPUBLISHED));
+            o.setDays(DaysDAO.getListDays(o.getOfferingId())); 
+            o.setCourse(CourseDAO.getCourseByID(o.getCourseId()));
+            o.setFaculty(FacultyDAO.getFacultyByID(rs.getString(Constants.OFFERING_FACULTYID),startYear,endYear,term));
+            //System.out.println(o.getFaculty().getLastName() + "mff" + o.getFaculty().getFirstName());
+            String oTerm = rs.getString(Constants.OFFERING_TERM); 
+            String oStartYear = rs.getString(Constants.OFFERING_STARTYEAR); 
+            String oEndYear = rs.getString(Constants.OFFERING_ENDYEAR);
+            
+            o.setTimeframe(new Timeframe(oStartYear, oEndYear, oTerm));
+            
+            offerings.add(o);
+        }
+        
+        con.close();
+        st.close();
+        
+        return offerings;
+    }
+	
 	public static ArrayList<Offering> getListOfferingsByFaculty(String facultyId, String startYear, String endYear, String term) throws SQLException{
         ArrayList<Offering> offerings = new ArrayList<Offering>();
         Connection con = Connector.getConnector();

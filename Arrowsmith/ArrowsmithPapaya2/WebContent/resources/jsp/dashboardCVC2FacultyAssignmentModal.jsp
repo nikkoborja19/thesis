@@ -43,9 +43,13 @@
 		  <div class="col-md-12">
 		    	<div class="modal-body" id="divANOFacultyAssignmentModalBody">
 		      
-		        <div class="col-md-8 form-group">
+		        <div class="col-md-4 form-group">
 				 	<label for="searchFacultyFA">Search Faculty</label>
 				   	<input type="text" class="form-control" id="searchFacultyFA" placeholder="Search Faculty...">
+				</div>
+				<div class="col-md-4 form-group">
+				 	<label for="searchCourseFA">Search Course</label>
+				   	<input type="text" class="form-control" id="searchCourseFA" placeholder="Search Course...">
 				</div>
 				<div class="col-md-4 form-group">
 					<label for="searchFaculty">See Recommended Faculty</label>

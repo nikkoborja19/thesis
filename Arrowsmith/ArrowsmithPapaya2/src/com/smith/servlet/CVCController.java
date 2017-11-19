@@ -126,6 +126,7 @@ public class CVCController {
 	
 	@RequestMapping(value="/getAllOfferingsWithoutFiltersCVC", method=RequestMethod.GET, produces="application/json")
 	public @ResponseBody ArrayList<Offering> getAllOfferingsWithoutFiltersCVC(
+			@RequestParam("searchKeyword") String searchKeyword,
 			@RequestParam("startYear") String startYear,
 			@RequestParam("endYear") String endYear,
 			@RequestParam("term") String term) {
@@ -133,7 +134,7 @@ public class CVCController {
 		ArrayList<Offering> offeringList = new ArrayList<Offering>();
 		
 		try {
-			offeringList = OfferingDAO.getListOfferingsByTerm(startYear, endYear, term);
+			offeringList = OfferingDAO.getListOfferingsByTermWithKey(startYear, endYear, term, searchKeyword);
 			//System.out.println(offeringList.size());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

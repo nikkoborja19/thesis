@@ -25,13 +25,11 @@ pageEncoding="ISO-8859-1"%>
 	<div id="parallaxText">DE LA SALLE UNIVERSITY</div>
 	<div class="parallax-window" data-parallax="scroll" data-image-src="resources/images/dashboard_parallax.jpg"></div>
 	<div class="container-fluid">
-		<div class="row">
-			<jsp:include page="dashboardCVC2SideBar.jsp"/>
-			<jsp:include page="dashboardCVC2ViewOfferingsPanel.jsp"/>
-			<jsp:include page="dashboardCVC2ViewFacultyPanel.jsp"/>
-			<jsp:include page="dashboardCVCAddNewCoursePanel.jsp"/>
-			<jsp:include page="dashboardCVCAddNewFacultyPanel.jsp"/>
-		</div>
+		<jsp:include page="dashboardCVC2SideBar.jsp"/>
+		<jsp:include page="dashboardCVC2ViewOfferingsPanel.jsp"/>
+		<jsp:include page="dashboardCVC2ViewFacultyPanel.jsp"/>
+		<jsp:include page="dashboardCVC2AddNewCoursePanel.jsp"/>
+		<jsp:include page="dashboardCVC2AddNewFacultyPanel.jsp"/>
 	</div>
 	<jsp:include page="footer.jsp"/>
 	<!-- MODALS -->
